@@ -8,6 +8,17 @@ export const PHONE_DISPLAY = "289-488-1007";
 export const PHONE_TEL = "+12894881007";
 export const EMAIL = "info@plumr.ca";
 
+export const ADDRESS = {
+  street: "187 King St",
+  city: "Welland",
+  region: "ON",
+  postalCode: "L3B 3J4",
+  country: "CA",
+};
+export const ADDRESS_LINE = "187 King St, Welland, ON L3B 3J4";
+export const GOOGLE_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=187+King+St+Welland+ON+L3B+3J4";
+
 export const REVIEWS = [
   {
     quote:

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { CalendarCheck, Mail, MapPin, Phone, Clock, UserCircle2 } from "lucide-react";
 import logo from "@/assets/ottr-plumr-logo.jpg";
-import { EMAIL, JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { ADDRESS_LINE, EMAIL, GOOGLE_MAPS_URL, JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const Footer = () => {
   return (
@@ -58,6 +58,12 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
+                <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  {ADDRESS_LINE}
+                </a>
+              </li>
+              <li className="flex items-start gap-2 opacity-80">
+                <span className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>Serving every city in the Niagara Region</span>
               </li>
             </ul>
