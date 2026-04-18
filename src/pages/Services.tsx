@@ -2,8 +2,25 @@ import { Link } from "react-router-dom";
 import { Phone, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SERVICES } from "@/lib/services";
+import { useSeo } from "@/hooks/use-seo";
 
 const ServicesPage = () => {
+  useSeo({
+    title: "Plumbing & Heating Services in Niagara | Ottr Plumr",
+    description:
+      "Full-service plumbing & heating across the Niagara Region — residential, commercial, water heaters, sump pumps, furnaces & boilers. Same-day service. Call 289-488-1007.",
+    canonicalPath: "/services",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: SERVICES.map((s, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://plumr.ca/services/${s.slug}`,
+        name: s.title,
+      })),
+    },
+  });
   return (
     <div>
       <section className="bg-gradient-hero py-16 md:py-24">

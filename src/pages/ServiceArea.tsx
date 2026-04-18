@@ -1,5 +1,4 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
 import {
   ArrowRight, Building2, CalendarCheck, CheckCircle2, Droplets, Flame,
   Home as HomeIcon, MapPin, Phone, ShieldCheck, Wrench,
@@ -7,7 +6,8 @@ import {
 import { Button } from "@/components/ui/button";
 import FAQ from "@/components/FAQ";
 import { CITIES } from "@/lib/cities";
-import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, EMAIL } from "@/lib/site";
+import { useSeo } from "@/hooks/use-seo";
 
 const services = [
   { icon: HomeIcon, title: "Residential Plumbing", desc: "Drains, leaks, faucets, fixtures, re-pipes and renovations." },
@@ -22,9 +22,33 @@ const ServiceAreaPage = () => {
   const { slug } = useParams();
   const city = CITIES.find((c) => c.slug === slug);
 
-  useEffect(() => {
-    if (city) document.title = `Plumbing & Heating in ${city.name} | Ottr Plumr`;
-  }, [city]);
+  useSeo({
+    title: city
+      ? `Plumbing & Heating in ${city.name}, Niagara | Ottr Plumr`
+      : "Service Area | Ottr Plumr",
+    description: city
+      ? `Local plumbing & heating in ${city.name}: drains, water heaters, sump pumps, furnaces & 24/7 emergency service. Call Ottr Plumr at 289-488-1007.`
+      : "Niagara plumbing & heating service areas.",
+    canonicalPath: city ? `/service-areas/${city.slug}` : "/service-areas",
+    noIndex: !city,
+    jsonLd: city
+      ? {
+          "@context": "https://schema.org",
+          "@type": "PlumbingService",
+          name: `Ottr Plumr — ${city.name}`,
+          telephone: PHONE_TEL,
+          email: EMAIL,
+          url: `https://plumr.ca/service-areas/${city.slug}`,
+          areaServed: { "@type": "City", name: city.name, containedInPlace: "Niagara Region, Ontario, Canada" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: city.name,
+            addressRegion: "ON",
+            addressCountry: "CA",
+          },
+        }
+      : undefined,
+  });
 
   if (!city) return <Navigate to="/service-areas" replace />;
 

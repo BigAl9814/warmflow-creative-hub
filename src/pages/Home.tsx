@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import heroOtter from "@/assets/ottr-mascot.png";
 import heroPond from "@/assets/hero-pond.jpg";
 import FAQ from "@/components/FAQ";
-import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS } from "@/lib/site";
+import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS, EMAIL } from "@/lib/site";
 import { CITIES } from "@/lib/cities";
+import { useSeo } from "@/hooks/use-seo";
 
 const services = [
   { icon: Home, title: "Residential Plumbing", desc: "From dripping taps to full re-pipes — done right the first time." },
@@ -17,6 +18,47 @@ const services = [
 ];
 
 const HomePage = () => {
+  useSeo({
+    title: "Ottr Plumr — Plumbing & Heating in Niagara | 24/7 Service",
+    description:
+      "Trusted Niagara plumbing & heating: drains, water heaters, sump pumps, furnaces, boilers. 24/7 service across St. Catharines, Niagara Falls, Welland & more. Call 289-488-1007.",
+    canonicalPath: "/",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "PlumbingService",
+        name: "Ottr Plumr Plumbing & Heating",
+        image: "https://plumr.ca/og-image.jpg",
+        url: "https://plumr.ca/",
+        telephone: PHONE_TEL,
+        email: EMAIL,
+        priceRange: "$$",
+        address: {
+          "@type": "PostalAddress",
+          addressRegion: "ON",
+          addressCountry: "CA",
+          addressLocality: "Welland",
+        },
+        areaServed: CITIES.map((c) => ({ "@type": "City", name: c.name })),
+        aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "50" },
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          opens: "00:00",
+          closes: "23:59",
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: FAQS.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ],
+  });
   return (
     <div>
       {/* HERO */}

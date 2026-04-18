@@ -3,6 +3,7 @@ import { Phone, Award, Heart, MapPin, ShieldCheck, CalendarCheck, UserCircle2 } 
 import { Button } from "@/components/ui/button";
 import pipes from "@/assets/pipes-pattern.jpg";
 import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { useSeo } from "@/hooks/use-seo";
 
 const values = [
   { icon: Heart, title: "Otterly Reliable", desc: "We show up when we say we will, and finish what we start." },
@@ -12,6 +13,12 @@ const values = [
 ];
 
 const AboutPage = () => {
+  useSeo({
+    title: "About Ottr Plumr | Local Niagara Plumbing & Heating",
+    description:
+      "Meet Ottr Plumr — a Niagara-local plumbing & heating team (a division of Canalside Mechanical LTD) built on honest work, quality, and 24/7 reliability.",
+    canonicalPath: "/about",
+  });
   return (
     <div>
       <section className="bg-gradient-hero py-16 md:py-24">
