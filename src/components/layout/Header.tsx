@@ -1,9 +1,10 @@
 import { Link, NavLink as RouterNavLink } from "react-router-dom";
 import { useState } from "react";
-import { Menu, Phone, X } from "lucide-react";
+import { CalendarCheck, Menu, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/ottr-plumr-logo.jpg";
 import { cn } from "@/lib/utils";
+import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const links = [
   { to: "/", label: "Home" },
@@ -51,9 +52,14 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-2">
+          <Button asChild variant="outline" size="default" className="hidden lg:inline-flex">
+            <a href={JOBBER_BOOK_URL} target="_blank" rel="noopener noreferrer">
+              <CalendarCheck className="h-4 w-4" /> Book Now
+            </a>
+          </Button>
           <Button asChild variant="hero" size="default" className="hidden sm:inline-flex">
-            <a href="tel:+12894881007" aria-label="Call Ottr Plumr at 289-488-1007">
-              <Phone className="h-4 w-4" /> 289-488-1007
+            <a href={`tel:${PHONE_TEL}`} aria-label={`Call Ottr Plumr at ${PHONE_DISPLAY}`}>
+              <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
             </a>
           </Button>
           <Button
@@ -87,11 +93,18 @@ const Header = () => {
                 {l.label}
               </RouterNavLink>
             ))}
-            <Button asChild variant="hero" className="mt-2 sm:hidden">
-              <a href="tel:+12894881007">
-                <Phone className="h-4 w-4" /> Call 289-488-1007
-              </a>
-            </Button>
+            <div className="grid grid-cols-2 gap-2 mt-3">
+              <Button asChild variant="outline">
+                <a href={JOBBER_BOOK_URL} target="_blank" rel="noopener noreferrer">
+                  <CalendarCheck className="h-4 w-4" /> Book
+                </a>
+              </Button>
+              <Button asChild variant="hero">
+                <a href={`tel:${PHONE_TEL}`}>
+                  <Phone className="h-4 w-4" /> Call
+                </a>
+              </Button>
+            </div>
           </nav>
         </div>
       )}

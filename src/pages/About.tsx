@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { Phone, Award, Heart, MapPin, ShieldCheck } from "lucide-react";
+import { Phone, Award, Heart, MapPin, ShieldCheck, CalendarCheck, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import pipes from "@/assets/pipes-pattern.jpg";
+import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const values = [
   { icon: Heart, title: "Otterly Reliable", desc: "We show up when we say we will, and finish what we start." },
@@ -21,19 +22,22 @@ const AboutPage = () => {
               Local plumbers.<br />Big-shop quality.
             </h1>
             <p className="text-foreground/80 mt-5 text-lg max-w-xl">
-              Ottr Plumr Plumbing &amp; Heating was built on a simple idea: Niagara families and businesses deserve a
-              plumbing &amp; heating company that's professional from the first phone call to the final clean-up.
+              Ottr Plumr Plumbing &amp; Heating — a division of <strong>Canalside Mechanical LTD</strong> — was built on
+              a simple idea: Niagara families and businesses deserve a plumbing &amp; heating company that's
+              professional from the first phone call to the final clean-up.
             </p>
             <p className="text-foreground/80 mt-4 max-w-xl">
               We bring the technical chops of a big firm with the honesty and care of a neighbour. Whether it's a 2 AM
               burst pipe or a planned bathroom reno, we treat every job like it's our own home.
             </p>
-            <div className="flex gap-3 mt-7">
+            <div className="flex flex-wrap gap-3 mt-7">
               <Button asChild variant="hero" size="lg">
-                <a href="tel:+12894881007"><Phone /> 289-488-1007</a>
+                <a href={`tel:${PHONE_TEL}`}><Phone /> {PHONE_DISPLAY}</a>
               </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/contact">Work with us</Link>
+              <Button asChild variant="deep" size="lg">
+                <a href={JOBBER_BOOK_URL} target="_blank" rel="noopener noreferrer">
+                  <CalendarCheck /> Book Online
+                </a>
               </Button>
             </div>
           </div>
@@ -50,7 +54,51 @@ const AboutPage = () => {
         <div className="water-band h-10 mt-16" aria-hidden="true" />
       </section>
 
+      {/* MEET THE OWNER */}
       <section className="container py-20">
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-10 items-center">
+          <div className="relative max-w-sm mx-auto lg:mx-0 w-full">
+            <div className="aspect-[4/5] rounded-[2rem] border-4 border-foreground/10 shadow-pop bg-gradient-to-br from-secondary to-muted grid place-items-center text-foreground/40">
+              <div className="text-center px-6">
+                <UserCircle2 className="h-20 w-20 mx-auto opacity-50" />
+                <p className="font-script text-2xl mt-3 text-primary/70">Photo of Alex</p>
+                <p className="text-xs mt-1">Upload a photo to replace this placeholder</p>
+              </div>
+            </div>
+            <div className="absolute -top-4 -right-4 bg-primary text-primary-foreground rounded-2xl px-4 py-3 shadow-stamp font-display rotate-[6deg]">
+              Owner
+            </div>
+          </div>
+
+          <div>
+            <p className="font-script text-2xl text-accent">Meet the team</p>
+            <h2 className="font-display text-4xl md:text-5xl text-primary mt-1">
+              Hi, I'm Alex.
+            </h2>
+            <p className="text-foreground/80 mt-5 text-lg">
+              I'm the owner of Ottr Plumr — a hands-on, local expert with a passion for honest work and quality
+              plumbing. With years of experience serving Niagara homes and businesses, I built Ottr Plumr to raise the
+              bar for service, safety, and reliability.
+            </p>
+            <p className="text-foreground/80 mt-4">
+              When you call, you're getting a real Niagara tradesperson who treats your home like his own. No
+              outsourced call centres, no upsell scripts — just straight answers and quality work.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild variant="outline">
+                <a href={JOBBER_CLIENT_HUB_URL} target="_blank" rel="noopener noreferrer">
+                  <UserCircle2 /> Existing Customer Login
+                </a>
+              </Button>
+              <Button asChild variant="hero">
+                <Link to="/contact">Work with us</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container pb-20">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <p className="font-script text-2xl text-accent">What we stand for</p>
           <h2 className="font-display text-4xl md:text-5xl text-primary mt-1">Our promise to you</h2>
@@ -75,8 +123,8 @@ const AboutPage = () => {
             <div className="opacity-85 mt-1">Emergency response</div>
           </div>
           <div>
-            <div className="font-display text-5xl text-primary-glow">12+</div>
-            <div className="opacity-85 mt-1">Niagara cities served</div>
+            <div className="font-display text-5xl text-primary-glow">4.9/5</div>
+            <div className="opacity-85 mt-1">Customer rating</div>
           </div>
           <div>
             <div className="font-display text-5xl text-primary-glow">100%</div>

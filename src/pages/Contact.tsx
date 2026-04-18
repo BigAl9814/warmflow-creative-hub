@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, CalendarCheck, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
+import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_TEL } from "@/lib/site";
 
 const ContactPage = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -110,9 +111,24 @@ const ContactPage = () => {
             <p className="font-script text-2xl text-primary-glow">Need help now?</p>
             <h3 className="font-display text-3xl mt-1">Call 289-488-1007</h3>
             <p className="opacity-85 mt-2 text-sm">24/7 emergency service across Niagara.</p>
-            <Button asChild variant="hero" size="lg" className="mt-5">
-              <a href="tel:+12894881007"><Phone /> Call now</a>
-            </Button>
+            <div className="grid sm:grid-cols-2 gap-2 mt-5">
+              <Button asChild variant="hero" size="lg">
+                <a href={`tel:${PHONE_TEL}`}><Phone /> Call now</a>
+              </Button>
+              <Button asChild size="lg" className="bg-card text-primary hover:bg-card/90">
+                <a href={JOBBER_BOOK_URL} target="_blank" rel="noopener noreferrer">
+                  <CalendarCheck /> Book Online
+                </a>
+              </Button>
+            </div>
+            <a
+              href={JOBBER_CLIENT_HUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm opacity-90 hover:opacity-100 hover:underline"
+            >
+              <UserCircle2 className="h-4 w-4" /> Existing customer? Open Client Hub →
+            </a>
           </div>
 
           <ul className="stamp-card p-6 space-y-4 text-sm">
