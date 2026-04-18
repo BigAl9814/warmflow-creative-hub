@@ -1,12 +1,14 @@
-import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send, CalendarCheck, UserCircle2 } from "lucide-react";
+import { useEffect } from "react";
+import { Phone, Mail, MapPin, Clock, CalendarCheck, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { toast } from "@/hooks/use-toast";
 import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_TEL, EMAIL, ADDRESS, ADDRESS_LINE, GOOGLE_MAPS_URL } from "@/lib/site";
 import { useSeo } from "@/hooks/use-seo";
+
+const JOBBER_FORM_STYLESHEET = "https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css";
+const JOBBER_FORM_SCRIPT = "https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js";
+const JOBBER_CLIENTHUB_ID = "e4833ce1-922c-4bca-b73d-06aca55b449b-1453871";
+const JOBBER_FORM_URL =
+  "https://clienthub.getjobber.com/client_hubs/e4833ce1-922c-4bca-b73d-06aca55b449b/public/work_request/embedded_work_request_form?form_id=1453871";
 
 const ContactPage = () => {
   useSeo({
@@ -43,34 +45,25 @@ const ContactPage = () => {
       },
     },
   });
-  const [submitting, setSubmitting] = useState(false);
+  useEffect(() => {
+    if (!document.querySelector(`link[href="${JOBBER_FORM_STYLESHEET}"]`)) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = JOBBER_FORM_STYLESHEET;
+      link.media = "screen";
+      document.head.appendChild(link);
+    }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const name = data.get("name") as string;
-    const message = data.get("message") as string;
-    const phone = (data.get("phone") as string) || "";
-    const service = (data.get("service") as string) || "General inquiry";
+    const script = document.createElement("script");
+    script.src = JOBBER_FORM_SCRIPT;
+    script.setAttribute("clienthub_id", JOBBER_CLIENTHUB_ID);
+    script.setAttribute("form_url", JOBBER_FORM_URL);
+    document.body.appendChild(script);
 
-    setSubmitting(true);
-    // Open the user's mail client with a prefilled email to info@plumr.ca
-    const subject = encodeURIComponent(`Quote request — ${service}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nPhone: ${phone}\nService: ${service}\n\n${message}`
-    );
-    window.location.href = `mailto:info@plumr.ca?subject=${subject}&body=${body}`;
-
-    setTimeout(() => {
-      toast({
-        title: "Opening your email app…",
-        description: "If nothing happens, email us directly at info@plumr.ca or call 289-488-1007.",
-      });
-      setSubmitting(false);
-      form.reset();
-    }, 400);
-  };
+    return () => {
+      script.remove();
+    };
+  }, []);
 
   return (
     <div>
@@ -86,58 +79,17 @@ const ContactPage = () => {
       </section>
 
       <section className="container py-16 md:py-20 grid lg:grid-cols-[1.2fr_1fr] gap-10">
-        {/* FORM */}
+        {/* JOBBER EMBEDDED REQUEST FORM */}
         <div className="stamp-card p-7 md:p-10">
           <h2 className="font-display text-3xl text-primary mb-2">Request a quote</h2>
           <p className="text-foreground/70 mb-6">Tell us a bit about the job and we'll get right back to you.</p>
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" name="name" required placeholder="Your name" className="mt-1.5" />
-              </div>
-              <div>
-                <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" name="phone" type="tel" placeholder="(289) 555-0100" className="mt-1.5" />
-              </div>
-            </div>
-
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" name="email" type="email" required placeholder="you@example.com" className="mt-1.5" />
-            </div>
-
-            <div>
-              <Label htmlFor="service">Service needed</Label>
-              <select
-                id="service"
-                name="service"
-                className="mt-1.5 w-full h-11 rounded-md border-2 border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                defaultValue=""
-              >
-                <option value="" disabled>Select a service…</option>
-                <option>Residential Plumbing</option>
-                <option>Commercial Plumbing</option>
-                <option>Heating</option>
-                <option>Water Heater</option>
-                <option>Sump Pump</option>
-                <option>Emergency / 24-7</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <div>
-              <Label htmlFor="message">How can we help?</Label>
-              <Textarea id="message" name="message" required rows={5} placeholder="Describe the issue or project…" className="mt-1.5" />
-            </div>
-
-            <Button type="submit" variant="hero" size="lg" disabled={submitting} className="w-full sm:w-auto">
-              <Send /> {submitting ? "Sending…" : "Send Message"}
-            </Button>
-            <p className="text-xs text-foreground/60">
-              By sending, your default email app will open a pre-filled message to info@plumr.ca.
+          <div id={JOBBER_CLIENTHUB_ID} />
+          <noscript>
+            <p className="text-sm text-foreground/70">
+              Please enable JavaScript to load our request form, or email{" "}
+              <a href={`mailto:${EMAIL}`} className="underline">{EMAIL}</a>.
             </p>
-          </form>
+          </noscript>
         </div>
 
         {/* INFO */}
