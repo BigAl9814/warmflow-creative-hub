@@ -10,9 +10,9 @@ import { useSeo } from "@/hooks/use-seo";
 
 const ContactPage = () => {
   useSeo({
-    title: "Contact Ottr Plumr | Niagara Plumbing & Heating Quotes",
+    title: "Contact Ottr Plumr | 187 King St, Welland ON | Niagara Plumbing",
     description:
-      "Request a quote or book Niagara plumbing & heating service. Call 289-488-1007, email info@plumr.ca, or send us a message — 24/7 emergency response.",
+      "Contact Ottr Plumr — 187 King St, Welland, ON L3B 3J4. Call 289-488-1007 or email info@plumr.ca for plumbing & heating across the Niagara Region. 24/7 emergency service.",
     canonicalPath: "/contact",
     jsonLd: {
       "@context": "https://schema.org",
