@@ -1,7 +1,8 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ArrowRight, CalendarCheck, CheckCircle2, Phone, Wrench } from "lucide-react";
+import { ArrowRight, CalendarCheck, CheckCircle2, MapPin, Phone, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getServiceBySlug, SERVICES } from "@/lib/services";
+import { CITIES } from "@/lib/cities";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 import { useSeo } from "@/hooks/use-seo";
 
@@ -161,6 +162,30 @@ const ServicePage = () => {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+      {/* CITY LINKS — service × city pages */}
+      <section className="container py-16">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <p className="font-script text-2xl text-accent">Where we work</p>
+          <h2 className="font-display text-3xl text-primary mt-1">
+            {service.title} across the Niagara Region
+          </h2>
+          <p className="text-foreground/75 mt-3">
+            Local {service.title.toLowerCase()} in every city — pick yours.
+          </p>
+        </div>
+        <div className="flex flex-wrap justify-center gap-2">
+          {CITIES.map((c) => (
+            <Link
+              key={c.slug}
+              to={`/services/${service.slug}/${c.slug}`}
+              className="px-4 py-2 rounded-full bg-card border-2 border-foreground/10 text-sm font-semibold hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors inline-flex items-center gap-1.5"
+            >
+              <MapPin className="h-3.5 w-3.5 text-accent" />
+              {service.title} in {c.name}
+            </Link>
+          ))}
         </div>
       </section>
 

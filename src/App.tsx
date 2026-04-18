@@ -8,6 +8,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Service from "./pages/Service";
+import ServiceCity from "./pages/ServiceCity";
 import ServiceAreas from "./pages/ServiceAreas";
 import ServiceArea from "./pages/ServiceArea";
 import About from "./pages/About";
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:slug" element={<Service />} />
+            <Route path="/services/:service/:city" element={<ServiceCity />} />
             <Route path="/service-areas" element={<ServiceAreas />} />
             <Route path="/service-areas/:slug" element={<ServiceArea />} />
             <Route path="/about" element={<About />} />

@@ -1,22 +1,13 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
-  ArrowRight, Building2, CalendarCheck, CheckCircle2, Droplets, Flame,
-  Home as HomeIcon, MapPin, Phone, ShieldCheck, Wrench,
+  ArrowRight, CalendarCheck, CheckCircle2, MapPin, Phone,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FAQ from "@/components/FAQ";
 import { CITIES } from "@/lib/cities";
+import { SERVICES } from "@/lib/services";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, EMAIL } from "@/lib/site";
 import { useSeo } from "@/hooks/use-seo";
-
-const services = [
-  { icon: HomeIcon, title: "Residential Plumbing", desc: "Drains, leaks, faucets, fixtures, re-pipes and renovations." },
-  { icon: Building2, title: "Commercial Plumbing", desc: "Shops, offices, restaurants, and industrial sites." },
-  { icon: Flame, title: "Heating Systems", desc: "Furnaces, boilers, and radiant in-floor heat." },
-  { icon: Droplets, title: "Water Heaters", desc: "Tank and tankless install, replace, and service." },
-  { icon: ShieldCheck, title: "Sump Pumps", desc: "New installs, replacements, and battery backup systems." },
-  { icon: Wrench, title: "Repairs & Diagnostics", desc: "Honest diagnosis, fair price, warrantied work." },
-];
 
 const ServiceAreaPage = () => {
   const { slug } = useParams();
@@ -90,15 +81,24 @@ const ServiceAreaPage = () => {
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((s) => (
-            <article key={s.title} className="stamp-card p-6">
-              <div className="h-12 w-12 rounded-xl bg-primary text-primary-foreground grid place-items-center mb-4 shadow-soft">
-                <s.icon className="h-6 w-6" />
-              </div>
-              <h3 className="font-display text-xl text-primary mb-1">{s.title}</h3>
-              <p className="text-sm text-foreground/75">{s.desc}</p>
-            </article>
-          ))}
+          {SERVICES.map((s) => {
+            const SIcon = s.icon;
+            return (
+              <Link
+                key={s.slug}
+                to={`/services/${s.slug}/${city.slug}`}
+                className="stamp-card p-6 group hover:shadow-soft transition-shadow"
+              >
+                <div className="h-12 w-12 rounded-xl bg-primary text-primary-foreground grid place-items-center mb-4 shadow-soft group-hover:bg-accent transition-colors">
+                  <SIcon className="h-6 w-6" />
+                </div>
+                <h3 className="font-display text-xl text-primary mb-1 group-hover:underline">
+                  {s.title} in {city.name}
+                </h3>
+                <p className="text-sm text-foreground/75">{s.shortDesc}</p>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
