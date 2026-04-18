@@ -5,9 +5,30 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_TEL } from "@/lib/site";
+import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_TEL, EMAIL } from "@/lib/site";
+import { useSeo } from "@/hooks/use-seo";
 
 const ContactPage = () => {
+  useSeo({
+    title: "Contact Ottr Plumr | Niagara Plumbing & Heating Quotes",
+    description:
+      "Request a quote or book Niagara plumbing & heating service. Call 289-488-1007, email info@plumr.ca, or send us a message — 24/7 emergency response.",
+    canonicalPath: "/contact",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: "Contact Ottr Plumr",
+      url: "https://plumr.ca/contact",
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: PHONE_TEL,
+        email: EMAIL,
+        contactType: "customer service",
+        areaServed: "CA-ON",
+        availableLanguage: ["English"],
+      },
+    },
+  });
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

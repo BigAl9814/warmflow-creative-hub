@@ -3,8 +3,25 @@ import { ArrowRight, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CITIES } from "@/lib/cities";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { useSeo } from "@/hooks/use-seo";
 
 const ServiceAreasPage = () => {
+  useSeo({
+    title: "Niagara Region Service Areas | Ottr Plumr Plumbing & Heating",
+    description:
+      "Local plumbing & heating service across every city in the Niagara Region — St. Catharines, Niagara Falls, Welland, Thorold, Lincoln, Grimsby, Fort Erie & more.",
+    canonicalPath: "/service-areas",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: CITIES.map((c, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://plumr.ca/service-areas/${c.slug}`,
+        name: c.name,
+      })),
+    },
+  });
   return (
     <div>
       <section className="bg-gradient-hero py-16 md:py-24">
