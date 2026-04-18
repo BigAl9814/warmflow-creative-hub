@@ -1,0 +1,80 @@
+import { Link } from "react-router-dom";
+import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import logo from "@/assets/ottr-plumr-logo.jpg";
+
+const Footer = () => {
+  return (
+    <footer className="mt-24">
+      <div className="water-band h-10" aria-hidden="true" />
+      <div className="bg-gradient-deep text-primary-foreground">
+        <div className="container py-14 grid gap-10 md:grid-cols-4">
+          <div className="md:col-span-1">
+            <div className="flex items-center gap-3">
+              <img src={logo} alt="Ottr Plumr logo" width={56} height={56} className="h-14 w-14 rounded-xl bg-card p-1" />
+              <div>
+                <div className="font-display text-xl">Ottr Plumr</div>
+                <div className="text-xs opacity-80">Plumbing &amp; Heating</div>
+              </div>
+            </div>
+            <p className="font-script text-2xl mt-4 text-primary-glow">
+              Otterly Reliable.
+            </p>
+            <p className="text-sm opacity-80">Professional, start to finish.</p>
+          </div>
+
+          <div>
+            <h3 className="font-display text-base mb-3">Explore</h3>
+            <ul className="space-y-2 text-sm opacity-90">
+              <li><Link to="/" className="hover:underline">Home</Link></li>
+              <li><Link to="/services" className="hover:underline">Services</Link></li>
+              <li><Link to="/about" className="hover:underline">About</Link></li>
+              <li><Link to="/contact" className="hover:underline">Contact</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-display text-base mb-3">Get in Touch</h3>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start gap-2">
+                <Phone className="h-4 w-4 mt-0.5 shrink-0" />
+                <a href="tel:+12894881007" className="hover:underline">289-488-1007</a>
+              </li>
+              <li className="flex items-start gap-2">
+                <Mail className="h-4 w-4 mt-0.5 shrink-0" />
+                <a href="mailto:info@plumr.ca" className="hover:underline">info@plumr.ca</a>
+              </li>
+              <li className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
+                <span>Serving every city in the Niagara Region</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-display text-base mb-3">Hours</h3>
+            <ul className="space-y-2 text-sm opacity-90">
+              <li className="flex items-start gap-2">
+                <Clock className="h-4 w-4 mt-0.5 shrink-0" />
+                <div>
+                  <div className="font-semibold">24 / 7 Emergency Service</div>
+                  <div className="opacity-80">Always on call when you need us</div>
+                </div>
+              </li>
+              <li className="pl-6">Regular hours: Mon–Fri, 8 AM – 4 PM</li>
+              <li className="pl-6 opacity-80">After-hours rates apply on evenings &amp; weekends</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-primary-foreground/15">
+          <div className="container py-5 flex flex-col sm:flex-row gap-2 items-center justify-between text-xs opacity-80">
+            <div>© {new Date().getFullYear()} Ottr Plumr Plumbing &amp; Heating. All rights reserved.</div>
+            <div>Niagara Region, Ontario</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
