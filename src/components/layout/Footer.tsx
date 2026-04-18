@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="container py-14 grid gap-10 md:grid-cols-4">
           <div className="md:col-span-1">
             <div className="flex items-center gap-3">
-              <img src={logo} alt="Ottr Plumr logo" width={56} height={56} className="h-14 w-14 rounded-xl bg-card p-1" />
+              <img src={logo} alt="Ottr Plumr Plumbing & Heating logo — Welland, Ontario" width={56} height={56} className="h-14 w-14 rounded-xl bg-card p-1" />
               <div>
                 <div className="font-display text-xl">Ottr Plumr</div>
                 <div className="text-xs opacity-80">Plumbing &amp; Heating</div>
@@ -30,6 +30,7 @@ const Footer = () => {
               <li><Link to="/" className="hover:underline">Home</Link></li>
               <li><Link to="/services" className="hover:underline">Services</Link></li>
               <li><Link to="/service-areas" className="hover:underline">Service Areas</Link></li>
+              <li><Link to="/blog" className="hover:underline">Blog</Link></li>
               <li><Link to="/about" className="hover:underline">About</Link></li>
               <li><Link to="/contact" className="hover:underline">Contact</Link></li>
               <li>

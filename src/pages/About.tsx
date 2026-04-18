@@ -51,7 +51,7 @@ const AboutPage = () => {
 
           <div className="relative">
             <div className="rounded-[2rem] overflow-hidden border-4 border-foreground/10 shadow-pop">
-              <img src={pipes} alt="Stylized plumbing pipes illustration" loading="lazy" width={1024} height={1024} className="w-full h-auto" />
+              <img src={pipes} alt="Plumbing pipes illustration — Ottr Plumr serving the Niagara Region" loading="lazy" width={1024} height={1024} className="w-full h-auto" />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-accent text-accent-foreground rounded-2xl px-5 py-4 shadow-stamp font-display text-xl rotate-[-4deg]">
               Niagara strong
