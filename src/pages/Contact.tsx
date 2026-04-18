@@ -218,6 +218,33 @@ const ContactPage = () => {
           </ul>
         </aside>
       </section>
+
+      {/* MAP */}
+      <section className="container pb-16 md:pb-20">
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <p className="font-script text-2xl text-accent">Find us</p>
+          <h2 className="font-display text-3xl md:text-4xl text-primary mt-1">
+            Visit our Welland office
+          </h2>
+          <p className="text-foreground/75 mt-3">
+            <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:underline font-semibold">
+              {ADDRESS_LINE}
+            </a>
+          </p>
+        </div>
+        <div className="rounded-[2rem] overflow-hidden border-4 border-foreground/10 shadow-pop">
+          <iframe
+            title="Map showing Ottr Plumr at 187 King St, Welland, ON L3B 3J4"
+            src="https://www.google.com/maps?q=187+King+St,+Welland,+ON+L3B+3J4&output=embed"
+            width="100%"
+            height="450"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="w-full h-[360px] md:h-[450px] block"
+            allowFullScreen
+          />
+        </div>
+      </section>
     </div>
   );
 };
