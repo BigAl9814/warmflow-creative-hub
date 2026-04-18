@@ -9,6 +9,7 @@ import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 const links = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
+  { to: "/service-areas", label: "Service Areas" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
