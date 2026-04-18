@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { CalendarCheck, Mail, MapPin, Phone, Clock, UserCircle2 } from "lucide-react";
 import logo from "@/assets/ottr-plumr-logo.jpg";
+import { EMAIL, JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const Footer = () => {
   return (
@@ -20,6 +21,7 @@ const Footer = () => {
               Otterly Reliable.
             </p>
             <p className="text-sm opacity-80">Professional, start to finish.</p>
+            <p className="text-xs opacity-60 mt-4">A division of Canalside Mechanical LTD</p>
           </div>
 
           <div>
@@ -29,6 +31,16 @@ const Footer = () => {
               <li><Link to="/services" className="hover:underline">Services</Link></li>
               <li><Link to="/about" className="hover:underline">About</Link></li>
               <li><Link to="/contact" className="hover:underline">Contact</Link></li>
+              <li>
+                <a href={JOBBER_BOOK_URL} target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
+                  <CalendarCheck className="h-3.5 w-3.5" /> Book Now
+                </a>
+              </li>
+              <li>
+                <a href={JOBBER_CLIENT_HUB_URL} target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
+                  <UserCircle2 className="h-3.5 w-3.5" /> Client Hub
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -37,11 +49,11 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <Phone className="h-4 w-4 mt-0.5 shrink-0" />
-                <a href="tel:+12894881007" className="hover:underline">289-488-1007</a>
+                <a href={`tel:${PHONE_TEL}`} className="hover:underline">{PHONE_DISPLAY}</a>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="h-4 w-4 mt-0.5 shrink-0" />
-                <a href="mailto:info@plumr.ca" className="hover:underline">info@plumr.ca</a>
+                <a href={`mailto:${EMAIL}`} className="hover:underline">{EMAIL}</a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
@@ -68,7 +80,7 @@ const Footer = () => {
 
         <div className="border-t border-primary-foreground/15">
           <div className="container py-5 flex flex-col sm:flex-row gap-2 items-center justify-between text-xs opacity-80">
-            <div>© {new Date().getFullYear()} Ottr Plumr Plumbing &amp; Heating. All rights reserved.</div>
+            <div>© {new Date().getFullYear()} Canalside Mechanical LTD (Ottr Plumr). All rights reserved.</div>
             <div>Niagara Region, Ontario</div>
           </div>
         </div>

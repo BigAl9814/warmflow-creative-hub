@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import { Phone, Wrench, Flame, Droplets, ShieldCheck, Building2, Home, ArrowRight, Star, Clock } from "lucide-react";
+import { Phone, Wrench, Flame, Droplets, ShieldCheck, Building2, Home, ArrowRight, Star, Clock, CalendarCheck, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/ottr-plumr-logo.jpg";
 import heroPond from "@/assets/hero-pond.jpg";
+import FAQ from "@/components/FAQ";
+import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS } from "@/lib/site";
 
 const services = [
   { icon: Home, title: "Residential Plumbing", desc: "From dripping taps to full re-pipes — done right the first time." },
@@ -44,17 +46,25 @@ const HomePage = () => {
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild variant="hero" size="lg">
-                <a href="tel:+12894881007"><Phone /> Call 289-488-1007</a>
+                <a href={`tel:${PHONE_TEL}`}><Phone /> Call {PHONE_DISPLAY}</a>
+              </Button>
+              <Button asChild variant="deep" size="lg">
+                <a href={JOBBER_BOOK_URL} target="_blank" rel="noopener noreferrer">
+                  <CalendarCheck /> Book Online
+                </a>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link to="/contact">Request a Quote <ArrowRight /></Link>
+                <Link to="/contact">Get a Quote <ArrowRight /></Link>
               </Button>
             </div>
-            <div className="flex items-center gap-4 pt-2">
-              <div className="flex -space-x-1 text-accent">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-accent" />
-                ))}
+            <div className="flex items-center gap-3 pt-2">
+              <div className="flex items-center gap-1.5 bg-card border-2 border-foreground/10 rounded-full px-3 py-1.5 shadow-soft">
+                <div className="flex text-accent">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-accent" />
+                  ))}
+                </div>
+                <span className="font-display text-sm text-primary">4.9/5</span>
               </div>
               <span className="text-sm text-foreground/70">Trusted by Niagara homeowners &amp; businesses</span>
             </div>
@@ -65,12 +75,10 @@ const HomePage = () => {
             <div className="relative bg-card rounded-[2rem] border-4 border-foreground/10 p-8 shadow-pop animate-float">
               <img src={logo} alt="Ottr Plumr brand mark" width={420} height={420} className="w-[340px] h-auto" />
             </div>
-            {/* ripple */}
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-40 h-10 rounded-full border-2 border-water-deep/60 animate-ripple" aria-hidden="true" />
           </div>
         </div>
 
-        {/* water band */}
         <div className="water-band h-12 md:h-16" aria-hidden="true" />
       </section>
 
@@ -123,29 +131,45 @@ const HomePage = () => {
             </ul>
           </div>
 
-          <div className="relative">
-            <div className="bg-card text-foreground rounded-[2rem] p-8 shadow-pop border-4 border-primary-foreground/10">
-              <p className="font-script text-3xl text-accent">"Same-day fix."</p>
-              <p className="mt-3 text-foreground/80">
-                "Called Ottr Plumr in the morning about a leaking water heater. Replaced same day, cleaner than they
-                found it. These guys are the real deal."
-              </p>
-              <div className="mt-5 pt-5 border-t border-foreground/10 flex items-center justify-between">
-                <div>
-                  <div className="font-semibold">Sarah M.</div>
-                  <div className="text-xs text-foreground/60">St. Catharines, ON</div>
-                </div>
-                <div className="flex text-accent">
-                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-accent" />)}
-                </div>
+          <div className="bg-card text-foreground rounded-[2rem] p-8 shadow-pop border-4 border-primary-foreground/10">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="flex text-accent">
+                {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-5 w-5 fill-accent" />)}
               </div>
+              <span className="font-display text-2xl text-primary">4.9</span>
+              <span className="text-sm text-foreground/60">/ 5 average rating</span>
             </div>
+            <p className="text-foreground/80">
+              Real reviews from real Niagara customers — see what folks are saying about our work.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* SERVICE AREA STRIP */}
+      {/* TESTIMONIALS */}
       <section className="container py-20 md:py-24">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <p className="font-script text-2xl text-accent">Customer love</p>
+          <h2 className="font-display text-4xl md:text-5xl text-primary mt-1">Don't take our word for it</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {REVIEWS.map((r) => (
+            <article key={r.name} className="stamp-card p-7 flex flex-col">
+              <Quote className="h-8 w-8 text-accent mb-3" />
+              <p className="text-foreground/85 flex-1">{r.quote}</p>
+              <div className="mt-5 pt-5 border-t border-foreground/10 flex items-center justify-between">
+                <div className="font-display text-primary">{r.name}</div>
+                <div className="flex text-accent">
+                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-accent" />)}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* SERVICE AREA STRIP */}
+      <section className="container py-12 md:py-16">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <p className="font-script text-2xl text-accent">Where we work</p>
           <h2 className="font-display text-4xl md:text-5xl text-primary mt-1">Proudly serving the Niagara Region</h2>
@@ -163,6 +187,9 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* FAQ */}
+      <FAQ />
+
       {/* CTA */}
       <section className="container pb-8">
         <div className="rounded-[2rem] overflow-hidden bg-accent text-accent-foreground p-10 md:p-14 shadow-pop relative">
@@ -170,14 +197,16 @@ const HomePage = () => {
           <div className="relative grid md:grid-cols-[1fr_auto] gap-6 items-center">
             <div>
               <h2 className="font-display text-3xl md:text-4xl">Got a leak, a chill, or a project?</h2>
-              <p className="opacity-90 mt-2">Pick up the phone or send us a message — we'll be there.</p>
+              <p className="opacity-90 mt-2">Pick up the phone, book online, or send us a message — we'll be there.</p>
             </div>
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-card text-primary hover:bg-card/90">
-                <a href="tel:+12894881007"><Phone /> 289-488-1007</a>
+                <a href={`tel:${PHONE_TEL}`}><Phone /> {PHONE_DISPLAY}</a>
               </Button>
               <Button asChild variant="deep" size="lg">
-                <Link to="/contact">Get a Quote</Link>
+                <a href={JOBBER_BOOK_URL} target="_blank" rel="noopener noreferrer">
+                  <CalendarCheck /> Book Online
+                </a>
               </Button>
             </div>
           </div>
