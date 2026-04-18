@@ -91,15 +91,24 @@ const ServiceAreaPage = () => {
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((s) => (
-            <article key={s.title} className="stamp-card p-6">
-              <div className="h-12 w-12 rounded-xl bg-primary text-primary-foreground grid place-items-center mb-4 shadow-soft">
-                <s.icon className="h-6 w-6" />
-              </div>
-              <h3 className="font-display text-xl text-primary mb-1">{s.title}</h3>
-              <p className="text-sm text-foreground/75">{s.desc}</p>
-            </article>
-          ))}
+          {SERVICES.map((s) => {
+            const SIcon = s.icon;
+            return (
+              <Link
+                key={s.slug}
+                to={`/services/${s.slug}/${city.slug}`}
+                className="stamp-card p-6 group hover:shadow-soft transition-shadow"
+              >
+                <div className="h-12 w-12 rounded-xl bg-primary text-primary-foreground grid place-items-center mb-4 shadow-soft group-hover:bg-accent transition-colors">
+                  <SIcon className="h-6 w-6" />
+                </div>
+                <h3 className="font-display text-xl text-primary mb-1 group-hover:underline">
+                  {s.title} in {city.name}
+                </h3>
+                <p className="text-sm text-foreground/75">{s.shortDesc}</p>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
