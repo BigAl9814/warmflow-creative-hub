@@ -248,8 +248,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* FAQ */}
-      <FAQ />
+      {/* FAQ — schema already injected via useSeo */}
+      <FAQ injectSchema={false} />
 
       {/* CTA */}
       <section className="container pb-8">
