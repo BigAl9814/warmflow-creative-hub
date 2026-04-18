@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import heroOtter from "@/assets/ottr-mascot.png";
 import heroPond from "@/assets/hero-pond.jpg";
 import FAQ from "@/components/FAQ";
-import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS, EMAIL } from "@/lib/site";
+import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS, EMAIL, ADDRESS } from "@/lib/site";
 import { CITIES } from "@/lib/cities";
 import { useSeo } from "@/hooks/use-seo";
 
@@ -35,9 +35,11 @@ const HomePage = () => {
         priceRange: "$$",
         address: {
           "@type": "PostalAddress",
-          addressRegion: "ON",
-          addressCountry: "CA",
-          addressLocality: "Welland",
+          streetAddress: ADDRESS.street,
+          addressLocality: ADDRESS.city,
+          addressRegion: ADDRESS.region,
+          postalCode: ADDRESS.postalCode,
+          addressCountry: ADDRESS.country,
         },
         areaServed: CITIES.map((c) => ({ "@type": "City", name: c.name })),
         aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "50" },
