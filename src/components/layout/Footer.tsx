@@ -88,7 +88,7 @@ const Footer = () => {
         <div className="border-t border-primary-foreground/15">
           <div className="container py-5 flex flex-col sm:flex-row gap-2 items-center justify-between text-xs opacity-80">
             <div>© {new Date().getFullYear()} Canalside Mechanical LTD (Ottr Plumr). All rights reserved.</div>
-            <div>Niagara Region, Ontario</div>
+            <div>187 King St, Welland, ON L3B 3J4</div>
           </div>
         </div>
       </div>
