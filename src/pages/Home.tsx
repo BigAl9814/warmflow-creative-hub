@@ -5,6 +5,7 @@ import logo from "@/assets/ottr-plumr-logo.jpg";
 import heroPond from "@/assets/hero-pond.jpg";
 import FAQ from "@/components/FAQ";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS } from "@/lib/site";
+import { CITIES } from "@/lib/cities";
 
 const services = [
   { icon: Home, title: "Residential Plumbing", desc: "From dripping taps to full re-pipes — done right the first time." },
@@ -176,14 +177,20 @@ const HomePage = () => {
           <p className="text-foreground/75 mt-4">Every city, every town. If you're in Niagara, we're your local crew.</p>
         </div>
         <div className="flex flex-wrap justify-center gap-2">
-          {[
-            "St. Catharines","Niagara Falls","Welland","Thorold","Lincoln","Grimsby","Pelham",
-            "Fort Erie","Port Colborne","Niagara-on-the-Lake","West Lincoln","Wainfleet",
-          ].map((city) => (
-            <span key={city} className="px-4 py-2 rounded-full bg-card border-2 border-foreground/10 text-sm font-semibold">
-              {city}
-            </span>
+          {CITIES.map((city) => (
+            <Link
+              key={city.slug}
+              to={`/service-areas/${city.slug}`}
+              className="px-4 py-2 rounded-full bg-card border-2 border-foreground/10 text-sm font-semibold hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+            >
+              {city.name}
+            </Link>
           ))}
+        </div>
+        <div className="text-center mt-8">
+          <Button asChild variant="deep">
+            <Link to="/service-areas">All service areas <ArrowRight /></Link>
+          </Button>
         </div>
       </section>
 
