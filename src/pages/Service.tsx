@@ -3,7 +3,7 @@ import { ArrowRight, CalendarCheck, CheckCircle2, MapPin, Phone, Wrench } from "
 import { Button } from "@/components/ui/button";
 import { getServiceBySlug, SERVICES } from "@/lib/services";
 import { CITIES } from "@/lib/cities";
-import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS } from "@/lib/site";
 import { useSeo } from "@/hooks/use-seo";
 
 const ServicePage = () => {
@@ -27,9 +27,23 @@ const ServicePage = () => {
               name: "Ottr Plumr",
               telephone: PHONE_TEL,
               areaServed: "Niagara Region, Ontario, Canada",
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "4.9",
+                reviewCount: "50",
+              },
             },
             areaServed: "Niagara Region, Ontario",
             url: `https://plumr.ca/services/${service.slug}`,
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://plumr.ca/" },
+              { "@type": "ListItem", position: 2, name: "Services", item: "https://plumr.ca/services" },
+              { "@type": "ListItem", position: 3, name: service.title, item: `https://plumr.ca/services/${service.slug}` },
+            ],
           },
           {
             "@context": "https://schema.org",
@@ -53,12 +67,13 @@ const ServicePage = () => {
     <div>
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container max-w-4xl text-center">
-          <Link
-            to="/services"
-            className="inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline"
-          >
-            <Wrench className="h-4 w-4" /> All services
-          </Link>
+          <nav aria-label="Breadcrumb" className="text-sm text-foreground/70 flex flex-wrap justify-center items-center gap-1.5">
+            <Link to="/" className="hover:underline">Home</Link>
+            <span>/</span>
+            <Link to="/services" className="hover:underline">Services</Link>
+            <span>/</span>
+            <span className="font-semibold text-primary">{service.title}</span>
+          </nav>
           <div className="h-16 w-16 rounded-2xl bg-primary text-primary-foreground grid place-items-center shadow-soft mx-auto mt-6">
             <Icon className="h-8 w-8" />
           </div>
