@@ -2,7 +2,7 @@ import { Link, NavLink as RouterNavLink } from "react-router-dom";
 import { useState } from "react";
 import { CalendarCheck, Menu, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/ottr-wordmark.png";
+import logo from "@/assets/ottr-wordmark.webp";
 import { cn } from "@/lib/utils";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
@@ -27,6 +27,8 @@ const Header = () => {
             alt="Ottr Plumr Plumbing & Heating logo"
             width={200}
             height={80}
+            decoding="async"
+            fetchPriority="high"
             className="h-14 md:h-16 w-auto object-contain"
           />
         </Link>
