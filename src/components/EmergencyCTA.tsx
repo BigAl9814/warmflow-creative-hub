@@ -8,13 +8,13 @@ import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 const EmergencyCTA = () => {
   return (
     <div
-      className="md:hidden fixed bottom-0 inset-x-0 z-40 px-3 pb-3 pt-2 bg-gradient-to-t from-background via-background/95 to-transparent pointer-events-none"
+      className="fixed bottom-0 inset-x-0 z-40 px-3 pb-3 pt-2 md:px-0 md:pb-6 md:pt-0 md:bottom-6 md:inset-x-auto md:right-6 bg-gradient-to-t from-background via-background/95 to-transparent md:bg-none pointer-events-none"
       aria-hidden={false}
     >
       <a
         href={`tel:${PHONE_TEL}`}
         aria-label={`Call Ottr Plumr 24/7 emergency line at ${PHONE_DISPLAY}`}
-        className="pointer-events-auto flex items-center justify-center gap-2 w-full rounded-full bg-accent text-accent-foreground font-display text-base px-5 py-3.5 shadow-pop border-2 border-accent-foreground/10 active:scale-[0.98] transition-transform"
+        className="pointer-events-auto flex items-center justify-center gap-2 w-full md:w-auto rounded-full bg-accent text-accent-foreground font-display text-base md:text-sm px-5 py-3.5 md:px-6 md:py-3 shadow-pop border-2 border-accent-foreground/10 active:scale-[0.98] hover:scale-[1.02] transition-transform"
       >
         <span className="relative flex h-2.5 w-2.5">
           <span className="absolute inline-flex h-full w-full rounded-full bg-accent-foreground opacity-75 animate-ping" />
