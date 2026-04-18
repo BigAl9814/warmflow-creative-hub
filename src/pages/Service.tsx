@@ -1,71 +1,47 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { ArrowRight, CalendarCheck, CheckCircle2, Phone, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getServiceBySlug, SERVICES } from "@/lib/services";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { useSeo } from "@/hooks/use-seo";
 
 const ServicePage = () => {
   const { slug } = useParams();
   const service = getServiceBySlug(slug);
 
-  useEffect(() => {
-    if (!service) return;
-    const title = `${service.title} in Niagara | Ottr Plumr`;
-    document.title = title;
-
-    const setMeta = (name: string, content: string) => {
-      let el = document.querySelector(`meta[name="${name}"]`);
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute("name", name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-    setMeta("description", service.metaDescription);
-
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute("href", `/services/${service.slug}`);
-
-    // JSON-LD structured data
-    const ldId = "service-jsonld";
-    document.getElementById(ldId)?.remove();
-    const ld = document.createElement("script");
-    ld.type = "application/ld+json";
-    ld.id = ldId;
-    ld.text = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name: service.title,
-      description: service.metaDescription,
-      provider: {
-        "@type": "PlumbingService",
-        name: "Ottr Plumr",
-        telephone: PHONE_TEL,
-        areaServed: "Niagara Region, Ontario, Canada",
-      },
-      areaServed: "Niagara Region, Ontario",
-      mainEntity: {
-        "@type": "FAQPage",
-        mainEntity: service.faqs.map((f) => ({
-          "@type": "Question",
-          name: f.q,
-          acceptedAnswer: { "@type": "Answer", text: f.a },
-        })),
-      },
-    });
-    document.head.appendChild(ld);
-
-    return () => {
-      document.getElementById(ldId)?.remove();
-    };
-  }, [service]);
+  useSeo({
+    title: service ? `${service.title} in Niagara | Ottr Plumr` : "Service | Ottr Plumr",
+    description: service?.metaDescription ?? "Plumbing & heating services in the Niagara Region.",
+    canonicalPath: service ? `/services/${service.slug}` : "/services",
+    noIndex: !service,
+    jsonLd: service
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: service.title,
+            description: service.metaDescription,
+            provider: {
+              "@type": "PlumbingService",
+              name: "Ottr Plumr",
+              telephone: PHONE_TEL,
+              areaServed: "Niagara Region, Ontario, Canada",
+            },
+            areaServed: "Niagara Region, Ontario",
+            url: `https://plumr.ca/services/${service.slug}`,
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: service.faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          },
+        ]
+      : undefined,
+  });
 
   if (!service) return <Navigate to="/services" replace />;
 
