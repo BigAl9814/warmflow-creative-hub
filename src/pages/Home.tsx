@@ -19,9 +19,9 @@ const services = [
 
 const HomePage = () => {
   useSeo({
-    title: "Ottr Plumr — Plumbing & Heating in Niagara | 24/7 Service",
+    title: "Ottr Plumr — Plumbing & Heating in Welland & Niagara | 24/7",
     description:
-      "Trusted Niagara plumbing & heating: drains, water heaters, sump pumps, furnaces, boilers. 24/7 service across St. Catharines, Niagara Falls, Welland & more. Call 289-488-1007.",
+      "Niagara plumbing & heating based at 187 King St, Welland, ON. Drains, water heaters, sump pumps, furnaces & boilers. 24/7 service across St. Catharines, Niagara Falls, Welland & more. Call 289-488-1007.",
     canonicalPath: "/",
     jsonLd: [
       {
@@ -41,6 +41,12 @@ const HomePage = () => {
           postalCode: ADDRESS.postalCode,
           addressCountry: ADDRESS.country,
         },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 42.9925,
+          longitude: -79.2483,
+        },
+        hasMap: "https://www.google.com/maps/search/?api=1&query=187+King+St+Welland+ON+L3B+3J4",
         areaServed: CITIES.map((c) => ({ "@type": "City", name: c.name })),
         aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "50" },
         openingHoursSpecification: {
