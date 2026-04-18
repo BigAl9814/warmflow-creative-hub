@@ -2,7 +2,7 @@ import { Link, NavLink as RouterNavLink } from "react-router-dom";
 import { useState } from "react";
 import { CalendarCheck, Menu, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/ottr-plumr-logo.jpg";
+import logo from "@/assets/ottr-wordmark.png";
 import { cn } from "@/lib/utils";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
@@ -20,18 +20,14 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b-2 border-foreground/10">
       <div className="container flex h-20 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-3 shrink-0" aria-label="Ottr Plumr Plumbing & Heating home">
+        <Link to="/" className="flex items-center shrink-0" aria-label="Ottr Plumr Plumbing & Heating home">
           <img
             src={logo}
             alt="Ottr Plumr Plumbing & Heating logo"
-            width={56}
-            height={56}
-            className="h-14 w-14 rounded-xl object-contain bg-card p-1 border-2 border-foreground/10"
+            width={200}
+            height={80}
+            className="h-14 md:h-16 w-auto object-contain"
           />
-          <div className="hidden sm:block leading-tight">
-            <div className="font-display text-primary text-lg">Ottr Plumr</div>
-            <div className="text-xs text-muted-foreground -mt-0.5">Plumbing &amp; Heating</div>
-          </div>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
