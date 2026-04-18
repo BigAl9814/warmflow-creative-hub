@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Phone, Wrench, Flame, Droplets, ShieldCheck, Building2, Home, ArrowRight, Star, Clock, CalendarCheck, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroOtter from "@/assets/ottr-mascot.png";
-import heroPond from "@/assets/hero-pond.jpg";
+import heroOtter from "@/assets/ottr-mascot.webp";
+import heroPond from "@/assets/hero-pond.webp";
 import FAQ from "@/components/FAQ";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS, EMAIL, ADDRESS } from "@/lib/site";
@@ -135,6 +135,8 @@ const HomePage = () => {
               alt="Friendly otter mascot in plumber overalls holding a red pipe wrench — Ottr Plumr Plumbing & Heating, Niagara Region"
               width={520}
               height={520}
+              fetchPriority="high"
+              decoding="async"
               className="relative w-[460px] h-auto drop-shadow-[0_20px_30px_hsl(215_75%_18%/0.35)] animate-float"
             />
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-40 h-10 rounded-full border-2 border-water-deep/60 animate-ripple" aria-hidden="true" />

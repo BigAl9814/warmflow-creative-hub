@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { CalendarCheck, Mail, MapPin, Phone, Clock, UserCircle2 } from "lucide-react";
-import logo from "@/assets/ottr-plumr-logo.jpg";
+import logo from "@/assets/ottr-plumr-logo.webp";
 import { ADDRESS_LINE, EMAIL, GOOGLE_MAPS_URL, JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const Footer = () => {
@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="container py-14 grid gap-10 md:grid-cols-4">
           <div className="md:col-span-1">
             <div className="flex items-center gap-3">
-              <img src={logo} alt="Ottr Plumr Plumbing & Heating logo — Welland, Ontario" width={56} height={56} className="h-14 w-14 rounded-xl bg-card p-1" />
+              <img src={logo} alt="Ottr Plumr Plumbing & Heating logo — Welland, Ontario" width={56} height={56} loading="lazy" decoding="async" className="h-14 w-14 rounded-xl bg-card p-1" />
               <div>
                 <div className="font-display text-xl">Ottr Plumr</div>
                 <div className="text-xs opacity-80">Plumbing &amp; Heating</div>
