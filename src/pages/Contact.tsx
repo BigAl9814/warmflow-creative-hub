@@ -19,6 +19,20 @@ const ContactPage = () => {
       "@type": "ContactPage",
       name: "Contact Ottr Plumr",
       url: "https://plumr.ca/contact",
+      mainEntity: {
+        "@type": "PlumbingService",
+        name: "Ottr Plumr Plumbing & Heating",
+        telephone: PHONE_TEL,
+        email: EMAIL,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: ADDRESS.street,
+          addressLocality: ADDRESS.city,
+          addressRegion: ADDRESS.region,
+          postalCode: ADDRESS.postalCode,
+          addressCountry: ADDRESS.country,
+        },
+      },
       contactPoint: {
         "@type": "ContactPoint",
         telephone: PHONE_TEL,
@@ -176,8 +190,16 @@ const ContactPage = () => {
                 <MapPin className="h-5 w-5" />
               </div>
               <div>
-                <div className="font-display text-primary">Service Area</div>
-                <div className="text-foreground/80">Every city in the Niagara Region</div>
+                <div className="font-display text-primary">Office</div>
+                <a
+                  href={GOOGLE_MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground/80 hover:underline block"
+                >
+                  {ADDRESS_LINE}
+                </a>
+                <div className="text-foreground/60 text-xs mt-1">Serving every city in the Niagara Region</div>
               </div>
             </li>
             <li className="flex items-start gap-3">
