@@ -79,58 +79,17 @@ const ContactPage = () => {
       </section>
 
       <section className="container py-16 md:py-20 grid lg:grid-cols-[1.2fr_1fr] gap-10">
-        {/* FORM */}
+        {/* JOBBER EMBEDDED REQUEST FORM */}
         <div className="stamp-card p-7 md:p-10">
           <h2 className="font-display text-3xl text-primary mb-2">Request a quote</h2>
           <p className="text-foreground/70 mb-6">Tell us a bit about the job and we'll get right back to you.</p>
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" name="name" required placeholder="Your name" className="mt-1.5" />
-              </div>
-              <div>
-                <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" name="phone" type="tel" placeholder="(289) 555-0100" className="mt-1.5" />
-              </div>
-            </div>
-
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" name="email" type="email" required placeholder="you@example.com" className="mt-1.5" />
-            </div>
-
-            <div>
-              <Label htmlFor="service">Service needed</Label>
-              <select
-                id="service"
-                name="service"
-                className="mt-1.5 w-full h-11 rounded-md border-2 border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                defaultValue=""
-              >
-                <option value="" disabled>Select a service…</option>
-                <option>Residential Plumbing</option>
-                <option>Commercial Plumbing</option>
-                <option>Heating</option>
-                <option>Water Heater</option>
-                <option>Sump Pump</option>
-                <option>Emergency / 24-7</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <div>
-              <Label htmlFor="message">How can we help?</Label>
-              <Textarea id="message" name="message" required rows={5} placeholder="Describe the issue or project…" className="mt-1.5" />
-            </div>
-
-            <Button type="submit" variant="hero" size="lg" disabled={submitting} className="w-full sm:w-auto">
-              <Send /> {submitting ? "Sending…" : "Send Message"}
-            </Button>
-            <p className="text-xs text-foreground/60">
-              By sending, your default email app will open a pre-filled message to info@plumr.ca.
+          <div id={JOBBER_CLIENTHUB_ID} />
+          <noscript>
+            <p className="text-sm text-foreground/70">
+              Please enable JavaScript to load our request form, or email{" "}
+              <a href={`mailto:${EMAIL}`} className="underline">{EMAIL}</a>.
             </p>
-          </form>
+          </noscript>
         </div>
 
         {/* INFO */}
