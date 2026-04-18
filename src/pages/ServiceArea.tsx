@@ -144,6 +144,28 @@ const ServiceAreaPage = () => {
         </section>
       )}
 
+      {/* NEARBY CITIES — internal linking */}
+      <section className="container py-16">
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <p className="font-script text-2xl text-accent">Nearby cities</p>
+          <h2 className="font-display text-3xl text-primary mt-1">
+            We also serve these Niagara communities
+          </h2>
+        </div>
+        <div className="flex flex-wrap justify-center gap-2">
+          {CITIES.filter((c) => c.slug !== city.slug).map((c) => (
+            <Link
+              key={c.slug}
+              to={`/service-areas/${c.slug}`}
+              className="px-4 py-2 rounded-full bg-card border-2 border-foreground/10 text-sm font-semibold hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors inline-flex items-center gap-1.5"
+            >
+              <MapPin className="h-3.5 w-3.5 text-accent" />
+              Plumbing in {c.name}
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="bg-gradient-deep text-primary-foreground py-16">
         <div className="container text-center max-w-2xl">
           <h2 className="font-display text-3xl md:text-4xl">Need a {city.name} plumber today?</h2>
