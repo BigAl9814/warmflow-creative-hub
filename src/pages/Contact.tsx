@@ -45,34 +45,25 @@ const ContactPage = () => {
       },
     },
   });
-  const [submitting, setSubmitting] = useState(false);
+  useEffect(() => {
+    if (!document.querySelector(`link[href="${JOBBER_FORM_STYLESHEET}"]`)) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = JOBBER_FORM_STYLESHEET;
+      link.media = "screen";
+      document.head.appendChild(link);
+    }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const name = data.get("name") as string;
-    const message = data.get("message") as string;
-    const phone = (data.get("phone") as string) || "";
-    const service = (data.get("service") as string) || "General inquiry";
+    const script = document.createElement("script");
+    script.src = JOBBER_FORM_SCRIPT;
+    script.setAttribute("clienthub_id", JOBBER_CLIENTHUB_ID);
+    script.setAttribute("form_url", JOBBER_FORM_URL);
+    document.body.appendChild(script);
 
-    setSubmitting(true);
-    // Open the user's mail client with a prefilled email to info@plumr.ca
-    const subject = encodeURIComponent(`Quote request — ${service}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nPhone: ${phone}\nService: ${service}\n\n${message}`
-    );
-    window.location.href = `mailto:info@plumr.ca?subject=${subject}&body=${body}`;
-
-    setTimeout(() => {
-      toast({
-        title: "Opening your email app…",
-        description: "If nothing happens, email us directly at info@plumr.ca or call 289-488-1007.",
-      });
-      setSubmitting(false);
-      form.reset();
-    }, 400);
-  };
+    return () => {
+      script.remove();
+    };
+  }, []);
 
   return (
     <div>
