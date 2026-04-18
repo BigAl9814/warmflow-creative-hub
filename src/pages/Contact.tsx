@@ -1,12 +1,14 @@
-import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send, CalendarCheck, UserCircle2 } from "lucide-react";
+import { useEffect } from "react";
+import { Phone, Mail, MapPin, Clock, CalendarCheck, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { toast } from "@/hooks/use-toast";
 import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_TEL, EMAIL, ADDRESS, ADDRESS_LINE, GOOGLE_MAPS_URL } from "@/lib/site";
 import { useSeo } from "@/hooks/use-seo";
+
+const JOBBER_FORM_STYLESHEET = "https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css";
+const JOBBER_FORM_SCRIPT = "https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js";
+const JOBBER_CLIENTHUB_ID = "e4833ce1-922c-4bca-b73d-06aca55b449b-1453871";
+const JOBBER_FORM_URL =
+  "https://clienthub.getjobber.com/client_hubs/e4833ce1-922c-4bca-b73d-06aca55b449b/public/work_request/embedded_work_request_form?form_id=1453871";
 
 const ContactPage = () => {
   useSeo({
