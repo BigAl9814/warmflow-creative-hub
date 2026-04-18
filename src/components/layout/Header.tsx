@@ -2,7 +2,7 @@ import { Link, NavLink as RouterNavLink } from "react-router-dom";
 import { useState } from "react";
 import { CalendarCheck, Menu, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/ottr-plumr-logo.jpg";
+import logo from "@/assets/ottr-wordmark.png";
 import { cn } from "@/lib/utils";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
