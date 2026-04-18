@@ -78,14 +78,15 @@ const HomePage = () => {
     <div>
       {/* HERO */}
       <section className="relative overflow-hidden bg-gradient-hero">
-        <div
+        <img
+          src={heroPond}
+          alt=""
           aria-hidden="true"
-          className="absolute inset-0 opacity-40"
-          style={{
-            backgroundImage: `url(${heroPond})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
+          fetchPriority="high"
+          decoding="async"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/30 to-background" aria-hidden="true" />
 
