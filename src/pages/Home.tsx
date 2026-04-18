@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Phone, Wrench, Flame, Droplets, ShieldCheck, Building2, Home, ArrowRight, Star, Clock, CalendarCheck, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/ottr-plumr-logo.jpg";
+import heroOtter from "@/assets/hero-otter-plumber.jpg";
 import heroPond from "@/assets/hero-pond.jpg";
 import FAQ from "@/components/FAQ";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS } from "@/lib/site";
@@ -71,10 +71,16 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="relative hidden lg:flex justify-center">
+          <div className="relative hidden lg:flex justify-center items-center">
             <div className="absolute inset-0 -m-10 rounded-full bg-water/40 blur-3xl" aria-hidden="true" />
-            <div className="relative bg-card rounded-[2rem] border-4 border-foreground/10 p-8 shadow-pop animate-float">
-              <img src={logo} alt="Ottr Plumr brand mark" width={420} height={420} className="w-[340px] h-auto" />
+            <div className="relative rounded-[2rem] overflow-hidden border-4 border-foreground/10 shadow-pop bg-gradient-to-br from-card to-secondary">
+              <img
+                src={heroOtter}
+                alt="Ottr Plumr otter mascot fixing a water heater"
+                width={520}
+                height={520}
+                className="w-[440px] h-auto block mix-blend-multiply"
+              />
             </div>
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-40 h-10 rounded-full border-2 border-water-deep/60 animate-ripple" aria-hidden="true" />
           </div>
