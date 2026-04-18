@@ -11,6 +11,7 @@ import ServiceAreas from "./pages/ServiceAreas";
 import ServiceArea from "./pages/ServiceArea";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Nap from "./pages/Nap";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/service-areas/:slug" element={<ServiceArea />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/nap" element={<Nap />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
