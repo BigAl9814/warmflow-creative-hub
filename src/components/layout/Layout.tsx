@@ -7,8 +7,8 @@ const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      {/* Bottom padding on mobile so sticky CTA never hides content */}
-      <main className="flex-1 pb-20 md:pb-0">
+      {/* Bottom padding so sticky CTA never hides content */}
+      <main className="flex-1 pb-20">
         <Outlet />
       </main>
       <Footer />
