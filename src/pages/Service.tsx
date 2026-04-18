@@ -1,7 +1,8 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ArrowRight, CalendarCheck, CheckCircle2, Phone, Wrench } from "lucide-react";
+import { ArrowRight, CalendarCheck, CheckCircle2, MapPin, Phone, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getServiceBySlug, SERVICES } from "@/lib/services";
+import { CITIES } from "@/lib/cities";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 import { useSeo } from "@/hooks/use-seo";
 
