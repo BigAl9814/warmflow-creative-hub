@@ -1,10 +1,10 @@
 import { Link, NavLink as RouterNavLink } from "react-router-dom";
 import { useState } from "react";
-import { CalendarCheck, Menu, Phone, X } from "lucide-react";
+import { CalendarCheck, Menu, Phone, UserCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/ottr-wordmark.webp";
 import { cn } from "@/lib/utils";
-import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const links = [
   { to: "/", label: "Home" },
@@ -57,6 +57,11 @@ const Header = () => {
               <CalendarCheck className="h-4 w-4" /> Book Now
             </a>
           </Button>
+          <Button asChild variant="outline" size="default" className="hidden lg:inline-flex">
+            <a href={JOBBER_CLIENT_HUB_URL} target="_blank" rel="noopener noreferrer">
+              <UserCircle className="h-4 w-4" /> Client Hub
+            </a>
+          </Button>
           <Button asChild variant="hero" size="default" className="hidden sm:inline-flex">
             <a href={`tel:${PHONE_TEL}`} aria-label={`Call Ottr Plumr at ${PHONE_DISPLAY}`}>
               <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
@@ -99,9 +104,14 @@ const Header = () => {
                   <CalendarCheck className="h-4 w-4" /> Book
                 </a>
               </Button>
-              <Button asChild variant="hero">
+              <Button asChild variant="outline">
+                <a href={JOBBER_CLIENT_HUB_URL} target="_blank" rel="noopener noreferrer">
+                  <UserCircle className="h-4 w-4" /> Client Hub
+                </a>
+              </Button>
+              <Button asChild variant="hero" className="col-span-2">
                 <a href={`tel:${PHONE_TEL}`}>
-                  <Phone className="h-4 w-4" /> Call
+                  <Phone className="h-4 w-4" /> Call {PHONE_DISPLAY}
                 </a>
               </Button>
             </div>
