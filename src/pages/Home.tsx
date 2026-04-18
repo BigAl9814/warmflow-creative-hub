@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import heroOtter from "@/assets/ottr-mascot.png";
 import heroPond from "@/assets/hero-pond.jpg";
 import FAQ from "@/components/FAQ";
+import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS, EMAIL, ADDRESS } from "@/lib/site";
 import { CITIES } from "@/lib/cities";
 import { useSeo } from "@/hooks/use-seo";
@@ -49,6 +50,12 @@ const HomePage = () => {
         hasMap: "https://www.google.com/maps/search/?api=1&query=187+King+St+Welland+ON+L3B+3J4",
         areaServed: CITIES.map((c) => ({ "@type": "City", name: c.name })),
         aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "50" },
+        review: REVIEWS.map((r) => ({
+          "@type": "Review",
+          reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+          author: { "@type": "Person", name: r.name },
+          reviewBody: r.quote,
+        })),
         openingHoursSpecification: {
           "@type": "OpeningHoursSpecification",
           dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
@@ -125,7 +132,7 @@ const HomePage = () => {
             <div className="absolute inset-0 -m-10 rounded-full bg-water/40 blur-3xl" aria-hidden="true" />
             <img
               src={heroOtter}
-              alt="Ottr Plumr otter mascot holding a red pipe wrench"
+              alt="Friendly otter mascot in plumber overalls holding a red pipe wrench — Ottr Plumr Plumbing & Heating, Niagara Region"
               width={520}
               height={520}
               className="relative w-[460px] h-auto drop-shadow-[0_20px_30px_hsl(215_75%_18%/0.35)] animate-float"
@@ -222,6 +229,9 @@ const HomePage = () => {
           ))}
         </div>
       </section>
+
+      {/* BEFORE / AFTER */}
+      <BeforeAfterGallery />
 
       {/* SERVICE AREA STRIP */}
       <section className="container py-12 md:py-16">
