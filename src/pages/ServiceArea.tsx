@@ -4,6 +4,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FAQ from "@/components/FAQ";
+import UrgencyStrip from "@/components/UrgencyStrip";
+import CityMap from "@/components/CityMap";
 import { CITIES } from "@/lib/cities";
 import { SERVICES } from "@/lib/services";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
@@ -84,6 +86,8 @@ const ServiceAreaPage = () => {
         </div>
         <div className="water-band h-10 mt-12" aria-hidden="true" />
       </section>
+
+      <UrgencyStrip />
 
       {/* LOCAL CONTEXT — longDesc, common issues, local notes */}
       {(city.longDesc || city.commonIssues || city.localNotes) && (
