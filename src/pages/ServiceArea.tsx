@@ -7,13 +7,13 @@ import FAQ from "@/components/FAQ";
 import { CITIES } from "@/lib/cities";
 import { SERVICES } from "@/lib/services";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, EMAIL, REVIEWS } from "@/lib/site";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const ServiceAreaPage = () => {
   const { slug } = useParams();
   const city = CITIES.find((c) => c.slug === slug);
 
-  useSeo({
+  const seo: SeoOptions = {
     title: city
       ? `${city.name} Plumber & Heating | 24/7 Local | Ottr Plumr`
       : "Service Area | Ottr Plumr",
@@ -61,12 +61,15 @@ const ServiceAreaPage = () => {
           },
         ]
       : undefined,
-  });
+  };
+  useSeo(seo);
 
   if (!city) return <Navigate to="/service-areas" replace />;
 
   return (
     <div>
+      <Seo {...seo} />
+
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container max-w-4xl text-center">
           <nav aria-label="Breadcrumb" className="text-sm text-foreground/70 flex flex-wrap justify-center items-center gap-1.5">

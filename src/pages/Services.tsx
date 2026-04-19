@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { Phone, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SERVICES } from "@/lib/services";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const ServicesPage = () => {
-  useSeo({
+  const seo: SeoOptions = {
     title: "Niagara Plumbing & Heating Services | Ottr Plumr",
     description:
       "Full-service plumber & HVAC in Niagara — drain cleaning, water heater install & repair, sump pumps, leak detection, furnace & boiler service. Same-day, licensed, warrantied. Call 289-488-1007.",
@@ -20,9 +20,12 @@ const ServicesPage = () => {
         name: s.title,
       })),
     },
-  });
+  };
+  useSeo(seo);
   return (
     <div>
+      <Seo {...seo} />
+
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center max-w-3xl">
           <p className="font-script text-2xl text-accent">Our services</p>

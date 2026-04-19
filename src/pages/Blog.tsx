@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar, Clock, MapPin } from "lucide-react";
 import { POSTS } from "@/lib/posts";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const Blog = () => {
-  useSeo({
+  const seo: SeoOptions = {
     title: "Niagara Plumbing & Heating Tips | Ottr Plumr Blog",
     description:
       "Expert plumbing & heating advice for Niagara homeowners — frozen pipes, water heater life, sump pump prep, furnace tune-ups & emergency tips from local licensed pros.",
@@ -22,10 +22,13 @@ const Blog = () => {
         author: { "@type": "Organization", name: "Ottr Plumr Plumbing & Heating" },
       })),
     },
-  });
+  };
+  useSeo(seo);
 
   return (
     <div className="container py-16 md:py-20">
+      <Seo {...seo} />
+
       <header className="max-w-3xl mb-12">
         <p className="font-script text-2xl text-accent">From the field</p>
         <h1 className="font-display text-4xl md:text-5xl text-primary mt-1">

@@ -1,8 +1,10 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+import * as React from "react";
 
 type JsonLd = Record<string, unknown> | Record<string, unknown>[];
 
-interface SeoOptions {
+export interface SeoOptions {
   title: string;
   description: string;
   canonicalPath?: string;
@@ -13,6 +15,7 @@ interface SeoOptions {
 }
 
 const SITE_URL = "https://plumr.ca";
+const isBrowser = typeof window !== "undefined" && typeof document !== "undefined";
 
 const upsertMeta = (selector: string, attrs: Record<string, string>) => {
   let el = document.head.querySelector<HTMLMetaElement>(selector);
@@ -36,6 +39,14 @@ const upsertLink = (rel: string, href: string) => {
   el.setAttribute("href", href);
 };
 
+/**
+ * Imperative client-side SEO updater. Used as a backup so navigations between
+ * routes still update the document head even if Helmet is slow.
+ *
+ * For build-time SSR / static generation, we ALSO render a <Seo /> component
+ * (below) which uses react-helmet-async so the static HTML for each route
+ * ships with the correct title/description/canonical/JSON-LD.
+ */
 export function useSeo({
   title,
   description,
@@ -46,6 +57,7 @@ export function useSeo({
   noIndex,
 }: SeoOptions) {
   useEffect(() => {
+    if (!isBrowser) return;
     document.title = title;
 
     upsertMeta('meta[name="description"]', { name: "description", content: description });
@@ -85,6 +97,61 @@ export function useSeo({
       document.getElementById(jsonLdId)?.remove();
     };
   }, [title, description, canonicalPath, ogImage, jsonLd, jsonLdId, noIndex]);
+}
+
+/**
+ * Render-time SEO component. Emits Helmet tags so static-site generation
+ * captures them in the per-route HTML output. Pages should render <Seo {...} />
+ * AND call useSeo({ ... }) — together they cover SSR + client navigation.
+ *
+ * (You can also just render <Seo /> alone; the hook is kept for backwards
+ * compatibility and to handle late dynamic JSON-LD changes.)
+ */
+export function Seo({
+  title,
+  description,
+  canonicalPath,
+  ogImage,
+  jsonLd,
+  noIndex,
+}: SeoOptions) {
+  const path = canonicalPath ?? "/";
+  const canonicalUrl = `${SITE_URL}${path}`;
+  const absoluteImage = ogImage
+    ? (ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`)
+    : undefined;
+
+  return React.createElement(
+    Helmet,
+    null,
+    React.createElement("title", null, title),
+    React.createElement("meta", { name: "description", content: description }),
+    React.createElement("meta", {
+      name: "robots",
+      content: noIndex ? "noindex, nofollow" : "index, follow",
+    }),
+    React.createElement("link", { rel: "canonical", href: canonicalUrl }),
+    React.createElement("meta", { property: "og:title", content: title }),
+    React.createElement("meta", { property: "og:description", content: description }),
+    React.createElement("meta", { property: "og:type", content: "website" }),
+    React.createElement("meta", { property: "og:url", content: canonicalUrl }),
+    React.createElement("meta", { name: "twitter:card", content: "summary_large_image" }),
+    React.createElement("meta", { name: "twitter:title", content: title }),
+    React.createElement("meta", { name: "twitter:description", content: description }),
+    absoluteImage
+      ? React.createElement("meta", { property: "og:image", content: absoluteImage })
+      : null,
+    absoluteImage
+      ? React.createElement("meta", { name: "twitter:image", content: absoluteImage })
+      : null,
+    jsonLd
+      ? React.createElement("script", {
+          type: "application/ld+json",
+          // Inline as text for SSR; Helmet renders this safely.
+          children: JSON.stringify(jsonLd),
+        })
+      : null
+  );
 }
 
 export const SITE_ORIGIN = SITE_URL;

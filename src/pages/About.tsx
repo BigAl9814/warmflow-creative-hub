@@ -3,7 +3,7 @@ import { Phone, Award, Heart, MapPin, ShieldCheck, CalendarCheck, UserCircle2 } 
 import { Button } from "@/components/ui/button";
 import pipes from "@/assets/pipes-pattern.webp";
 import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const values = [
   { icon: Heart, title: "Otterly Reliable", desc: "We show up when we say we will, and finish what we start." },
@@ -13,14 +13,17 @@ const values = [
 ];
 
 const AboutPage = () => {
-  useSeo({
+  const seo: SeoOptions = {
     title: "About Ottr Plumr | Welland & Niagara Plumbers — Licensed",
     description:
       "Meet Ottr Plumr — your local Welland-based plumber & HVAC team serving the Niagara Region. Licensed, insured, family-friendly, and built on honest work, quality installs & 24/7 emergency response.",
     canonicalPath: "/about",
-  });
+  };
+  useSeo(seo);
   return (
     <div>
+      <Seo {...seo} />
+
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container grid lg:grid-cols-2 gap-12 items-center">
           <div>

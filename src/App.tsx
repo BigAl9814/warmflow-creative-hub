@@ -1,14 +1,13 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { lazy, Suspense } from "react";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import type { RouteRecord } from "vite-react-ssg";
+import { lazy } from "react";
 import Layout from "./components/layout/Layout";
-import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
+import { SERVICES } from "./lib/services";
+import { CITIES } from "./lib/cities";
+import { POSTS } from "./lib/posts";
 
-// Lazy-load all non-LCP routes to shrink the initial JS bundle.
+// Lazy-loaded route components. vite-react-ssg auto-detects styles/assets
+// on these dynamic imports, so each route ships with the right CSS.
 const Services = lazy(() => import("./pages/Services"));
 const Service = lazy(() => import("./pages/Service"));
 const ServiceCity = lazy(() => import("./pages/ServiceCity"));
@@ -19,39 +18,47 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Nap = lazy(() => import("./pages/Nap"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
-const NotFound = lazy(() => import("./pages/NotFound.tsx"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
-const queryClient = new QueryClient();
+export const routes: RouteRecord[] = [
+  {
+    path: "/",
+    Component: Layout,
+    children: [
+      { index: true, Component: Home },
+      { path: "services", Component: Services },
+      {
+        path: "services/:slug",
+        Component: Service,
+        getStaticPaths: () => SERVICES.map((s) => `services/${s.slug}`),
+      },
+      {
+        path: "services/:service/:city",
+        Component: ServiceCity,
+        getStaticPaths: () =>
+          SERVICES.flatMap((s) =>
+            CITIES.map((c) => `services/${s.slug}/${c.slug}`)
+          ),
+      },
+      { path: "service-areas", Component: ServiceAreas },
+      {
+        path: "service-areas/:slug",
+        Component: ServiceArea,
+        getStaticPaths: () => CITIES.map((c) => `service-areas/${c.slug}`),
+      },
+      { path: "about", Component: About },
+      { path: "contact", Component: Contact },
+      { path: "nap", Component: Nap },
+      { path: "blog", Component: Blog },
+      {
+        path: "blog/:slug",
+        Component: BlogPost,
+        getStaticPaths: () => POSTS.map((p) => `blog/${p.slug}`),
+      },
+      // Catch-all 404 (last)
+      { path: "*", Component: NotFound },
+    ],
+  },
+];
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Suspense fallback={null}>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/services/:slug" element={<Service />} />
-              <Route path="/services/:service/:city" element={<ServiceCity />} />
-              <Route path="/service-areas" element={<ServiceAreas />} />
-              <Route path="/service-areas/:slug" element={<ServiceArea />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/nap" element={<Nap />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-            </Route>
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
-
-export default App;
+export default routes;

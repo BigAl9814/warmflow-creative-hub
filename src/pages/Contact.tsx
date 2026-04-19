@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Phone, Mail, MapPin, Clock, CalendarCheck, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_TEL, EMAIL, ADDRESS, ADDRESS_LINE, GOOGLE_MAPS_URL } from "@/lib/site";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const JOBBER_FORM_STYLESHEET = "https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css";
 const JOBBER_FORM_SCRIPT = "https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js";
@@ -11,7 +11,7 @@ const JOBBER_FORM_URL =
   "https://clienthub.getjobber.com/client_hubs/e4833ce1-922c-4bca-b73d-06aca55b449b/public/work_request/embedded_work_request_form?form_id=1453871";
 
 const ContactPage = () => {
-  useSeo({
+  const seo: SeoOptions = {
     title: "Contact Ottr Plumr | 24/7 Niagara Plumber — Free Quote",
     description:
       "Book a Niagara plumber today — call 289-488-1007 or message us for fast, free quotes on plumbing, heating, drains, water heaters & emergency service. 187 King St, Welland, ON. 24/7 response.",
@@ -44,8 +44,10 @@ const ContactPage = () => {
         availableLanguage: ["English"],
       },
     },
-  });
+  };
+  useSeo(seo);
   useEffect(() => {
+    if (typeof document === "undefined") return;
     if (!document.querySelector(`link[href="${JOBBER_FORM_STYLESHEET}"]`)) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
