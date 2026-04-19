@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import helmetPkg from "react-helmet-async";
+import * as helmetPkg from "react-helmet-async";
 import * as React from "react";
 
-// react-helmet-async ships as CommonJS; normalize for ESM SSR.
-const { Helmet } = (helmetPkg as any).default || (helmetPkg as any);
+// react-helmet-async is CJS in Node SSR but ESM in browser bundle; normalize.
+const HelmetMod: any = (helmetPkg as any).default ?? helmetPkg;
+const Helmet = HelmetMod.Helmet ?? (helmetPkg as any).Helmet;
 
 type JsonLd = Record<string, unknown> | Record<string, unknown>[];
 
