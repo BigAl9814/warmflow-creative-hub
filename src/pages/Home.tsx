@@ -30,7 +30,7 @@ const HomePage = () => {
         "@context": "https://schema.org",
         "@type": "PlumbingService",
         name: "Ottr Plumr Plumbing & Heating",
-        image: "https://plumr.ca/og-image.jpg",
+        image: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/fa124001-f755-44fc-be6d-90ee00580d8b",
         url: "https://plumr.ca/",
         telephone: PHONE_TEL,
         email: EMAIL,
@@ -97,7 +97,7 @@ const HomePage = () => {
               <Clock className="h-3.5 w-3.5" /> 24/7 Service · Niagara Region
             </div>
             <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[0.95]">
-              Plumbing &amp;<br />heating you<br />can <span className="text-accent">trust.</span>
+              Niagara plumbing<br />&amp; heating you<br />can <span className="text-accent">trust.</span>
             </h1>
             <p className="font-script text-3xl text-reed">Otterly reliable. Professional, start to finish.</p>
             <p className="text-base md:text-lg text-foreground/80 max-w-xl">
