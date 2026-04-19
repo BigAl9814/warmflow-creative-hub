@@ -1,46 +1,89 @@
 
 
-## Root cause
+## Audit & Plan: SEO + Conversion Improvements
 
-Google's "found 12 times" report is from a **prior crawl** of the 12 `/areas/:city` pages (and likely service pages too) — back when `ServiceArea.tsx` and `ServiceCity.tsx` were each emitting the same 3 `Review` objects pulled from the shared `REVIEWS` array. We already removed those, and the live site currently returns **zero** matches for `Donald W Hawken` on every URL I checked (`/`, `/areas/welland`, `/services/drain-cleaning`, `/services/drain-cleaning/welland`).
+I've reviewed your existing codebase. **Good news:** much of what you listed already exists. Here's the honest breakdown of what's already built vs. what's actually missing.
 
-So: source is clean for ServiceArea/ServiceCity. The only remaining `Review` JSON-LD source in the repo is `src/pages/Home.tsx` (lines 54–59).
+### Already Built (no work needed)
+- City pages: `/service-areas/:city` (12 cities) — `ServiceArea.tsx`
+- Service+city combo pages: `/services/:service/:city` — `ServiceCity.tsx`
+- Service detail pages: `/services/:slug` — `Service.tsx`
+- Blog system: `Blog.tsx` + `BlogPost.tsx` with `POSTS` array
+- NAP page + consistent header/footer phone
+- FAQ schema on homepage + service pages
+- Plumber schema on every page (`@id: #business`)
+- Before/after gallery component exists
 
-## What to do
+### Real Gaps Worth Fixing
 
-The safest move is to also strip the Review JSON-LD from the homepage. Reasons:
-- Even on a single URL, Google has been picky about self-published `Review` markup with identical text reused across crawls/snapshots.
-- The visible testimonial cards on the homepage (`REVIEWS.map` at line 267) stay exactly as-is — users still see the reviews.
-- This eliminates every remaining `"@type":"Review"` from the site, which guarantees the "duplicate Review" warning cannot recur after the next recrawl.
+**1. URL structure for city pages (SEO)**
+Currently `/service-areas/welland`. Competitors rank with `/welland-plumber`. Add SEO-friendly aliases that redirect/render the same content (or rename routes + 301 in sitemap). Recommend: keep current routes, add new `/:city-plumber` routes that render `ServiceArea`.
 
-If you'd rather keep Review schema on the homepage (it is policy-allowed there since the reviews are visibly rendered on that exact page), the alternative is to leave Home.tsx alone and just wait for Google to recrawl the city/service pages, where the schema is already gone.
+**2. Homepage H1 keyword targeting**
+Current H1 is brand-led ("Niagara's local plumbing & heating you can trust"). Add ranking-focused H1: **"Plumber in Welland & Niagara Region | 24/7 Emergency Plumbing"** — keep current line as H2/subhead.
 
-## Plan
+**3. Service page depth**
+Service pages need: causes, symptoms, what we do, price ranges, per-service FAQ. Expand `SERVICES` data in `src/lib/services.ts` with these fields, then render on `Service.tsx` and `ServiceCity.tsx`.
 
-**Step 1 — Remove Review JSON-LD from `src/pages/Home.tsx`**
-- Delete lines 54–59 (the `review: REVIEWS.map(...)` block) inside the `PlumbingService` jsonLd.
-- Keep the visible testimonials section (line 267 onwards) untouched.
-- Keep `REVIEWS` import only if still used by the visible section (it is).
+**4. City page depth + uniqueness**
+Each `ServiceArea` page should have unique copy (neighborhood mentions, local landmarks, common local issues) — currently they're templated. Add `localContent` field per city in `src/lib/cities.ts`.
 
-**Step 2 — Add a regression guard**
-- Create `src/test/no-review-schema.test.ts` that fails the build if any source file in `src/` (excluding `lib/site.ts` which defines the `REVIEWS` array) contains both `REVIEWS.map` and `"@type": "Review"` / `"Review"` together. Mirrors the existing FAQ guard.
+**5. Internal linking**
+Add cross-link blocks:
+- Service page → "Available in [12 cities]" grid
+- City page → "Our services in [city]" grid (already partial)
+- Blog post → related service + related city links
+- Footer → top service+city combos
 
-**Step 3 — Verify after publish**
-- Confirm every URL returns 0 matches for the review text:
-  - `/`
-  - `/areas/welland`, `/areas/st-catharines`
-  - `/services/drain-cleaning`, `/services/drain-cleaning/welland`
-- Then in Google Search Console: URL Inspection → Test live URL → Request Indexing on one of the flagged URLs.
+**6. Embedded Google Map**
+Add iframe map on Contact + each city page (centered on that city).
 
-## What does NOT change
+**7. Blog content funnel**
+You have the system but need posts. Add 6 high-intent articles to `POSTS`:
+- Sump pump failure during storms
+- Cost to replace water heater in Niagara
+- Signs your main drain is clogged
+- When to call an emergency plumber
+- Tankless vs tank water heaters
+- Frozen pipes in Niagara winters
 
-- Visible testimonial section on the homepage — stays.
-- `REVIEWS` array in `src/lib/site.ts` — stays (it powers the visible cards).
-- `PlumbingService`, `FAQPage`, `BreadcrumbList`, `Service` schemas — all kept.
-- Titles, canonicals, SSG, UI — untouched.
+**8. Stronger CTAs**
+Sticky CTA exists. Add urgency badges ("Same-Day Available", "24/7 Live Dispatch") near top of each service/city page.
 
-## Files to edit
+### Proposed Implementation (3 phases)
 
-- `src/pages/Home.tsx` — drop the `review:` array from the PlumbingService jsonLd.
-- `src/test/no-review-schema.test.ts` — new regression guard.
+**Phase 1 — Quick wins (high impact, low effort)**
+- Rewrite homepage H1 + intro for keyword targeting
+- Add unique 2-paragraph local content per city in `cities.ts`
+- Add embedded Google Map to Contact + city pages
+- Add urgency CTA strip to service + city page tops
+
+**Phase 2 — Content depth**
+- Expand `services.ts` with: causes, symptoms, process, price-range, per-service FAQ (3–5 Qs each)
+- Render expanded sections on `Service.tsx` and `ServiceCity.tsx`
+- Add per-service FAQ schema (unique per page → no duplicate warnings)
+
+**Phase 3 — Internal linking + content**
+- "Cities we serve" grid block on each Service page
+- "Related services" block on each City page
+- Related-links block on blog posts
+- Write 6 new blog posts in `POSTS`
+
+### Files involved
+- `src/pages/Home.tsx` — H1 rewrite
+- `src/lib/cities.ts` — add `localContent`, `landmarks`, `neighborhoods`
+- `src/lib/services.ts` — add `causes`, `symptoms`, `process`, `priceRange`, `faqs`
+- `src/lib/posts.ts` — 6 new posts
+- `src/pages/Service.tsx` + `ServiceCity.tsx` — render new fields, add city grid
+- `src/pages/ServiceArea.tsx` — render local content, add map, services grid
+- `src/pages/Contact.tsx` — add map
+- `src/pages/BlogPost.tsx` — related links
+
+### Out of scope (already done or risky)
+- FAQ schema (exists; adding more to city pages risks duplicate warnings until content is unique — Phase 2 handles this safely)
+- Plumber/LocalBusiness schema (already present and clean)
+- Before/after photos (component exists — use it more, but no new code)
+
+### Recommendation
+Approve **Phase 1 first** — biggest visible impact, ships in one pass. Phases 2 and 3 are larger content jobs we can sequence after.
 
