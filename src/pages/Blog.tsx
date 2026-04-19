@@ -7,7 +7,7 @@ const Blog = () => {
   useSeo({
     title: "Niagara Plumbing & Heating Tips | Ottr Plumr Blog",
     description:
-      "Local plumbing and heating advice for Niagara homeowners. Frozen pipes, water heater choices, basement flooding, furnace troubleshooting, and more.",
+      "Expert plumbing & heating advice for Niagara homeowners — frozen pipes, water heater life, sump pump prep, furnace tune-ups & emergency tips from local licensed pros.",
     canonicalPath: "/blog",
     jsonLd: {
       "@context": "https://schema.org",
