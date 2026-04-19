@@ -179,6 +179,20 @@ const ServiceAreaPage = () => {
         </section>
       )}
 
+      {/* MAP — local geo signal */}
+      <section className="container py-8 md:py-12">
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <p className="font-script text-2xl text-accent">Find us in {city.name}</p>
+          <h2 className="font-display text-3xl md:text-4xl text-primary mt-1">
+            Serving every corner of {city.name}
+          </h2>
+          <p className="text-foreground/75 mt-3">
+            Dispatched from our Welland shop, on the road across {city.name} every day.
+          </p>
+        </div>
+        <CityMap cityName={city.name} />
+      </section>
+
       {/* NEARBY CITIES — internal linking */}
       <section className="container py-16">
         <div className="text-center max-w-2xl mx-auto mb-8">
