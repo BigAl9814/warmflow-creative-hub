@@ -1,23 +1,37 @@
 
-## Found the real source
+## What I found
 
-The fake `aggregateRating` lives in **`index.html` lines 78-82** — a static `<script type="application/ld+json">` block in the HTML template itself. Because every pre-rendered page is built from this template, that block ships with every URL. The previous cleanup only touched the React page files (`Home.tsx`, `Service.tsx`, etc.), which is why the offending JSON-LD kept appearing.
+- The current `index.html` no longer contains `aggregateRating`.
+- The current `src/pages/Home.tsx` JSON-LD contains real `Review` objects, not `aggregateRating`.
+- A read-only fetch of the published site HTML also shows no `aggregateRating` / `reviewCount` / `ratingValue` in the response.
 
-## Fix
+That means the codebase appears clean now. The issue is most likely one of these:
+1. Google is showing an older crawl/render snapshot.
+2. The live site Google tested was an older deployment or different URL variant.
+3. A stale cached JS bundle was rendered when Google last visited.
 
-Edit `index.html`:
+## Plan
 
-1. Remove lines 78-82 (the `aggregateRating` property) and the trailing comma on line 77's `]` boundary so the JSON stays valid.
-2. Leave the rest of the `Plumber` schema intact (name, address, geo, areaServed, openingHours, sameAs).
+1. Confirm the exact URL Google flagged
+- Match the Search Console issue to the exact URL/property Google is testing (`plumr.ca`, `www`, homepage vs route).
 
-Result — the static block becomes a clean `Plumber` LocalBusiness schema with no rating claims. The per-page React-rendered JSON-LD already emits real `Review` objects from `REVIEWS`, which is policy-compliant.
+2. Re-verify the live deployment in default mode
+- Fetch the exact flagged URL and inspect the final HTML/output again.
+- Compare what Google pasted with the currently served assets to confirm whether it was an older build.
 
-## Verify
+3. Republish / refresh if needed
+- If the flagged URL is serving an older version anywhere, publish the current clean build so every variant serves the same schema.
 
-- `grep -r "aggregateRating\|AggregateRating" index.html src/` → must return zero matches.
-- After deploy, re-test in Google Search Console → URL Inspection → "Test live URL".
+4. Add a regression guard
+- Add a build-time check that fails if `aggregateRating` or `AggregateRating` appears anywhere in source or generated HTML.
+- This prevents the same issue from coming back silently.
 
-## Not changing
+5. Final verification
+- Re-check the live homepage and 1–2 internal pages after publish.
+- Then use Google Search Console “Test live URL” and request reindexing.
 
-- The per-page `Review` arrays in `Home.tsx` / `ServiceArea.tsx` / `ServiceCity.tsx` — those are legitimate (named author + visible quote on page).
-- Any titles, canonicals, SSG output, or visible UI.
+## Technical details
+
+- The HTML you pasted earlier included a `page-jsonld` script with `aggregateRating`, which suggests Google rendered an older bundle.
+- The current repo and current fetched live HTML do not contain that field anymore.
+- So the next step is deployment/crawl verification, not more schema removal in source.
