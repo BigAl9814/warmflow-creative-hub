@@ -189,7 +189,7 @@ const HomePage = () => {
               That local knowledge changes how we work. We know which neighbourhoods still have clay sewer laterals fighting tree roots every spring. We know which lakeshore streets need battery-backup sump pumps as a baseline. We know which 1990s subdivisions are hitting the 25-year mark on their original water heaters. We bring the right tools and the right plan on the first visit — not a parts run halfway through.
             </p>
             <p className="text-foreground/80 text-base md:text-lg leading-relaxed">
-              And the way we work is simple: diagnose first, quote in writing, do the work clean, leave the place tidier than we found it. Every job warrantied. Every price upfront. Same-day service for most calls, 24/7 emergency response when something can't wait. No sales scripts, no fear-selling, no &quot;we found another problem&quot; halfway through the job.
+              And the way we work is simple: diagnose first, quote in writing, do the work clean, leave the place tidier than we found it. Every job warrantied. Every price upfront. Same-day service for most calls, 24/7 emergency response when something can't wait. No sales scripts, no fear-selling, no "we found another problem" halfway through the job.
             </p>
           </div>
           <aside className="stamp-card p-7 md:p-8 bg-gradient-hero">
