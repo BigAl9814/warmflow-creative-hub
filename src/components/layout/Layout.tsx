@@ -1,6 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { Suspense } from "react";
-import { HelmetProvider } from "react-helmet-async";
+import helmetPkg from "react-helmet-async";
+
+// react-helmet-async ships as CommonJS; normalize for ESM SSR.
+const { HelmetProvider } = (helmetPkg as any).default || (helmetPkg as any);
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
