@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Phone, Mail, MapPin, Clock, CalendarCheck, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_TEL, EMAIL, ADDRESS, ADDRESS_LINE, GOOGLE_MAPS_URL } from "@/lib/site";
+import { JOBBER_BOOK_URL, JOBBER_CLIENT_HUB_URL, PHONE_TEL, EMAIL, ADDRESS_LINE, GOOGLE_MAPS_URL } from "@/lib/site";
 import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const JOBBER_FORM_STYLESHEET = "https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css";
@@ -21,20 +21,7 @@ const ContactPage = () => {
       "@type": "ContactPage",
       name: "Contact Ottr Plumr",
       url: "https://plumr.ca/contact",
-      mainEntity: {
-        "@type": "PlumbingService",
-        name: "Ottr Plumr Plumbing & Heating",
-        telephone: PHONE_TEL,
-        email: EMAIL,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: ADDRESS.street,
-          addressLocality: ADDRESS.city,
-          addressRegion: ADDRESS.region,
-          postalCode: ADDRESS.postalCode,
-          addressCountry: ADDRESS.country,
-        },
-      },
+      mainEntity: { "@id": "https://plumr.ca/#business" },
       contactPoint: {
         "@type": "ContactPoint",
         telephone: PHONE_TEL,

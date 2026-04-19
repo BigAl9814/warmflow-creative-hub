@@ -6,7 +6,7 @@ import heroPond from "@/assets/hero-pond.webp";
 import vanWrap from "@/assets/ottr-plumr-van.webp";
 import FAQ from "@/components/FAQ";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
-import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS, EMAIL, ADDRESS } from "@/lib/site";
+import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS } from "@/lib/site";
 import { CITIES } from "@/lib/cities";
 import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
@@ -28,33 +28,14 @@ const HomePage = () => {
     jsonLd: [
       {
         "@context": "https://schema.org",
-        "@type": "PlumbingService",
-        name: "Ottr Plumr Plumbing & Heating",
-        image: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/fa124001-f755-44fc-be6d-90ee00580d8b",
+        "@type": "WebPage",
+        "@id": "https://plumr.ca/#webpage",
         url: "https://plumr.ca/",
-        telephone: PHONE_TEL,
-        email: EMAIL,
-        priceRange: "$$",
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: ADDRESS.street,
-          addressLocality: ADDRESS.city,
-          addressRegion: ADDRESS.region,
-          postalCode: ADDRESS.postalCode,
-          addressCountry: ADDRESS.country,
-        },
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: 42.9925,
-          longitude: -79.2483,
-        },
-        hasMap: "https://www.google.com/maps/search/?api=1&query=187+King+St+Welland+ON+L3B+3J4",
-        areaServed: CITIES.map((c) => ({ "@type": "City", name: c.name })),
-        openingHoursSpecification: {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-          opens: "00:00",
-          closes: "23:59",
+        name: "Niagara Plumber & Heating | 24/7 Service | Ottr Plumr",
+        about: { "@id": "https://plumr.ca/#business" },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/fa124001-f755-44fc-be6d-90ee00580d8b",
         },
       },
       {

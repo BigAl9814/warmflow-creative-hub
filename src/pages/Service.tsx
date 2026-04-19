@@ -3,7 +3,7 @@ import { ArrowRight, CalendarCheck, CheckCircle2, MapPin, Phone, ThumbsUp, Thumb
 import { Button } from "@/components/ui/button";
 import { getServiceBySlug, SERVICES } from "@/lib/services";
 import { CITIES } from "@/lib/cities";
-import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS } from "@/lib/site";
+import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const ServicePage = () => {
@@ -22,13 +22,11 @@ const ServicePage = () => {
             "@type": "Service",
             name: service.title,
             description: service.metaDescription,
-            provider: {
-              "@type": "PlumbingService",
-              name: "Ottr Plumr",
-              telephone: PHONE_TEL,
-              areaServed: "Niagara Region, Ontario, Canada",
+            provider: { "@id": "https://plumr.ca/#business" },
+            areaServed: {
+              "@type": "AdministrativeArea",
+              name: "Niagara Region, Ontario, Canada",
             },
-            areaServed: "Niagara Region, Ontario",
             url: `https://plumr.ca/services/${service.slug}`,
           },
           {
