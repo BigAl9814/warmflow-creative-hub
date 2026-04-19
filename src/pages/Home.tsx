@@ -73,14 +73,15 @@ const HomePage = () => {
             <div className="inline-flex items-center gap-2 bg-card/80 backdrop-blur border-2 border-foreground/10 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
               <Clock className="h-3.5 w-3.5" /> 24/7 Service · Niagara Region
             </div>
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[0.95]">
-              Niagara's local<br />plumbing &amp; heating<br />you can <span className="text-accent">trust.</span>
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-primary leading-[0.95]">
+              Plumber in Welland &amp; the <span className="text-accent">Niagara Region</span> — 24/7 Emergency Plumbing
             </h1>
-            <p className="font-script text-3xl text-reed">Otterly reliable. Professional, start to finish.</p>
+            <p className="font-script text-2xl md:text-3xl text-reed">Otterly reliable. Professional, start to finish.</p>
             <p className="text-base md:text-lg text-foreground/80 max-w-xl">
-              No corporate call centres, no runaround — just your Niagara neighbours, ready to help
-              with every plumbing and heating need. Water heaters, sump pumps, heating systems,
-              and everything in between.
+              Looking for a plumber near you? Ottr Plumr is your local Niagara plumber for emergency plumbing,
+              drain cleaning, water heater repair, sump pumps, furnaces and boilers — across St. Catharines,
+              Niagara Falls, Welland and every town in between. No corporate call centres, no runaround —
+              just your Niagara neighbours, ready when you need us.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild variant="hero" size="lg">

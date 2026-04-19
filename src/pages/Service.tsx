@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowRight, CalendarCheck, CheckCircle2, MapPin, Phone, ThumbsUp, ThumbsDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import UrgencyStrip from "@/components/UrgencyStrip";
 import { getServiceBySlug, SERVICES } from "@/lib/services";
 import { CITIES } from "@/lib/cities";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
@@ -91,6 +92,8 @@ const ServicePage = () => {
         </div>
         <div className="water-band h-10 mt-12" aria-hidden="true" />
       </section>
+
+      <UrgencyStrip />
 
       <section className="container py-16 md:py-20">
         <div className="grid lg:grid-cols-3 gap-10">
