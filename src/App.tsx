@@ -5,46 +5,49 @@ import { SERVICES } from "./lib/services";
 import { CITIES } from "./lib/cities";
 import { POSTS } from "./lib/posts";
 
-// Use vite-react-ssg's `lazy` field (not React.lazy) so SSR can resolve
-// the component synchronously during static generation while still code-
-// splitting on the client.
+// Wrap a default-export dynamic import so vite-react-ssg's `lazy` field
+// (which expects { Component }) gets the component synchronously during SSR
+// while still code-splitting on the client.
+const lazyDefault = <T,>(loader: () => Promise<{ default: T }>) =>
+  () => loader().then((m) => ({ Component: m.default as any }));
+
 export const routes: RouteRecord[] = [
   {
     path: "/",
     Component: Layout,
     children: [
       { index: true, Component: Home },
-      { path: "services", lazy: () => import("./pages/Services") },
+      { path: "services", lazy: lazyDefault(() => import("./pages/Services")) },
       {
         path: "services/:slug",
-        lazy: () => import("./pages/Service"),
+        lazy: lazyDefault(() => import("./pages/Service")),
         getStaticPaths: () => SERVICES.map((s) => `services/${s.slug}`),
       },
       {
         path: "services/:service/:city",
-        lazy: () => import("./pages/ServiceCity"),
+        lazy: lazyDefault(() => import("./pages/ServiceCity")),
         getStaticPaths: () =>
           SERVICES.flatMap((s) =>
             CITIES.map((c) => `services/${s.slug}/${c.slug}`)
           ),
       },
-      { path: "service-areas", lazy: () => import("./pages/ServiceAreas") },
+      { path: "service-areas", lazy: lazyDefault(() => import("./pages/ServiceAreas")) },
       {
         path: "service-areas/:slug",
-        lazy: () => import("./pages/ServiceArea"),
+        lazy: lazyDefault(() => import("./pages/ServiceArea")),
         getStaticPaths: () => CITIES.map((c) => `service-areas/${c.slug}`),
       },
-      { path: "about", lazy: () => import("./pages/About") },
-      { path: "contact", lazy: () => import("./pages/Contact") },
-      { path: "nap", lazy: () => import("./pages/Nap") },
-      { path: "blog", lazy: () => import("./pages/Blog") },
+      { path: "about", lazy: lazyDefault(() => import("./pages/About")) },
+      { path: "contact", lazy: lazyDefault(() => import("./pages/Contact")) },
+      { path: "nap", lazy: lazyDefault(() => import("./pages/Nap")) },
+      { path: "blog", lazy: lazyDefault(() => import("./pages/Blog")) },
       {
         path: "blog/:slug",
-        lazy: () => import("./pages/BlogPost"),
+        lazy: lazyDefault(() => import("./pages/BlogPost")),
         getStaticPaths: () => POSTS.map((p) => `blog/${p.slug}`),
       },
       // Catch-all 404 (last)
-      { path: "*", lazy: () => import("./pages/NotFound") },
+      { path: "*", lazy: lazyDefault(() => import("./pages/NotFound")) },
     ],
   },
 ];
