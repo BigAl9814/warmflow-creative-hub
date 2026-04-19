@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Phone, ArrowRight, Home as HomeIcon, Wrench, MapPin, BookOpen, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 import { useEffect } from "react";
 import { PHONE_DISPLAY, PHONE_TEL, JOBBER_BOOK_URL } from "@/lib/site";
 import { CITIES } from "@/lib/cities";
@@ -10,12 +10,13 @@ import { SERVICES } from "@/lib/services";
 const NotFound = () => {
   const location = useLocation();
 
-  useSeo({
+  const seo: SeoOptions = {
     title: "Page Not Found | Ottr Plumr Plumbing & Heating",
     description:
       "We couldn't find that page. Browse our plumbing & heating services, Niagara service areas, or call Ottr Plumr at 289-488-1007 for 24/7 help.",
     noIndex: true,
-  });
+  };
+  useSeo(seo);
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
@@ -27,6 +28,7 @@ const NotFound = () => {
 
   return (
     <div className="bg-gradient-hero">
+      <Seo {...seo} />
       <section className="container py-16 md:py-24">
         <div className="max-w-3xl mx-auto text-center">
           <p className="font-script text-3xl text-accent">Whoops</p>

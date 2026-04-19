@@ -3,10 +3,10 @@ import { ArrowRight, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CITIES } from "@/lib/cities";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const ServiceAreasPage = () => {
-  useSeo({
+  const seo: SeoOptions = {
     title: "Plumber Near Me — Niagara Region Service Areas | Ottr Plumr",
     description:
       "Local plumbing & heating in St. Catharines, Niagara Falls, Welland, Thorold, Lincoln, Grimsby, Fort Erie, Pelham & more. Same-day service across the Niagara Region. Call 289-488-1007.",
@@ -21,9 +21,12 @@ const ServiceAreasPage = () => {
         name: c.name,
       })),
     },
-  });
+  };
+  useSeo(seo);
   return (
     <div>
+      <Seo {...seo} />
+
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center max-w-3xl">
           <p className="font-script text-2xl text-accent">Where we work</p>

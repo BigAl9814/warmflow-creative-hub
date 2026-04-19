@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 import { getServiceBySlug, SERVICES } from "@/lib/services";
 import { CITIES } from "@/lib/cities";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS } from "@/lib/site";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const ServicePage = () => {
   const { slug } = useParams();
   const service = getServiceBySlug(slug);
 
-  useSeo({
+  const seo: SeoOptions = {
     title: service ? `${service.title} in Niagara | Same-Day Service | Ottr Plumr` : "Service | Ottr Plumr",
     description: service?.metaDescription ?? "Plumbing & heating services in the Niagara Region.",
     canonicalPath: service ? `/services/${service.slug}` : "/services",
@@ -56,7 +56,8 @@ const ServicePage = () => {
           },
         ]
       : undefined,
-  });
+  };
+  useSeo(seo);
 
   if (!service) return <Navigate to="/services" replace />;
 
@@ -65,6 +66,8 @@ const ServicePage = () => {
 
   return (
     <div>
+      <Seo {...seo} />
+
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container max-w-4xl text-center">
           <nav aria-label="Breadcrumb" className="text-sm text-foreground/70 flex flex-wrap justify-center items-center gap-1.5">

@@ -8,14 +8,14 @@ import { CITIES } from "@/lib/cities";
 import {
   JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, EMAIL, REVIEWS,
 } from "@/lib/site";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const ServiceCityPage = () => {
   const { service: serviceSlug, city: citySlug } = useParams();
   const service = getServiceBySlug(serviceSlug);
   const city = CITIES.find((c) => c.slug === citySlug);
 
-  useSeo({
+  const seo: SeoOptions = {
     title:
       service && city
         ? `${service.title} ${city.name} | 24/7 Local | Ottr Plumr`
@@ -100,7 +100,8 @@ const ServiceCityPage = () => {
             },
           ]
         : undefined,
-  });
+  };
+  useSeo(seo);
 
   if (!service || !city) return <Navigate to="/services" replace />;
 
@@ -110,6 +111,8 @@ const ServiceCityPage = () => {
 
   return (
     <div>
+      <Seo {...seo} />
+
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container max-w-4xl text-center">
           <nav className="text-sm text-foreground/70 flex flex-wrap justify-center items-center gap-1.5">

@@ -8,7 +8,7 @@ import FAQ from "@/components/FAQ";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS, EMAIL, ADDRESS } from "@/lib/site";
 import { CITIES } from "@/lib/cities";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const services = [
   { icon: Home, title: "Residential Plumbing", desc: "From dripping taps to full re-pipes — done right the first time." },
@@ -20,7 +20,7 @@ const services = [
 ];
 
 const HomePage = () => {
-  useSeo({
+  const seo: SeoOptions = {
     title: "Niagara Plumber & Heating | 24/7 Service | Ottr Plumr",
     description:
       "Licensed Niagara plumbers & HVAC techs — 24/7 emergency plumbing, drain cleaning, water heater repair, sump pumps, furnaces & boilers. Same-day service in St. Catharines, Niagara Falls & Welland. Call 289-488-1007.",
@@ -74,9 +74,12 @@ const HomePage = () => {
         })),
       },
     ],
-  });
+  };
+  useSeo(seo);
   return (
     <div>
+      <Seo {...seo} />
+
       {/* HERO */}
       <section className="relative overflow-hidden bg-gradient-hero">
         <img

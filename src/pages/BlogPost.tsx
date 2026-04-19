@@ -3,14 +3,14 @@ import { ArrowLeft, ArrowRight, Calendar, Clock, MapPin, Phone } from "lucide-re
 import { Button } from "@/components/ui/button";
 import { POSTS, getPostBySlug } from "@/lib/posts";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 import NotFound from "./NotFound";
 
 const BlogPost = () => {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
 
-  useSeo({
+  const seo: SeoOptions = {
     title: post ? `${post.title} | Ottr Plumr Blog` : "Post not found",
     description: post?.metaDescription ?? "Plumbing & heating advice from Ottr Plumr.",
     canonicalPath: post ? `/blog/${post.slug}` : "/blog",
@@ -42,7 +42,8 @@ const BlogPost = () => {
         }
       : undefined,
     noIndex: !post,
-  });
+  };
+  useSeo(seo);
 
   if (!post) return <NotFound />;
 
@@ -50,6 +51,8 @@ const BlogPost = () => {
 
   return (
     <article className="container py-12 md:py-16">
+      <Seo {...seo} />
+
       <nav aria-label="Breadcrumb" className="text-sm text-foreground/60 mb-6">
         <Link to="/" className="hover:underline">Home</Link>
         <span className="mx-2">/</span>

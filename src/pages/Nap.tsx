@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
-import { useSeo } from "@/hooks/use-seo";
+import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 import {
   ADDRESS, ADDRESS_LINE, EMAIL, GOOGLE_MAPS_URL, PHONE_DISPLAY, PHONE_TEL,
 } from "@/lib/site";
@@ -158,13 +158,14 @@ const ContactCopyRow = ({ label, value }: { label: string; value: string }) => {
 };
 
 const NapPage = () => {
-  useSeo({
+  const seo: SeoOptions = {
     title: "NAP Consistency Checklist | Ottr Plumr Internal SEO Tool",
     description:
       "Internal NAP (Name, Address, Phone) consistency checklist for Ottr Plumr — directory submissions, copy-paste fields, and local SEO best practices.",
     canonicalPath: "/nap",
     noIndex: true,
-  });
+  };
+  useSeo(seo);
 
   const copyAll = async () => {
     const block = COPY_FIELDS.map((f) => `${f.label}: ${f.value}`).join("\n");
@@ -174,6 +175,7 @@ const NapPage = () => {
 
   return (
     <div>
+      <Seo {...seo} />
       <section className="bg-gradient-hero py-16 md:py-20">
         <div className="container max-w-4xl">
           <div className="inline-flex items-center gap-2 bg-card/80 backdrop-blur border-2 border-foreground/10 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
