@@ -3,6 +3,8 @@ import {
   ArrowRight, CalendarCheck, CheckCircle2, MapPin, Phone, Wrench,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import UrgencyStrip from "@/components/UrgencyStrip";
+import CityMap from "@/components/CityMap";
 import { getServiceBySlug, SERVICES } from "@/lib/services";
 import { CITIES } from "@/lib/cities";
 import {
