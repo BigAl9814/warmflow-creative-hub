@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import FAQ from "@/components/FAQ";
 import { CITIES } from "@/lib/cities";
 import { SERVICES } from "@/lib/services";
-import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, EMAIL, REVIEWS } from "@/lib/site";
+import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, EMAIL } from "@/lib/site";
 import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const ServiceAreaPage = () => {
@@ -38,12 +38,6 @@ const ServiceAreaPage = () => {
               addressRegion: "ON",
               addressCountry: "CA",
             },
-            review: REVIEWS.map((r) => ({
-              "@type": "Review",
-              reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-              author: { "@type": "Person", name: r.name },
-              reviewBody: r.quote,
-            })),
           },
           {
             "@context": "https://schema.org",
