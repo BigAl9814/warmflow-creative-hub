@@ -1,37 +1,63 @@
 
-## What I found
+Goal: fix the Google structured-data issue without reintroducing risky markup.
 
-- The current `index.html` no longer contains `aggregateRating`.
-- The current `src/pages/Home.tsx` JSON-LD contains real `Review` objects, not `aggregateRating`.
-- A read-only fetch of the published site HTML also shows no `aggregateRating` / `reviewCount` / `ratingValue` in the response.
+What I found:
+- The current template already uses a valid parent type in `index.html`: `@type: "Plumber"`.
+- The current source no longer shows `aggregateRating` in the main schema files I checked.
+- So your suggested JSON-LD shape is structurally valid in general, but adding `aggregateRating` back here would likely recreate the same policy problem rather than solve it.
 
-That means the codebase appears clean now. The issue is most likely one of these:
-1. Google is showing an older crawl/render snapshot.
-2. The live site Google tested was an older deployment or different URL variant.
-3. A stale cached JS bundle was rendered when Google last visited.
+Why I would not add that snippet back:
+- Google’s issue here is not just nesting syntax. For local business markup, `aggregateRating` is often rejected when it is self-serving or not clearly backed by visible, first-party reviews on the same page.
+- This codebase currently has only 3 hardcoded testimonials in `src/lib/site.ts`, while the flagged values were `4.9` and `50`.
+- Several internal pages still attach `Review` schema (`Home.tsx`, `ServiceArea.tsx`, `ServiceCity.tsx`) even though I need to verify whether those same reviews are visibly rendered on each of those pages.
 
-## Plan
+Implementation plan:
+1. Do a full structured-data audit
+- Read every page using `jsonLd`.
+- Confirm exactly which pages emit `Plumber`, `PlumbingService`, `Service`, `FAQPage`, `BreadcrumbList`, and `Review`.
 
-1. Confirm the exact URL Google flagged
-- Match the Search Console issue to the exact URL/property Google is testing (`plumr.ca`, `www`, homepage vs route).
+2. Normalize the business schema
+- Create one shared business-schema helper so the site emits a single consistent `Plumber`/business entity instead of slightly different shapes across pages.
+- Keep safe properties only: name, url, phone, email, address, geo, areaServed, opening hours, map.
 
-2. Re-verify the live deployment in default mode
-- Fetch the exact flagged URL and inspect the final HTML/output again.
-- Compare what Google pasted with the currently served assets to confirm whether it was an older build.
+3. Do not restore `aggregateRating`
+- Keep `aggregateRating` fully removed from source and generated output.
+- Keep the regression guard, but tighten it if needed to scan the generated build output too.
 
-3. Republish / refresh if needed
-- If the flagged URL is serving an older version anywhere, publish the current clean build so every variant serves the same schema.
+4. Make review markup policy-safe
+- Remove `review` schema from any page where those testimonials are not visibly shown on that same page.
+- Keep `Review` schema only on pages with matching visible review content, or add visible review sections to those pages if you want to retain review markup there.
+- If needed, simplify further by keeping review schema on the homepage only.
 
-4. Add a regression guard
-- Add a build-time check that fails if `aggregateRating` or `AggregateRating` appears anywhere in source or generated HTML.
-- This prevents the same issue from coming back silently.
+5. Verify the real live output path-by-path
+- Check homepage, one service page, one city page, and one service+city page after rebuild/publish.
+- Confirm no `aggregateRating` exists anywhere and that any remaining `Review` schema is paired with visible content.
 
-5. Final verification
-- Re-check the live homepage and 1–2 internal pages after publish.
-- Then use Google Search Console “Test live URL” and request reindexing.
+6. Final Google recovery step
+- After publish, re-test the exact flagged URL in Search Console with “Test live URL” and request indexing again.
 
-## Technical details
+Technical details:
+- Your proposed object is valid Schema.org:
+  `Plumber -> aggregateRating -> AggregateRating`
+- But for this site, the safer fix is not “nest it correctly”; it is “avoid unsupported/self-serving rating claims entirely.”
+- The better long-term setup is:
+  - one canonical business schema
+  - page-specific `Service` / `BreadcrumbList` / `FAQPage`
+  - `Review` only where reviews are visibly present
+  - no sitewide `aggregateRating`
 
-- The HTML you pasted earlier included a `page-jsonld` script with `aggregateRating`, which suggests Google rendered an older bundle.
-- The current repo and current fetched live HTML do not contain that field anymore.
-- So the next step is deployment/crawl verification, not more schema removal in source.
+Files likely involved:
+- `index.html`
+- `src/hooks/use-seo.ts`
+- `src/pages/Home.tsx`
+- `src/pages/Services.tsx`
+- `src/pages/Service.tsx`
+- `src/pages/ServiceArea.tsx`
+- `src/pages/ServiceCity.tsx`
+- `src/lib/site.ts`
+- `src/test/no-aggregate-rating.test.ts`
+
+Expected outcome:
+- No more risky rating markup in the build.
+- Cleaner, more defensible JSON-LD.
+- Better chance Google clears the warning after recrawl, instead of rejecting a newly re-added `aggregateRating`.
