@@ -14,9 +14,9 @@ const values = [
 
 const AboutPage = () => {
   useSeo({
-    title: "About Ottr Plumr | Welland-Based Plumbing & Heating in Niagara",
+    title: "About Ottr Plumr | Local Welland & Niagara Plumber — Licensed & Insured",
     description:
-      "Ottr Plumr — based at 187 King St, Welland, ON (a division of Canalside Mechanical LTD). Local Niagara plumbing & heating built on honest work, quality, and 24/7 reliability.",
+      "Meet Ottr Plumr — your local Welland-based plumber & HVAC team serving the Niagara Region. Licensed, insured, family-friendly, and built on honest work, quality installs & 24/7 emergency response.",
     canonicalPath: "/about",
   });
   return (

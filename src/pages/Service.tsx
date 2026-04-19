@@ -11,7 +11,7 @@ const ServicePage = () => {
   const service = getServiceBySlug(slug);
 
   useSeo({
-    title: service ? `${service.title} in Niagara | Ottr Plumr` : "Service | Ottr Plumr",
+    title: service ? `${service.title} in Niagara | Same-Day Service | Ottr Plumr` : "Service | Ottr Plumr",
     description: service?.metaDescription ?? "Plumbing & heating services in the Niagara Region.",
     canonicalPath: service ? `/services/${service.slug}` : "/services",
     noIndex: !service,

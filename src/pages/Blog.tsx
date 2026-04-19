@@ -5,7 +5,7 @@ import { useSeo } from "@/hooks/use-seo";
 
 const Blog = () => {
   useSeo({
-    title: "Plumbing & Heating Blog — Niagara Region Tips | Ottr Plumr",
+    title: "Niagara Plumbing & Heating Tips | Ottr Plumr Blog",
     description:
       "Local plumbing and heating advice for Niagara homeowners. Frozen pipes, water heater choices, basement flooding, furnace troubleshooting, and more.",
     canonicalPath: "/blog",

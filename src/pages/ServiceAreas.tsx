@@ -7,9 +7,9 @@ import { useSeo } from "@/hooks/use-seo";
 
 const ServiceAreasPage = () => {
   useSeo({
-    title: "Niagara Region Service Areas | Ottr Plumr Plumbing & Heating",
+    title: "Plumber Near Me — Niagara Region Service Areas | Ottr Plumr",
     description:
-      "Local plumbing & heating service across every city in the Niagara Region — St. Catharines, Niagara Falls, Welland, Thorold, Lincoln, Grimsby, Fort Erie & more.",
+      "Local plumbing & heating in St. Catharines, Niagara Falls, Welland, Thorold, Lincoln, Grimsby, Fort Erie, Pelham & more. Same-day service across the Niagara Region. Call 289-488-1007.",
     canonicalPath: "/service-areas",
     jsonLd: {
       "@context": "https://schema.org",

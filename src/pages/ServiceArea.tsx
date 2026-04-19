@@ -15,10 +15,10 @@ const ServiceAreaPage = () => {
 
   useSeo({
     title: city
-      ? `Plumbing & Heating in ${city.name}, Niagara | Ottr Plumr`
+      ? `${city.name} Plumber & Heating | 24/7 Local Service | Ottr Plumr`
       : "Service Area | Ottr Plumr",
     description: city
-      ? `Local plumbing & heating in ${city.name}: drains, water heaters, sump pumps, furnaces & 24/7 emergency service. Call Ottr Plumr at 289-488-1007.`
+      ? `Looking for a plumber in ${city.name}? Ottr Plumr handles drain cleaning, water heater install, sump pumps, furnaces & 24/7 emergency plumbing. Same-day, licensed & local. Call 289-488-1007.`
       : "Niagara plumbing & heating service areas.",
     canonicalPath: city ? `/service-areas/${city.slug}` : "/service-areas",
     noIndex: !city,
