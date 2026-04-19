@@ -3,7 +3,7 @@ import { Phone, Wrench, Flame, Droplets, ShieldCheck, Building2, Home, ArrowRigh
 import { Button } from "@/components/ui/button";
 import heroOtter from "@/assets/ottr-mascot.webp";
 import heroPond from "@/assets/hero-pond.webp";
-import vanWrap from "@/assets/ottr-plumr-van.png";
+import vanWrap from "@/assets/ottr-plumr-van.webp";
 import FAQ from "@/components/FAQ";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS, EMAIL, ADDRESS } from "@/lib/site";
@@ -304,9 +304,10 @@ const HomePage = () => {
             <div className="absolute inset-0 -m-6 rounded-full bg-water/30 blur-3xl" aria-hidden="true" />
             <img
               src={vanWrap}
-              alt="Ottr Plumr branded service van with otter mascot mascot — Niagara plumbing and heating"
-              width={1200}
-              height={600}
+              alt="Ottr Plumr branded service van with otter mascot — Niagara plumbing and heating"
+              width={1600}
+              height={682}
+              sizes="(min-width: 1024px) 600px, (min-width: 768px) 50vw, 100vw"
               loading="lazy"
               decoding="async"
               className="relative w-full h-auto drop-shadow-[0_20px_30px_hsl(215_75%_18%/0.35)]"
