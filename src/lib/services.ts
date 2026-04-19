@@ -526,6 +526,142 @@ export const SERVICES: Service[] = [
       },
     ],
   },
+  {
+    slug: "drain-cleaning",
+    icon: Droplets,
+    title: "Drain Cleaning",
+    shortDesc:
+      "Slow sinks, gurgling toilets, sewer backups — cleared properly with snaking, hydro-jetting, and camera inspection across Niagara.",
+    metaDescription:
+      "Drain cleaning across the Niagara Region — hydro-jetting, snaking, camera scopes & root removal. Same-day service. Call Ottr Plumr at 289-488-1007.",
+    hero: "Clogged drains, cleared right — not just unblocked.",
+    longDesc: [
+      "A clogged drain is more than an inconvenience — it's a warning. A slow kitchen sink, a gurgling toilet, water backing up in the basement floor drain when you run the washing machine: those are all symptoms of something specific, and the fix depends on what's actually causing it. The wrong tool on the wrong clog gets you a week of relief and another service call. We don't do that.",
+      "Ottr Plumr clears drains the right way across the Niagara Region. We start with a real diagnosis — usually a quick camera scope of the affected line — so we can see whether you're dealing with a grease plug under the kitchen sink, a hair-and-soap clog in a tub trap, tree roots in a clay sewer lateral, or a partial collapse in an aging line. Then we choose the tool that fixes the actual problem: a hand auger, a sectional cable machine, or full hydro-jetting at 4,000 PSI to scour the pipe walls back to bare pipe.",
+      "Niagara has a lot of older housing stock — century homes in St. Catharines and Niagara-on-the-Lake, post-war neighbourhoods in Welland and Port Colborne — and a lot of those properties still have clay or Orangeburg sewer laterals fighting tree roots every spring. We deal with this every week. We can clear roots, schedule annual maintenance jetting to keep them at bay, and quote a trenchless or open-cut replacement when the line is past saving.",
+      "And we leave the workspace cleaner than we found it. Drop cloths down, line cleared, line camera-verified clear before we pack up, written notes on what we found and what to watch for. No surprise charges — flat-rate pricing quoted before we touch a thing.",
+    ],
+    points: [
+      "Kitchen, bathroom & laundry drain clearing",
+      "Main sewer line snaking & hydro-jetting",
+      "Sewer camera inspection & locating",
+      "Tree root removal from sewer laterals",
+      "Floor drain & basement backup clearing",
+      "Recurring-clog diagnosis & permanent fix",
+      "Annual maintenance jetting plans",
+      "Trenchless sewer repair quotes",
+    ],
+    whatWeDo: [
+      { title: "Camera Inspection First", desc: "We scope the line before we start so we know exactly what's down there — roots, grease, scale, or a broken section — instead of guessing. Often included free with the clearing service." },
+      { title: "Snaking & Augering", desc: "Hand augers for tub and sink traps; sectional cable machines for branch lines and main sewers. The right cable head for the right blockage — no shortcuts." },
+      { title: "Hydro-Jetting", desc: "High-pressure water jetting (up to 4,000 PSI) to scour pipe walls clean of grease, scale, and root matter. The closest thing to a brand-new line without digging." },
+      { title: "Root Removal", desc: "Cutting heads and root-killing foam treatment for the clay-tile sewer laterals common in older Niagara neighbourhoods. Plus annual maintenance plans to keep them clear." },
+      { title: "Sewer Locating", desc: "Sonde-and-receiver locating to mark the depth and path of your sewer lateral on the surface — essential before any repair, replacement, or landscaping work." },
+      { title: "Recurring Clog Diagnosis", desc: "If a drain keeps clogging, the problem isn't the clog — it's the pipe. We find the underlying cause (belly, offset joint, partial collapse, undersized line) and quote a real fix." },
+    ],
+    whyUs: [
+      "Camera inspection so you see the actual problem",
+      "Flat-rate pricing — quoted before we work",
+      "Same-day service across the Niagara Region",
+      "Workmanship warrantied in writing",
+      "Clean job site — drop cloths down, mess cleaned up",
+      "Honest repair-vs-replace advice with the camera footage to back it up",
+    ],
+    faqs: [
+      {
+        q: "How much does drain cleaning cost in Niagara?",
+        a: "Most branch-line clogs (kitchen sink, tub, laundry) are flat-rate in the $200–$400 range. Main sewer line clearing typically runs $350–$650 depending on access and severity. Hydro-jetting is more, but is permanent in a way snaking isn't. We quote in writing before any work starts.",
+      },
+      {
+        q: "What's the difference between snaking and hydro-jetting?",
+        a: "Snaking punches a hole through the clog so water flows again — it's the right tool for a hard blockage like roots or a foreign object. Hydro-jetting uses high-pressure water to scour the entire inside of the pipe back to bare wall, removing grease, scale, and root matter. Jetting lasts much longer and is the right choice for grease or recurring clogs.",
+      },
+      {
+        q: "Why do my drains keep clogging in the same spot?",
+        a: "Recurring clogs in the same place almost always mean the pipe itself has a problem — a belly (sag), an offset joint, a partial collapse, or root intrusion. Snaking it again won't fix that. We'll camera-scope the line, show you the footage, and quote a permanent repair.",
+      },
+      {
+        q: "Can you clear tree roots from my sewer line?",
+        a: "Yes — root cutting heads on a sectional cable machine clear the line, and a hydro-jetting pass scours the walls. We can also apply a foaming root inhibitor to slow regrowth, and set you up on an annual maintenance plan if your line is prone (most clay-tile laterals in older Niagara neighbourhoods are).",
+      },
+      {
+        q: "Do I need a camera inspection?",
+        a: "If it's a one-time slow sink, no. If you have repeat backups, a sewage smell, slow drains throughout the house, or you're buying an older home — yes, absolutely. A 20-minute camera scope tells us (and you) exactly what's going on inside the pipe, with no guesswork.",
+      },
+      {
+        q: "Will hydro-jetting damage my pipes?",
+        a: "Not when it's done right. Modern jetting equipment is calibrated for the pipe material — we run lower pressures on older clay or cast iron, higher pressures on PVC and ABS. We scope the line first; if a section is structurally compromised, we'll tell you before we jet, not after.",
+      },
+    ],
+  },
+  {
+    slug: "emergency-plumber",
+    icon: Siren,
+    title: "Emergency Plumber",
+    shortDesc:
+      "24/7 emergency plumbing across Niagara — burst pipes, sewage backups, no hot water, flooding. Real local techs, fast dispatch.",
+    metaDescription:
+      "24/7 emergency plumber in the Niagara Region. Burst pipes, sewage backups, flooding & no-water emergencies — fast local response. Call 289-488-1007.",
+    hero: "Plumbing emergency? We answer the phone. 24/7.",
+    longDesc: [
+      "When a pipe bursts at 2am, a sewage line backs up into your basement, or you wake up to no hot water on the coldest morning of the year — you don't need a call centre in another province routing you to a sub-contractor who shows up tomorrow. You need a real Niagara plumber on the phone right now, and a truck headed to your house.",
+      "Ottr Plumr runs 24/7 emergency dispatch for the entire Niagara Region — Welland, St. Catharines, Niagara Falls, Thorold, Fort Erie, Port Colborne, Lincoln, Grimsby, Pelham, Niagara-on-the-Lake, West Lincoln, and Wainfleet. Call 289-488-1007 any hour, any day, including holidays. A real local technician answers, takes your details, gives you an honest arrival window, and tells you exactly what to do in the meantime to limit damage (where to shut the water off, which valve to close, whether to power down the breaker).",
+      "We carry the parts and tools to fix most emergencies on the first visit: burst-pipe repairs, frozen line thawing, water heater swap-outs, sewage ejector repair, sump pump replacement, main shut-off valve replacement, and emergency drain clearing. If we can't finish the job that night, we make the home safe and dry, then come back first thing in the morning to complete the work — and the after-hours rate covers the emergency call, not a second visit to finish.",
+      "And here's what we won't do at 2am: pressure-sell you a system you don't need, hide the price until the work is done, or charge you a 'diagnostic fee' on top of an emergency call when the problem is obvious. Flat-rate pricing in writing before we work — same as a daytime call, with a clearly-disclosed after-hours surcharge. No games when you're already having a bad night.",
+    ],
+    points: [
+      "24/7 live dispatch — a real tech answers",
+      "Burst & frozen pipe repair",
+      "Sewage backup & flooding response",
+      "No-hot-water emergency service",
+      "Sump pump failure response",
+      "Main water shut-off valve repair",
+      "After-hours water heater replacement",
+      "Holiday and weekend coverage",
+    ],
+    whatWeDo: [
+      { title: "Burst Pipe Repair", desc: "Fast isolation, drain-down, and repair of burst supply lines — copper, PEX, or galvanized. We'll also tell you why it burst so it doesn't happen again next winter." },
+      { title: "Sewage Backup Response", desc: "Sewage ejection from basements and crawlspaces, main-line clearing, and contamination cleanup coordination. We handle the plumbing fix; we'll refer trusted restoration partners for the cleanup." },
+      { title: "Frozen Pipe Thawing", desc: "Safe, controlled thawing of frozen water lines using heat tape and warm-air methods — never an open flame. Plus immediate insulation recommendations for the source of the freeze." },
+      { title: "No-Heat Emergency", desc: "After-hours furnace and boiler diagnosis and repair so your house isn't 5°C by morning. We carry common ignition, blower, and zone-valve parts on the truck." },
+      { title: "Water Heater Failure", desc: "Tank failures, no-hot-water diagnosis, and emergency replacement — including same-night swap-outs when a tank ruptures and floods a utility room." },
+      { title: "Main Shut-Off & Valve Failure", desc: "If your main shut-off won't close (or is leaking), the whole house is at risk. We coordinate with the municipality if needed and replace the valve same day." },
+    ],
+    whyUs: [
+      "A real local technician answers — not a national call centre",
+      "24/7/365 dispatch — including holidays",
+      "Flat-rate pricing in writing before we work",
+      "After-hours surcharge clearly disclosed up front",
+      "Common parts on the truck — most emergencies fixed first visit",
+      "Workmanship warrantied just like a daytime call",
+    ],
+    faqs: [
+      {
+        q: "Do you really answer the phone 24/7?",
+        a: "Yes — 289-488-1007 rings to a real Ottr Plumr technician any hour of any day, including holidays. No call centre, no leave-a-message, no 'someone will call you back tomorrow.' If you have an active emergency, we dispatch a truck.",
+      },
+      {
+        q: "How fast can you get to my house?",
+        a: "For an active emergency in the Niagara Region, typical arrival is within 60–90 minutes, often faster. We'll give you an honest arrival window when you call and a heads-up text when the technician is on the way.",
+      },
+      {
+        q: "How much does an emergency call cost?",
+        a: "There's a clearly-disclosed after-hours surcharge on top of standard flat-rate pricing for the work itself — quoted in writing before we start. Most full emergency repairs land in the $400–$1,200 range depending on the issue. We'll quote your specific situation on the phone before dispatching.",
+      },
+      {
+        q: "What should I do while I wait for the plumber?",
+        a: "Step one: shut the water off. The main shut-off is usually in the basement near the water meter. For a burst pipe, also shut off the breaker for any electrical panel near the leak. For a sewage backup, stop using all drains and toilets in the house. Our dispatcher will walk you through exactly what to do for your situation.",
+      },
+      {
+        q: "Do you cover my city after hours?",
+        a: "Yes — we cover all 12 cities in the Niagara Region 24/7: Welland, St. Catharines, Niagara Falls, Thorold, Fort Erie, Port Colborne, Lincoln, Grimsby, Pelham, Niagara-on-the-Lake, West Lincoln, and Wainfleet.",
+      },
+      {
+        q: "What counts as a real plumbing emergency?",
+        a: "Active leaks you can't shut off, burst pipes, sewage backing up into the home, no water at all, no hot water in winter, no heat in winter, and any plumbing issue actively causing property damage. If you're unsure, call us — we'll help you decide whether it can wait until morning.",
+      },
+    ],
+  },
 ];
 
 export const getServiceBySlug = (slug?: string) => SERVICES.find((s) => s.slug === slug);
