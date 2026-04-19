@@ -1,63 +1,54 @@
 
-Goal: fix the Google structured-data issue without reintroducing risky markup.
 
-What I found:
-- The current template already uses a valid parent type in `index.html`: `@type: "Plumber"`.
-- The current source no longer shows `aggregateRating` in the main schema files I checked.
-- So your suggested JSON-LD shape is structurally valid in general, but adding `aggregateRating` back here would likely recreate the same policy problem rather than solve it.
+## Root cause
 
-Why I would not add that snippet back:
-- Google’s issue here is not just nesting syntax. For local business markup, `aggregateRating` is often rejected when it is self-serving or not clearly backed by visible, first-party reviews on the same page.
-- This codebase currently has only 3 hardcoded testimonials in `src/lib/site.ts`, while the flagged values were `4.9` and `50`.
-- Several internal pages still attach `Review` schema (`Home.tsx`, `ServiceArea.tsx`, `ServiceCity.tsx`) even though I need to verify whether those same reviews are visibly rendered on each of those pages.
+The exact `FAQPage` block Google quoted is the global `FAQS` array from `src/lib/site.ts` ("What plumbing services do you offer?", "Are you available for emergency...", etc.).
 
-Implementation plan:
-1. Do a full structured-data audit
-- Read every page using `jsonLd`.
-- Confirm exactly which pages emit `Plumber`, `PlumbingService`, `Service`, `FAQPage`, `BreadcrumbList`, and `Review`.
+It is being emitted on **multiple URLs** with identical content:
 
-2. Normalize the business schema
-- Create one shared business-schema helper so the site emits a single consistent `Plumber`/business entity instead of slightly different shapes across pages.
-- Keep safe properties only: name, url, phone, email, address, geo, areaServed, opening hours, map.
+1. `src/pages/Home.tsx` — emits it directly inside `useSeo` jsonLd (lines 67–75), then renders `<FAQ injectSchema={false} />` to avoid double-injection on the same page. Good.
+2. `src/pages/ServiceArea.tsx` — renders `<FAQ />` (line 217) with the **default `injectSchema=true`**, so the `FAQ` component injects the **same generic FAQPage schema** on every `/areas/:city` page (12 cities).
 
-3. Do not restore `aggregateRating`
-- Keep `aggregateRating` fully removed from source and generated output.
-- Keep the regression guard, but tighten it if needed to scan the generated build output too.
+That's 13 URLs publishing the identical FAQPage entity → Google flags it as duplicate structured data.
 
-4. Make review markup policy-safe
-- Remove `review` schema from any page where those testimonials are not visibly shown on that same page.
-- Keep `Review` schema only on pages with matching visible review content, or add visible review sections to those pages if you want to retain review markup there.
-- If needed, simplify further by keeping review schema on the homepage only.
+(`Service.tsx` and `ServiceCity.tsx` also emit FAQPage, but those use service-specific FAQs from `src/lib/services.ts`, so each is unique content. Those are fine.)
 
-5. Verify the real live output path-by-path
-- Check homepage, one service page, one city page, and one service+city page after rebuild/publish.
-- Confirm no `aggregateRating` exists anywhere and that any remaining `Review` schema is paired with visible content.
+## Fix
 
-6. Final Google recovery step
-- After publish, re-test the exact flagged URL in Search Console with “Test live URL” and request indexing again.
+Pick ONE canonical home for the generic FAQPage and stop emitting it everywhere else.
 
-Technical details:
-- Your proposed object is valid Schema.org:
-  `Plumber -> aggregateRating -> AggregateRating`
-- But for this site, the safer fix is not “nest it correctly”; it is “avoid unsupported/self-serving rating claims entirely.”
-- The better long-term setup is:
-  - one canonical business schema
-  - page-specific `Service` / `BreadcrumbList` / `FAQPage`
-  - `Review` only where reviews are visibly present
-  - no sitewide `aggregateRating`
+**Step 1 — stop ServiceArea pages from injecting the duplicate FAQ schema**
 
-Files likely involved:
-- `index.html`
-- `src/hooks/use-seo.ts`
-- `src/pages/Home.tsx`
-- `src/pages/Services.tsx`
-- `src/pages/Service.tsx`
-- `src/pages/ServiceArea.tsx`
-- `src/pages/ServiceCity.tsx`
-- `src/lib/site.ts`
-- `src/test/no-aggregate-rating.test.ts`
+In `src/pages/ServiceArea.tsx`, change:
+```
+<FAQ />
+```
+to:
+```
+<FAQ injectSchema={false} />
+```
 
-Expected outcome:
-- No more risky rating markup in the build.
-- Cleaner, more defensible JSON-LD.
-- Better chance Google clears the warning after recrawl, instead of rejecting a newly re-added `aggregateRating`.
+The visible FAQ accordion still renders. Only the duplicated JSON-LD goes away.
+
+**Step 2 — keep the canonical FAQPage on the homepage only**
+
+`Home.tsx` keeps the FAQPage block in its `jsonLd`. No change needed there.
+
+**Step 3 — harden the FAQ component default**
+
+Flip the default in `src/components/FAQ.tsx` from `injectSchema = true` to `injectSchema = false`. This way any future page that drops `<FAQ />` in won't silently re-create the duplicate. Pages that genuinely want the schema must opt in explicitly.
+
+**Step 4 — regression guard**
+
+Extend `src/test/no-aggregate-rating.test.ts` (or add a sibling test) to fail the build if more than one source file injects the generic `FAQS`-based FAQPage JSON-LD. Concretely: grep for `FAQS.map` adjacent to `"FAQPage"` and assert ≤ 1 match across the repo.
+
+## What this does NOT change
+
+- Service-specific FAQPage schemas on `Service.tsx` and `ServiceCity.tsx` (unique content per URL — keep them).
+- Visible FAQ accordions on any page.
+- Titles, canonicals, breadcrumbs, Plumber/PlumbingService schemas.
+
+## After deploy
+
+Re-test one ServiceArea URL (e.g. `/areas/st-catharines`) in Google Search Console → URL Inspection → Test live URL. The FAQPage duplicate warning should clear after Google re-crawls the affected URLs.
+
