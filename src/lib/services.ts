@@ -42,7 +42,7 @@ export const SERVICES: Service[] = [
       "Your home's plumbing should be the last thing on your mind. When something goes sideways — a slow drain, a dripping tap, a mystery leak behind a wall — you want a real local plumber who shows up when they said they would, explains what's actually wrong in plain English, and fixes it right the first time. That's the entire reason Ottr Plumr exists.",
       "We handle every residential plumbing job across the Niagara Region: from a single faucet swap on a Saturday morning to a full re-pipe during a basement renovation. Every job, big or small, gets the same treatment — shoes off at the door, drop cloths down, tools tidy, the work explained as we go, and the mess cleaned up before we leave. You'll know what we did, why we did it, and what to watch for going forward.",
       "Our crew lives in Niagara. We know the housing stock — from century homes in St. Catharines and Niagara-on-the-Lake to post-war bungalows in Welland and Port Colborne to brand-new builds in Grimsby and Lincoln. That matters. A galvanized steel supply line in a 1940s home asks for a different game plan than a PEX manifold in a 2022 build, and we bring the right experience to both.",
-      "Most importantly: we quote before we work. Diagnostics first, then a clear flat-rate price, then your decision. No surprise bills, no 'we found another problem' halfway through, no hourly clock pressuring you to make a call before you're ready.",
+      "Most importantly: we quote before we work. Diagnostics first, then a clear flat-rate price, then your decision. No surprise pricing, no hidden line items added at the end. And if we open a wall and find something genuinely unexpected, we stop, show you, and give you a fresh quote before we touch it — you stay in control of every dollar.",
     ],
     points: [
       "Leak detection & repair",
@@ -168,7 +168,7 @@ export const SERVICES: Service[] = [
     hero: "Warm homes. Reliable systems. Niagara winters handled.",
     longDesc: [
       "When the temperature drops, your heating system has exactly one job — and it had better do it. Whether you run a high-efficiency forced-air furnace, a hot water boiler with cast-iron radiators, or radiant in-floor heat in a new build, Ottr Plumr keeps Niagara homes and businesses warm through every cold snap, polar vortex, and February deep freeze the lake throws at us.",
-      "We install, repair, and maintain every major brand of residential and light-commercial heating equipment, and we'll give you straight talk about whether your existing system needs a $300 fix, a $1,500 repair, or a full replacement that pays back in efficiency. No fear-selling, no 'you have to replace it today,' just the numbers laid out so you can decide.",
+      "We install, repair, and maintain every major brand of residential and light-commercial heating equipment, and we'll give you straight talk about whether your existing system needs a $300 fix, a $1,500 repair, or a full replacement that pays back in efficiency. No fear-selling, no 'you have to replace it today' pressure — just the numbers laid out so you can decide on your timeline.",
       "Annual tune-ups are the best $200 you spend on your house. We catch cracked heat exchangers, weak inducer motors, dirty burners, and failing zone valves before they become a no-heat call at 11pm on a Tuesday. We also keep your manufacturer warranty valid — most require documented annual service, and most homeowners don't know that.",
       "Our licensed gas technicians handle the stuff that needs a license: gas line work, conversions from oil or propane to natural gas, and proper venting for high-efficiency equipment. And every install gets the permit pulled — because the inspection is your safety net, not an inconvenience.",
     ],
@@ -506,7 +506,7 @@ export const SERVICES: Service[] = [
     faqs: [
       {
         q: "Do you charge for diagnostics?",
-        a: "We charge a flat diagnostic fee that's credited toward the repair if you book the work with us. You always know the cost before we arrive — no surprise trip charges or hourly meters running while we look.",
+        a: "We charge a flat diagnostic fee that's credited toward the repair if you book the work with us. You always know the cost before we arrive — no surprise trip charges, no hourly meter running while we look. If we uncover something hidden during the work, we pause, show you what we found, and re-quote before continuing.",
       },
       {
         q: "How fast can you come out for a repair?",

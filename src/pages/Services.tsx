@@ -85,7 +85,7 @@ const ServicesPage = () => {
           <p className="font-script text-2xl text-accent">How we work</p>
           <h2 className="font-display text-4xl text-primary mt-1">A simple, honest process</h2>
           <p className="text-foreground/75 mt-4">
-            No hourly meters running silently in the background. No surprise charges at the end. Here's exactly what happens when you book Ottr Plumr.
+            No hourly meters running silently in the background. No hidden line items tacked on at the end. If we uncover something unexpected during the work, we stop and re-quote before continuing — you decide what happens next. Here's exactly what happens when you book Ottr Plumr.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
