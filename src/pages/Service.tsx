@@ -93,6 +93,8 @@ const ServicePage = () => {
         <div className="water-band h-10 mt-12" aria-hidden="true" />
       </section>
 
+      <UrgencyStrip />
+
       <section className="container py-16 md:py-20">
         <div className="grid lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2 space-y-5">
