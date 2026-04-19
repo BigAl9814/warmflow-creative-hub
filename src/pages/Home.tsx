@@ -50,7 +50,7 @@ const HomePage = () => {
         },
         hasMap: "https://www.google.com/maps/search/?api=1&query=187+King+St+Welland+ON+L3B+3J4",
         areaServed: CITIES.map((c) => ({ "@type": "City", name: c.name })),
-        aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "50" },
+        
         review: REVIEWS.map((r) => ({
           "@type": "Review",
           reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },

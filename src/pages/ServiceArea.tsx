@@ -38,11 +38,6 @@ const ServiceAreaPage = () => {
               addressRegion: "ON",
               addressCountry: "CA",
             },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.9",
-              reviewCount: "50",
-            },
             review: REVIEWS.map((r) => ({
               "@type": "Review",
               reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },

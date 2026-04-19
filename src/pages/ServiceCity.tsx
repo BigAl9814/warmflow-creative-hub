@@ -42,11 +42,6 @@ const ServiceCityPage = () => {
                 telephone: PHONE_TEL,
                 email: EMAIL,
                 url: "https://plumr.ca/",
-                aggregateRating: {
-                  "@type": "AggregateRating",
-                  ratingValue: "4.9",
-                  reviewCount: "50",
-                },
                 review: REVIEWS.map((r) => ({
                   "@type": "Review",
                   reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
