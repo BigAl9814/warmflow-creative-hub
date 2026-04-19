@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { getServiceBySlug, SERVICES } from "@/lib/services";
 import { CITIES } from "@/lib/cities";
 import {
-  JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, EMAIL, REVIEWS,
+  JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, EMAIL,
 } from "@/lib/site";
 import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
@@ -42,12 +42,6 @@ const ServiceCityPage = () => {
                 telephone: PHONE_TEL,
                 email: EMAIL,
                 url: "https://plumr.ca/",
-                review: REVIEWS.map((r) => ({
-                  "@type": "Review",
-                  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-                  author: { "@type": "Person", name: r.name },
-                  reviewBody: r.quote,
-                })),
               },
               areaServed: {
                 "@type": "City",
