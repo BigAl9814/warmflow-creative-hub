@@ -69,6 +69,7 @@ const ContactPage = () => {
 
   return (
     <div>
+      <Seo {...seo} />
       <section className="bg-gradient-hero py-16 md:py-24">
         <div className="container text-center max-w-2xl">
           <p className="font-script text-2xl text-accent">Get in touch</p>

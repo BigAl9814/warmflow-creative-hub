@@ -1,10 +1,6 @@
 import { useEffect } from "react";
-import * as helmetPkg from "react-helmet-async";
+import { Head } from "vite-react-ssg";
 import * as React from "react";
-
-// react-helmet-async is CJS in Node SSR but ESM in browser bundle; normalize.
-const HelmetMod: any = (helmetPkg as any).default ?? helmetPkg;
-const Helmet = HelmetMod.Helmet ?? (helmetPkg as any).Helmet;
 
 type JsonLd = Record<string, unknown> | Record<string, unknown>[];
 
@@ -44,12 +40,13 @@ const upsertLink = (rel: string, href: string) => {
 };
 
 /**
- * Imperative client-side SEO updater. Used as a backup so navigations between
- * routes still update the document head even if Helmet is slow.
+ * Imperative client-side SEO updater. Used as a backup so client-side
+ * navigations between routes still update the document head.
  *
- * For build-time SSR / static generation, we ALSO render a <Seo /> component
- * (below) which uses react-helmet-async so the static HTML for each route
- * ships with the correct title/description/canonical/JSON-LD.
+ * For build-time SSG, the <Seo /> component below uses vite-react-ssg's
+ * <Head> wrapper — its tags are rendered into the per-route static HTML so
+ * crawlers (and View Source) see the correct title, meta, canonical and
+ * JSON-LD for every page.
  */
 export function useSeo({
   title,
@@ -104,12 +101,12 @@ export function useSeo({
 }
 
 /**
- * Render-time SEO component. Emits Helmet tags so static-site generation
- * captures them in the per-route HTML output. Pages should render <Seo {...} />
- * AND call useSeo({ ... }) — together they cover SSR + client navigation.
+ * Render-time SEO component using vite-react-ssg's <Head>. Tags written here
+ * are emitted into the per-route static HTML at build time so crawlers see
+ * unique titles, descriptions, canonical URLs and JSON-LD on every page.
  *
- * (You can also just render <Seo /> alone; the hook is kept for backwards
- * compatibility and to handle late dynamic JSON-LD changes.)
+ * Pages should render <Seo {...} /> AND call useSeo({ ... }) — together they
+ * cover SSG + client-side route changes.
  */
 export function Seo({
   title,
@@ -126,7 +123,7 @@ export function Seo({
     : undefined;
 
   return React.createElement(
-    Helmet,
+    Head,
     null,
     React.createElement("title", null, title),
     React.createElement("meta", { name: "description", content: description }),
@@ -151,7 +148,7 @@ export function Seo({
     jsonLd
       ? React.createElement("script", {
           type: "application/ld+json",
-          // Inline as text for SSR; Helmet renders this safely.
+          // Inline as text for SSR; Head renders this into static HTML.
           children: JSON.stringify(jsonLd),
         })
       : null
