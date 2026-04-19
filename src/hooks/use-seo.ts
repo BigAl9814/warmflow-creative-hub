@@ -39,6 +39,17 @@ const upsertLink = (rel: string, href: string) => {
   el.setAttribute("href", href);
 };
 
+const upsertJsonLd = (id: string, data: JsonLd) => {
+  let script = document.getElementById(id) as HTMLScriptElement | null;
+  if (!script) {
+    script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = id;
+    document.head.appendChild(script);
+  }
+  script.text = JSON.stringify(data);
+};
+
 /**
  * Imperative client-side SEO updater. Used as a backup so client-side
  * navigations between routes still update the document head.
@@ -85,13 +96,10 @@ export function useSeo({
     upsertLink("canonical", canonicalUrl);
     upsertMeta('meta[property="og:url"]', { property: "og:url", content: canonicalUrl });
 
-    document.getElementById(jsonLdId)?.remove();
     if (jsonLd) {
-      const script = document.createElement("script");
-      script.type = "application/ld+json";
-      script.id = jsonLdId;
-      script.text = JSON.stringify(jsonLd);
-      document.head.appendChild(script);
+      upsertJsonLd(jsonLdId, jsonLd);
+    } else {
+      document.getElementById(jsonLdId)?.remove();
     }
 
     return () => {
@@ -114,6 +122,7 @@ export function Seo({
   canonicalPath,
   ogImage,
   jsonLd,
+  jsonLdId = "page-jsonld",
   noIndex,
 }: SeoOptions) {
   const path = canonicalPath ?? "/";
@@ -147,8 +156,8 @@ export function Seo({
       : null,
     jsonLd
       ? React.createElement("script", {
+          id: jsonLdId,
           type: "application/ld+json",
-          // Inline as text for SSR; Head renders this into static HTML.
           children: JSON.stringify(jsonLd),
         })
       : null
