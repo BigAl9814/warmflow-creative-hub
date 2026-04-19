@@ -31,11 +31,6 @@ const ServicesPage = () => {
       addressCountry: ADDRESS.country,
     },
     areaServed: CITIES.map((c) => ({ "@type": "City", name: c.name })),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "50",
-    },
   };
 
   const seo: SeoOptions = {

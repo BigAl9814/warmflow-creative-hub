@@ -27,11 +27,6 @@ const ServicePage = () => {
               name: "Ottr Plumr",
               telephone: PHONE_TEL,
               areaServed: "Niagara Region, Ontario, Canada",
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "4.9",
-                reviewCount: "50",
-              },
             },
             areaServed: "Niagara Region, Ontario",
             url: `https://plumr.ca/services/${service.slug}`,
