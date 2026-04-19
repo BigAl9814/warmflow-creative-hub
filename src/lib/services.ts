@@ -1,4 +1,4 @@
-import { Building2, Droplets, Flame, Home as HomeIcon, ShieldCheck, Wrench, type LucideIcon } from "lucide-react";
+import { Building2, Droplets, Flame, Home as HomeIcon, ShieldCheck, Siren, Wrench, type LucideIcon } from "lucide-react";
 
 export type ProsConsItem = {
   name: string;
