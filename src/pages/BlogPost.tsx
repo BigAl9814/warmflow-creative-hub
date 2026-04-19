@@ -32,7 +32,7 @@ const BlogPost = () => {
             name: "Ottr Plumr Plumbing & Heating",
             logo: {
               "@type": "ImageObject",
-              url: "https://plumr.ca/og-image.jpg",
+              url: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/fa124001-f755-44fc-be6d-90ee00580d8b",
             },
           },
           mainEntityOfPage: {
