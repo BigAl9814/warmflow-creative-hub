@@ -42,7 +42,7 @@ export const SERVICES: Service[] = [
       "Your home's plumbing should be the last thing on your mind. When something goes sideways — a slow drain, a dripping tap, a mystery leak behind a wall — you want a real local plumber who shows up when they said they would, explains what's actually wrong in plain English, and fixes it right the first time. That's the entire reason Ottr Plumr exists.",
       "We handle every residential plumbing job across the Niagara Region: from a single faucet swap on a Saturday morning to a full re-pipe during a basement renovation. Every job, big or small, gets the same treatment — shoes off at the door, drop cloths down, tools tidy, the work explained as we go, and the mess cleaned up before we leave. You'll know what we did, why we did it, and what to watch for going forward.",
       "Our crew lives in Niagara. We know the housing stock — from century homes in St. Catharines and Niagara-on-the-Lake to post-war bungalows in Welland and Port Colborne to brand-new builds in Grimsby and Lincoln. That matters. A galvanized steel supply line in a 1940s home asks for a different game plan than a PEX manifold in a 2022 build, and we bring the right experience to both.",
-      "Most importantly: we quote before we work. Diagnostics first, then a clear flat-rate price, then your decision. No surprise bills, no &quot;we found another problem&quot; halfway through, no hourly clock pressuring you to make a call before you're ready.",
+      "Most importantly: we quote before we work. Diagnostics first, then a clear flat-rate price, then your decision. No surprise bills, no 'we found another problem' halfway through, no hourly clock pressuring you to make a call before you're ready.",
     ],
     points: [
       "Leak detection & repair",
@@ -85,7 +85,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "What's the most common cause of slow drains in Niagara homes?",
-        a: "In older neighbourhoods, tree-root intrusion in clay sewer laterals is the #1 culprit. In newer builds it's almost always grease, hair, or so-called &quot;flushable&quot; wipes (they aren't). A camera inspection tells us which one in about 20 minutes.",
+        a: "In older neighbourhoods, tree-root intrusion in clay sewer laterals is the #1 culprit. In newer builds it's almost always grease, hair, or so-called 'flushable' wipes (they aren't). A camera inspection tells us which one in about 20 minutes.",
       },
       {
         q: "Can you repair frozen or burst pipes?",
@@ -168,7 +168,7 @@ export const SERVICES: Service[] = [
     hero: "Warm homes. Reliable systems. Niagara winters handled.",
     longDesc: [
       "When the temperature drops, your heating system has exactly one job — and it had better do it. Whether you run a high-efficiency forced-air furnace, a hot water boiler with cast-iron radiators, or radiant in-floor heat in a new build, Ottr Plumr keeps Niagara homes and businesses warm through every cold snap, polar vortex, and February deep freeze the lake throws at us.",
-      "We install, repair, and maintain every major brand of residential and light-commercial heating equipment, and we'll give you straight talk about whether your existing system needs a $300 fix, a $1,500 repair, or a full replacement that pays back in efficiency. No fear-selling, no &quot;you have to replace it today,&quot; just the numbers laid out so you can decide.",
+      "We install, repair, and maintain every major brand of residential and light-commercial heating equipment, and we'll give you straight talk about whether your existing system needs a $300 fix, a $1,500 repair, or a full replacement that pays back in efficiency. No fear-selling, no 'you have to replace it today,' just the numbers laid out so you can decide.",
       "Annual tune-ups are the best $200 you spend on your house. We catch cracked heat exchangers, weak inducer motors, dirty burners, and failing zone valves before they become a no-heat call at 11pm on a Tuesday. We also keep your manufacturer warranty valid — most require documented annual service, and most homeowners don't know that.",
       "Our licensed gas technicians handle the stuff that needs a license: gas line work, conversions from oil or propane to natural gas, and proper venting for high-efficiency equipment. And every install gets the permit pulled — because the inspection is your safety net, not an inconvenience.",
     ],
@@ -475,7 +475,7 @@ export const SERVICES: Service[] = [
       "Some plumbers see a service call as a sales call. We don't. When you book Ottr Plumr for a repair or diagnostic, we tell you exactly what's wrong, what it'll cost to fix, and whether it's even worth fixing at all. If your 22-year-old water heater needs a $400 repair and is six months from failing anyway, we'll say so — and let you decide.",
       "Whether it's a mystery leak under the kitchen sink, low water pressure that crept up over months, a noisy pipe that bangs every time the dishwasher runs, or a fixture that just won't behave — we diagnose it properly using the right tools (acoustic locators, in-pipe cameras, pressure gauges, combustion analyzers when heating is involved), explain it to you in plain English, and quote the fix in writing before we lift a wrench.",
       "We're also the people locals call for second opinions. If you've been quoted a $4,200 sewer-line replacement and your gut says something's off, we'll come out, run a camera, and give you an honest read on whether you really need a full replacement or whether a spot repair fixes it. No obligation to book the work with us.",
-      "Our diagnostic fee is flat, transparent, and credited toward the repair if you book us to do the work. You always know the cost before we arrive — no &quot;trip charge plus hourly plus parts plus a markup we won't explain.&quot;",
+      "Our diagnostic fee is flat, transparent, and credited toward the repair if you book us to do the work. You always know the cost before we arrive — no 'trip charge plus hourly plus parts plus a markup we won't explain.'",
     ],
     points: [
       "Upfront flat-rate pricing",
