@@ -31,11 +31,16 @@ const AboutPage = () => {
             <p className="text-foreground/80 mt-5 text-lg max-w-xl">
               Ottr Plumr Plumbing &amp; Heating — a division of <strong>Canalside Mechanical LTD</strong> — was built on
               a simple idea: Niagara families and businesses deserve a plumbing &amp; heating company that's
-              professional from the first phone call to the final clean-up.
+              professional from the first phone call to the final clean-up, and honest about what your home actually needs.
             </p>
             <p className="text-foreground/80 mt-4 max-w-xl">
               We bring the technical chops of a big firm with the honesty and care of a neighbour. Whether it's a 2 AM
-              burst pipe or a planned bathroom reno, we treat every job like it's our own home.
+              burst pipe in February, a planned bathroom renovation, a tankless water heater conversion, or annual furnace
+              service before winter — we treat every job like it's our own home.
+            </p>
+            <p className="text-foreground/80 mt-4 max-w-xl">
+              Licensed gas technicians on staff. Fully insured for residential and commercial work. Permits pulled on every
+              install. Workmanship warrantied in writing. That's the bar.
             </p>
             <div className="flex flex-wrap gap-3 mt-7">
               <Button asChild variant="hero" size="lg">
@@ -84,12 +89,15 @@ const AboutPage = () => {
             </h2>
             <p className="text-foreground/80 mt-5 text-lg">
               I'm the owner of Ottr Plumr — a hands-on, local expert with a passion for honest work and quality
-              plumbing. With years of experience serving Niagara homes and businesses, I built Ottr Plumr to raise the
-              bar for service, safety, and reliability.
+              plumbing. With years of experience in homes and businesses across the Niagara Region, I built Ottr Plumr to raise the
+              bar for service, safety, and reliability — the kind of plumbing &amp; heating company I'd want my own family to call.
             </p>
             <p className="text-foreground/80 mt-4">
               When you call, you're getting a real Niagara tradesperson who treats your home like his own. No
-              outsourced call centres, no upsell scripts — just straight answers and quality work.
+              outsourced call centres, no upsell scripts — just straight answers, fair pricing, and quality work that's warrantied in writing.
+            </p>
+            <p className="text-foreground/80 mt-4">
+              We're a small team on purpose. Every technician is licensed, insured, and trained to the same standard, and every job — whether it's a $200 fixture install or a $20,000 boiler replacement — gets the same level of care.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="outline">

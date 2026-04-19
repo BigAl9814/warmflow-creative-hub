@@ -72,7 +72,10 @@ const ContactPage = () => {
           <p className="font-script text-2xl text-accent">Get in touch</p>
           <h1 className="font-display text-5xl md:text-6xl text-primary mt-1">Let's get it fixed.</h1>
           <p className="text-foreground/80 mt-5 text-lg">
-            Call, email, or send us a message. We respond fast — because plumbing problems don't wait.
+            Call, email, or send us a message — a real local technician answers, and we respond fast because plumbing problems don't wait.
+          </p>
+          <p className="text-foreground/75 mt-4 text-base">
+            Most non-emergency calls are scheduled same-day or next-day. Emergencies (active leaks, no water, no heat, sewage backups) get priority dispatch around the clock. Quotes are always free, always in writing, always before any work begins.
           </p>
         </div>
         <div className="water-band h-10 mt-12" aria-hidden="true" />

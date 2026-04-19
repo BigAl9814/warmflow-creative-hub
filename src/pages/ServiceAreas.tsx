@@ -37,6 +37,18 @@ const ServiceAreasPage = () => {
         <div className="water-band h-10 mt-12" aria-hidden="true" />
       </section>
 
+      {/* INTRO — Niagara region context */}
+      <section className="container pt-12 md:pt-16">
+        <div className="max-w-3xl mx-auto space-y-5 text-center">
+          <p className="text-foreground/80 text-base md:text-lg leading-relaxed">
+            Ottr Plumr is headquartered in Welland and runs service vans across the entire Niagara Region — from St. Catharines and Niagara Falls to lakeshore Crystal Beach, from wine country in Lincoln and Beamsville to rural West Lincoln and Wainfleet. We don't subcontract. The same licensed local team that answers your call shows up at your door, in a marked van, with the right tools and the right plan.
+          </p>
+          <p className="text-foreground/75 text-base md:text-lg leading-relaxed">
+            Each city below has its own page with the local context that actually matters: common plumbing &amp; heating issues we see in your area, the neighbourhoods we cover, and a direct line to book service. If your community is in Niagara, we're your local crew.
+          </p>
+        </div>
+      </section>
+
       <section className="container py-16 md:py-20">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {CITIES.map((c) => (
