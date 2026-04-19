@@ -214,7 +214,7 @@ const ServiceAreaPage = () => {
         </div>
       </section>
 
-      <FAQ />
+      <FAQ injectSchema={false} />
     </div>
   );
 };

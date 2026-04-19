@@ -17,7 +17,7 @@ interface FAQProps {
   schemaId?: string;
 }
 
-const FAQ = ({ injectSchema = true, schemaId = "faq-component-jsonld" }: FAQProps) => {
+const FAQ = ({ injectSchema = false, schemaId = "faq-component-jsonld" }: FAQProps) => {
   useEffect(() => {
     if (!injectSchema) return;
     if (typeof document === "undefined") return;
