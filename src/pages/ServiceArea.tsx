@@ -1,6 +1,6 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
-  ArrowRight, CalendarCheck, CheckCircle2, MapPin, Phone,
+  ArrowRight, CalendarCheck, CheckCircle2, MapPin, Phone, AlertTriangle, Lightbulb,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FAQ from "@/components/FAQ";
@@ -94,6 +94,47 @@ const ServiceAreaPage = () => {
         </div>
         <div className="water-band h-10 mt-12" aria-hidden="true" />
       </section>
+
+      {/* LOCAL CONTEXT — longDesc, common issues, local notes */}
+      {(city.longDesc || city.commonIssues || city.localNotes) && (
+        <section className="container py-16 md:py-20">
+          <div className="grid lg:grid-cols-3 gap-10">
+            <div className="lg:col-span-2 space-y-5">
+              <p className="font-script text-2xl text-accent">About {city.name}</p>
+              <h2 className="font-display text-3xl md:text-4xl text-primary">
+                Plumbing &amp; heating in {city.name}
+              </h2>
+              {city.longDesc && (
+                <p className="text-foreground/80 text-lg leading-relaxed">{city.longDesc}</p>
+              )}
+              {city.localNotes && (
+                <div className="stamp-card p-5 flex items-start gap-3 bg-water/30">
+                  <Lightbulb className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                  <p className="text-sm text-foreground/85">
+                    <span className="font-semibold text-primary">Local tip:</span> {city.localNotes}
+                  </p>
+                </div>
+              )}
+            </div>
+            {city.commonIssues && city.commonIssues.length > 0 && (
+              <aside className="stamp-card p-7 h-fit">
+                <div className="flex items-center gap-2 mb-4">
+                  <AlertTriangle className="h-5 w-5 text-accent" />
+                  <h3 className="font-display text-xl text-primary">What we see in {city.name}</h3>
+                </div>
+                <ul className="space-y-2.5">
+                  {city.commonIssues.map((issue) => (
+                    <li key={issue} className="flex items-start gap-2 text-sm">
+                      <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+                      <span className="text-foreground/80">{issue}</span>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+            )}
+          </div>
+        </section>
+      )}
 
       <section className="container py-16 md:py-20">
         <div className="text-center max-w-2xl mx-auto mb-12">

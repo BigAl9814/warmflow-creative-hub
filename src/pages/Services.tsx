@@ -36,6 +36,18 @@ const ServicesPage = () => {
         <div className="water-band h-10 mt-12" aria-hidden="true" />
       </section>
 
+      {/* INTRO — descriptive */}
+      <section className="container pt-12 md:pt-16">
+        <div className="max-w-3xl mx-auto space-y-5 text-center">
+          <p className="text-foreground/80 text-base md:text-lg leading-relaxed">
+            Ottr Plumr is a full-service plumbing &amp; heating company serving the Niagara Region — residential, commercial, and emergency. We handle the everyday stuff (leaks, drains, fixture installs, water heaters, furnace tune-ups) and the bigger projects (re-pipes, bathroom and kitchen renos, boiler conversions, backflow systems, sump pump retrofits). One licensed local crew, one phone number, every job warrantied.
+          </p>
+          <p className="text-foreground/75 text-base md:text-lg leading-relaxed">
+            Below is what we do, organized by category. Each page goes deep — what's included, common questions, pros and cons where there's a real choice to make, and city-specific service pages for every community in Niagara.
+          </p>
+        </div>
+      </section>
+
       <section className="container py-16 md:py-20">
         <div className="grid md:grid-cols-2 gap-6">
           {SERVICES.map((s) => (
@@ -62,6 +74,33 @@ const ServicesPage = () => {
                   </Link>
                 </Button>
               </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* HOW WE WORK */}
+      <section className="container pb-16 md:pb-20">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <p className="font-script text-2xl text-accent">How we work</p>
+          <h2 className="font-display text-4xl text-primary mt-1">A simple, honest process</h2>
+          <p className="text-foreground/75 mt-4">
+            No hourly meters running silently in the background. No surprise charges at the end. Here's exactly what happens when you book Ottr Plumr.
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {[
+            { step: "1", title: "You call or book", desc: "Phone, online form, or email — we confirm the appointment and give you a clear arrival window." },
+            { step: "2", title: "We diagnose first", desc: "We arrive, listen, look, and find the actual root cause — not just the loudest symptom." },
+            { step: "3", title: "Flat-rate quote", desc: "We write up the fix, walk you through any options (with pros & cons where it matters), and you decide. No pressure." },
+            { step: "4", title: "Clean, warrantied work", desc: "Drop cloths down, work done right, mess cleaned up, written warranty in your inbox before we drive away." },
+          ].map((s) => (
+            <article key={s.step} className="stamp-card p-6">
+              <div className="h-12 w-12 rounded-2xl bg-accent text-accent-foreground grid place-items-center font-display text-2xl shadow-soft mb-4">
+                {s.step}
+              </div>
+              <h3 className="font-display text-lg text-primary mb-2">{s.title}</h3>
+              <p className="text-sm text-foreground/75">{s.desc}</p>
             </article>
           ))}
         </div>

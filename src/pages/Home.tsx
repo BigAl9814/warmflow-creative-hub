@@ -174,6 +174,47 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* WHY LOCAL — descriptive long-form */}
+      <section className="container pb-8 md:pb-12">
+        <div className="grid lg:grid-cols-[1.3fr_1fr] gap-10 items-start">
+          <div className="space-y-5">
+            <p className="font-script text-2xl text-accent">Why local matters</p>
+            <h2 className="font-display text-3xl md:text-4xl text-primary leading-tight">
+              A real Niagara plumber answers the phone — every time.
+            </h2>
+            <p className="text-foreground/80 text-base md:text-lg leading-relaxed">
+              When you call Ottr Plumr, you reach a local technician — not a national call centre routing you to whoever bid lowest this month. We live in the Niagara Region, our shop is at 187 King St in Welland, and we know the housing stock here cold: century homes through downtown St. Catharines and Old Glenridge, post-war bungalows in Welland and Port Colborne, lakeside cottages in Crystal Beach and Sherkston, vineyard properties in Lincoln, and brand-new builds in Grimsby and the south end of Niagara Falls.
+            </p>
+            <p className="text-foreground/80 text-base md:text-lg leading-relaxed">
+              That local knowledge changes how we work. We know which neighbourhoods still have clay sewer laterals fighting tree roots every spring. We know which lakeshore streets need battery-backup sump pumps as a baseline. We know which 1990s subdivisions are hitting the 25-year mark on their original water heaters. We bring the right tools and the right plan on the first visit — not a parts run halfway through.
+            </p>
+            <p className="text-foreground/80 text-base md:text-lg leading-relaxed">
+              And the way we work is simple: diagnose first, quote in writing, do the work clean, leave the place tidier than we found it. Every job warrantied. Every price upfront. Same-day service for most calls, 24/7 emergency response when something can't wait. No sales scripts, no fear-selling, no &quot;we found another problem&quot; halfway through the job.
+            </p>
+          </div>
+          <aside className="stamp-card p-7 md:p-8 bg-gradient-hero">
+            <p className="font-script text-2xl text-accent">What you can expect</p>
+            <h3 className="font-display text-2xl text-primary mt-1 mb-5">Every Ottr Plumr call</h3>
+            <ul className="space-y-3.5">
+              {[
+                "A real local technician on the phone",
+                "Clear arrival window (and a heads-up text when we're on the way)",
+                "Diagnostic first, then a written flat-rate quote",
+                "Drop cloths, clean uniforms, tidy job site",
+                "Plain-English explanation of the fix",
+                "Workmanship warrantied in writing",
+                "No upsells, no surprise charges",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5">
+                  <span className="mt-1 h-2 w-2 rounded-full bg-accent shrink-0" aria-hidden="true" />
+                  <span className="text-foreground/85 text-sm md:text-base">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      </section>
+
       {/* WHY US */}
       <section className="bg-gradient-deep text-primary-foreground py-20 md:py-28">
         <div className="container grid lg:grid-cols-2 gap-12 items-center">

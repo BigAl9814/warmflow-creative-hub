@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ArrowRight, CalendarCheck, CheckCircle2, MapPin, Phone } from "lucide-react";
+import { ArrowRight, CalendarCheck, CheckCircle2, MapPin, Phone, ThumbsUp, ThumbsDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getServiceBySlug, SERVICES } from "@/lib/services";
 import { CITIES } from "@/lib/cities";
@@ -137,6 +137,62 @@ const ServicePage = () => {
           </div>
         </div>
       </section>
+
+      {/* PROS & CONS — only renders if defined for this service */}
+      {service.prosCons && (
+        <section className="container py-16 md:py-20">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <p className="font-script text-2xl text-accent">Help me choose</p>
+            <h2 className="font-display text-3xl md:text-4xl text-primary mt-1">
+              {service.prosCons.title}
+            </h2>
+            <p className="text-foreground/75 mt-4">{service.prosCons.intro}</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {service.prosCons.items.map((item) => (
+              <article key={item.name} className="stamp-card p-7 flex flex-col">
+                <h3 className="font-display text-2xl text-primary">{item.name}</h3>
+                <p className="text-sm text-foreground/70 mt-1 mb-5">
+                  <span className="font-semibold text-accent">Best for:</span> {item.bestFor}
+                </p>
+                <div className="grid sm:grid-cols-2 gap-5 flex-1">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2.5">
+                      <ThumbsUp className="h-4 w-4 text-accent" />
+                      <span className="font-display text-sm uppercase tracking-wide text-primary">Pros</span>
+                    </div>
+                    <ul className="space-y-2">
+                      {item.pros.map((p) => (
+                        <li key={p} className="flex items-start gap-2 text-sm text-foreground/80">
+                          <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-2.5">
+                      <ThumbsDown className="h-4 w-4 text-foreground/60" />
+                      <span className="font-display text-sm uppercase tracking-wide text-primary">Cons</span>
+                    </div>
+                    <ul className="space-y-2">
+                      {item.cons.map((c) => (
+                        <li key={c} className="flex items-start gap-2 text-sm text-foreground/80">
+                          <span className="mt-1 h-1.5 w-1.5 rounded-full bg-foreground/40 shrink-0" aria-hidden="true" />
+                          <span>{c}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="text-center text-sm text-foreground/70 mt-8 max-w-xl mx-auto">
+            Still not sure? Call <a href={`tel:${PHONE_TEL}`} className="font-semibold text-primary hover:underline">{PHONE_DISPLAY}</a> — we'll walk through your specific home, budget, and usage in about ten minutes. No pressure, no commitment.
+          </p>
+        </section>
+      )}
 
       <section className="container py-16 md:py-20">
         <div className="grid md:grid-cols-2 gap-10 items-center">
