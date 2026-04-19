@@ -46,6 +46,7 @@ const ContactPage = () => {
     },
   });
   useEffect(() => {
+    if (typeof document === "undefined") return;
     if (!document.querySelector(`link[href="${JOBBER_FORM_STYLESHEET}"]`)) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
