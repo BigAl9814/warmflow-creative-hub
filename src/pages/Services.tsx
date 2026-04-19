@@ -2,13 +2,7 @@ import { Link } from "react-router-dom";
 import { Phone, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SERVICES } from "@/lib/services";
-import { CITIES } from "@/lib/cities";
-import {
-  PHONE_TEL,
-  EMAIL,
-  ADDRESS,
-  REVIEWS,
-} from "@/lib/site";
+import { PHONE_TEL } from "@/lib/site";
 import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const ServicesPage = () => {

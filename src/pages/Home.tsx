@@ -6,7 +6,7 @@ import heroPond from "@/assets/hero-pond.webp";
 import vanWrap from "@/assets/ottr-plumr-van.webp";
 import FAQ from "@/components/FAQ";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
-import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS, EMAIL, ADDRESS } from "@/lib/site";
+import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS } from "@/lib/site";
 import { CITIES } from "@/lib/cities";
 import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
