@@ -244,8 +244,8 @@ const HomePage = () => {
               Spot us around the <span className="text-accent">Niagara Region</span>
             </h2>
             <p className="text-foreground/80 text-base md:text-lg max-w-xl">
-              Our fully-stocked vans are out every day from St. Catharines to Fort Erie — fully
-              equipped to tackle most jobs on the first visit. See one in your neighbourhood? Wave hi.
+              Our service vans are out every day from St. Catharines to Fort Erie — ready to
+              diagnose, repair, and get most jobs sorted on the spot. See one in your neighbourhood? Wave hi.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Button asChild variant="hero" size="lg">
