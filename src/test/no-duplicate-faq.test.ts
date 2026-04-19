@@ -46,7 +46,9 @@ describe("FAQPage structured data uniqueness", () => {
     const offenders: string[] = [];
     for (const file of files) {
       const content = readFileSync(file, "utf8");
-      // Looks for files that import/use the generic FAQS array AND emit FAQPage schema
+      // The FAQ component itself is the shared injector — skip it.
+      if (file.endsWith("/components/FAQ.tsx")) continue;
+      // Looks for files that use the generic FAQS array AND emit FAQPage schema directly
       const usesFaqs = /\bFAQS\.map\b/.test(content);
       const emitsFaqPage = /["']FAQPage["']/.test(content);
       if (usesFaqs && emitsFaqPage) {
