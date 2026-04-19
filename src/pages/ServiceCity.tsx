@@ -36,13 +36,7 @@ const ServiceCityPage = () => {
               name: `${service.title} in ${city.name}`,
               description: `${service.title} for homes and businesses in ${city.name}, Ontario. ${service.shortDesc}`,
               serviceType: service.title,
-              provider: {
-                "@type": "PlumbingService",
-                name: "Ottr Plumr Plumbing & Heating",
-                telephone: PHONE_TEL,
-                email: EMAIL,
-                url: "https://plumr.ca/",
-              },
+              provider: { "@id": "https://plumr.ca/#business" },
               areaServed: {
                 "@type": "City",
                 name: city.name,

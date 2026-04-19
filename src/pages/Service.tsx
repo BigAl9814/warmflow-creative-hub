@@ -22,13 +22,11 @@ const ServicePage = () => {
             "@type": "Service",
             name: service.title,
             description: service.metaDescription,
-            provider: {
-              "@type": "PlumbingService",
-              name: "Ottr Plumr",
-              telephone: PHONE_TEL,
-              areaServed: "Niagara Region, Ontario, Canada",
+            provider: { "@id": "https://plumr.ca/#business" },
+            areaServed: {
+              "@type": "AdministrativeArea",
+              name: "Niagara Region, Ontario, Canada",
             },
-            areaServed: "Niagara Region, Ontario",
             url: `https://plumr.ca/services/${service.slug}`,
           },
           {

@@ -12,27 +12,6 @@ import {
 import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const ServicesPage = () => {
-  const provider = {
-    "@type": "PlumbingService",
-    "@id": "https://plumr.ca/#business",
-    name: "Ottr Plumr Plumbing & Heating",
-    url: "https://plumr.ca/",
-    telephone: PHONE_TEL,
-    email: EMAIL,
-    image:
-      "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/fa124001-f755-44fc-be6d-90ee00580d8b",
-    priceRange: "$$",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: ADDRESS.street,
-      addressLocality: ADDRESS.city,
-      addressRegion: ADDRESS.region,
-      postalCode: ADDRESS.postalCode,
-      addressCountry: ADDRESS.country,
-    },
-    areaServed: CITIES.map((c) => ({ "@type": "City", name: c.name })),
-  };
-
   const seo: SeoOptions = {
     title: "Niagara Plumbing & Heating Services | Ottr Plumr",
     description:
@@ -55,7 +34,7 @@ const ServicesPage = () => {
         name: "Niagara Plumbing & Heating Services",
         description:
           "Full catalogue of plumbing and heating services offered by Ottr Plumr across the Niagara Region — residential, commercial, and 24/7 emergency.",
-        about: provider,
+        about: { "@id": "https://plumr.ca/#business" },
         mainEntity: {
           "@type": "ItemList",
           numberOfItems: SERVICES.length,
@@ -99,7 +78,6 @@ const ServicesPage = () => {
           })),
         },
       },
-      provider,
     ],
   };
   useSeo(seo);
