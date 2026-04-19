@@ -3,6 +3,7 @@ import { Phone, Wrench, Flame, Droplets, ShieldCheck, Building2, Home, ArrowRigh
 import { Button } from "@/components/ui/button";
 import heroOtter from "@/assets/ottr-mascot.webp";
 import heroPond from "@/assets/hero-pond.webp";
+import vanWrap from "@/assets/ottr-plumr-van.png";
 import FAQ from "@/components/FAQ";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import { JOBBER_BOOK_URL, PHONE_DISPLAY, PHONE_TEL, REVIEWS, FAQS, EMAIL, ADDRESS } from "@/lib/site";
@@ -230,6 +231,45 @@ const HomePage = () => {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      {/* FLEET */}
+      <section className="relative overflow-hidden bg-gradient-hero py-20 md:py-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/60 to-background" aria-hidden="true" />
+        <div className="container relative grid lg:grid-cols-2 gap-10 items-center">
+          <div className="space-y-5">
+            <p className="font-script text-2xl text-accent">On the road</p>
+            <h2 className="font-display text-4xl md:text-5xl text-primary leading-tight">
+              Spot us around the <span className="text-accent">Niagara Region</span>
+            </h2>
+            <p className="text-foreground/80 text-base md:text-lg max-w-xl">
+              Our fully-stocked vans are out every day from St. Catharines to Fort Erie — fully
+              equipped to tackle most jobs on the first visit. See one in your neighbourhood? Wave hi.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button asChild variant="hero" size="lg">
+                <a href={`tel:${PHONE_TEL}`}><Phone /> Call {PHONE_DISPLAY}</a>
+              </Button>
+              <Button asChild variant="deep" size="lg">
+                <a href={JOBBER_BOOK_URL} target="_blank" rel="noopener noreferrer">
+                  <CalendarCheck /> Book Online
+                </a>
+              </Button>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="absolute inset-0 -m-6 rounded-full bg-water/30 blur-3xl" aria-hidden="true" />
+            <img
+              src={vanWrap}
+              alt="Ottr Plumr branded service van with otter mascot mascot — Niagara plumbing and heating"
+              width={1200}
+              height={600}
+              loading="lazy"
+              decoding="async"
+              className="relative w-full h-auto drop-shadow-[0_20px_30px_hsl(215_75%_18%/0.35)]"
+            />
+          </div>
         </div>
       </section>
 
