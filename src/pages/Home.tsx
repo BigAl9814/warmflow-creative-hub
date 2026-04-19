@@ -101,8 +101,9 @@ const HomePage = () => {
             </h1>
             <p className="font-script text-3xl text-reed">Otterly reliable. Professional, start to finish.</p>
             <p className="text-base md:text-lg text-foreground/80 max-w-xl">
-              Family-minded service for homes and businesses across every city in the Niagara Region.
-              Water heaters, sump pumps, heating systems, and everything in between.
+              No corporate call centres, no runaround — just your Niagara neighbours, ready to help
+              with every plumbing and heating need. Water heaters, sump pumps, heating systems,
+              and everything in between.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild variant="hero" size="lg">
