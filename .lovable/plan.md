@@ -2,53 +2,45 @@
 
 ## Root cause
 
-The exact `FAQPage` block Google quoted is the global `FAQS` array from `src/lib/site.ts` ("What plumbing services do you offer?", "Are you available for emergency...", etc.).
+Google's "found 12 times" report is from a **prior crawl** of the 12 `/areas/:city` pages (and likely service pages too) — back when `ServiceArea.tsx` and `ServiceCity.tsx` were each emitting the same 3 `Review` objects pulled from the shared `REVIEWS` array. We already removed those, and the live site currently returns **zero** matches for `Donald W Hawken` on every URL I checked (`/`, `/areas/welland`, `/services/drain-cleaning`, `/services/drain-cleaning/welland`).
 
-It is being emitted on **multiple URLs** with identical content:
+So: source is clean for ServiceArea/ServiceCity. The only remaining `Review` JSON-LD source in the repo is `src/pages/Home.tsx` (lines 54–59).
 
-1. `src/pages/Home.tsx` — emits it directly inside `useSeo` jsonLd (lines 67–75), then renders `<FAQ injectSchema={false} />` to avoid double-injection on the same page. Good.
-2. `src/pages/ServiceArea.tsx` — renders `<FAQ />` (line 217) with the **default `injectSchema=true`**, so the `FAQ` component injects the **same generic FAQPage schema** on every `/areas/:city` page (12 cities).
+## What to do
 
-That's 13 URLs publishing the identical FAQPage entity → Google flags it as duplicate structured data.
+The safest move is to also strip the Review JSON-LD from the homepage. Reasons:
+- Even on a single URL, Google has been picky about self-published `Review` markup with identical text reused across crawls/snapshots.
+- The visible testimonial cards on the homepage (`REVIEWS.map` at line 267) stay exactly as-is — users still see the reviews.
+- This eliminates every remaining `"@type":"Review"` from the site, which guarantees the "duplicate Review" warning cannot recur after the next recrawl.
 
-(`Service.tsx` and `ServiceCity.tsx` also emit FAQPage, but those use service-specific FAQs from `src/lib/services.ts`, so each is unique content. Those are fine.)
+If you'd rather keep Review schema on the homepage (it is policy-allowed there since the reviews are visibly rendered on that exact page), the alternative is to leave Home.tsx alone and just wait for Google to recrawl the city/service pages, where the schema is already gone.
 
-## Fix
+## Plan
 
-Pick ONE canonical home for the generic FAQPage and stop emitting it everywhere else.
+**Step 1 — Remove Review JSON-LD from `src/pages/Home.tsx`**
+- Delete lines 54–59 (the `review: REVIEWS.map(...)` block) inside the `PlumbingService` jsonLd.
+- Keep the visible testimonials section (line 267 onwards) untouched.
+- Keep `REVIEWS` import only if still used by the visible section (it is).
 
-**Step 1 — stop ServiceArea pages from injecting the duplicate FAQ schema**
+**Step 2 — Add a regression guard**
+- Create `src/test/no-review-schema.test.ts` that fails the build if any source file in `src/` (excluding `lib/site.ts` which defines the `REVIEWS` array) contains both `REVIEWS.map` and `"@type": "Review"` / `"Review"` together. Mirrors the existing FAQ guard.
 
-In `src/pages/ServiceArea.tsx`, change:
-```
-<FAQ />
-```
-to:
-```
-<FAQ injectSchema={false} />
-```
+**Step 3 — Verify after publish**
+- Confirm every URL returns 0 matches for the review text:
+  - `/`
+  - `/areas/welland`, `/areas/st-catharines`
+  - `/services/drain-cleaning`, `/services/drain-cleaning/welland`
+- Then in Google Search Console: URL Inspection → Test live URL → Request Indexing on one of the flagged URLs.
 
-The visible FAQ accordion still renders. Only the duplicated JSON-LD goes away.
+## What does NOT change
 
-**Step 2 — keep the canonical FAQPage on the homepage only**
+- Visible testimonial section on the homepage — stays.
+- `REVIEWS` array in `src/lib/site.ts` — stays (it powers the visible cards).
+- `PlumbingService`, `FAQPage`, `BreadcrumbList`, `Service` schemas — all kept.
+- Titles, canonicals, SSG, UI — untouched.
 
-`Home.tsx` keeps the FAQPage block in its `jsonLd`. No change needed there.
+## Files to edit
 
-**Step 3 — harden the FAQ component default**
-
-Flip the default in `src/components/FAQ.tsx` from `injectSchema = true` to `injectSchema = false`. This way any future page that drops `<FAQ />` in won't silently re-create the duplicate. Pages that genuinely want the schema must opt in explicitly.
-
-**Step 4 — regression guard**
-
-Extend `src/test/no-aggregate-rating.test.ts` (or add a sibling test) to fail the build if more than one source file injects the generic `FAQS`-based FAQPage JSON-LD. Concretely: grep for `FAQS.map` adjacent to `"FAQPage"` and assert ≤ 1 match across the repo.
-
-## What this does NOT change
-
-- Service-specific FAQPage schemas on `Service.tsx` and `ServiceCity.tsx` (unique content per URL — keep them).
-- Visible FAQ accordions on any page.
-- Titles, canonicals, breadcrumbs, Plumber/PlumbingService schemas.
-
-## After deploy
-
-Re-test one ServiceArea URL (e.g. `/areas/st-catharines`) in Google Search Console → URL Inspection → Test live URL. The FAQPage duplicate warning should clear after Google re-crawls the affected URLs.
+- `src/pages/Home.tsx` — drop the `review:` array from the PlumbingService jsonLd.
+- `src/test/no-review-schema.test.ts` — new regression guard.
 
