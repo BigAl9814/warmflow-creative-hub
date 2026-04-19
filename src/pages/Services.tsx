@@ -2,24 +2,110 @@ import { Link } from "react-router-dom";
 import { Phone, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SERVICES } from "@/lib/services";
+import { CITIES } from "@/lib/cities";
+import {
+  PHONE_TEL,
+  EMAIL,
+  ADDRESS,
+  REVIEWS,
+} from "@/lib/site";
 import { useSeo, Seo, type SeoOptions } from "@/hooks/use-seo";
 
 const ServicesPage = () => {
+  const provider = {
+    "@type": "PlumbingService",
+    "@id": "https://plumr.ca/#business",
+    name: "Ottr Plumr Plumbing & Heating",
+    url: "https://plumr.ca/",
+    telephone: PHONE_TEL,
+    email: EMAIL,
+    image:
+      "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/fa124001-f755-44fc-be6d-90ee00580d8b",
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: ADDRESS.street,
+      addressLocality: ADDRESS.city,
+      addressRegion: ADDRESS.region,
+      postalCode: ADDRESS.postalCode,
+      addressCountry: ADDRESS.country,
+    },
+    areaServed: CITIES.map((c) => ({ "@type": "City", name: c.name })),
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "50",
+    },
+  };
+
   const seo: SeoOptions = {
     title: "Niagara Plumbing & Heating Services | Ottr Plumr",
     description:
       "Full-service plumber & HVAC in Niagara — drain cleaning, water heater install & repair, sump pumps, leak detection, furnace & boiler service. Same-day, licensed, warrantied. Call 289-488-1007.",
     canonicalPath: "/services",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      itemListElement: SERVICES.map((s, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
-        url: `https://plumr.ca/services/${s.slug}`,
-        name: s.title,
-      })),
-    },
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://plumr.ca/" },
+          { "@type": "ListItem", position: 2, name: "Services", item: "https://plumr.ca/services" },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "@id": "https://plumr.ca/services#collection",
+        url: "https://plumr.ca/services",
+        name: "Niagara Plumbing & Heating Services",
+        description:
+          "Full catalogue of plumbing and heating services offered by Ottr Plumr across the Niagara Region — residential, commercial, and 24/7 emergency.",
+        about: provider,
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: SERVICES.length,
+          itemListOrder: "https://schema.org/ItemListOrderAscending",
+          itemListElement: SERVICES.map((s, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `https://plumr.ca/services/${s.slug}`,
+            item: {
+              "@type": "Service",
+              "@id": `https://plumr.ca/services/${s.slug}#service`,
+              name: s.title,
+              serviceType: s.title,
+              description: s.metaDescription,
+              url: `https://plumr.ca/services/${s.slug}`,
+              category: "Plumbing & Heating",
+              provider: { "@id": "https://plumr.ca/#business" },
+              areaServed: {
+                "@type": "AdministrativeArea",
+                name: "Niagara Region, Ontario, Canada",
+              },
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: `${s.title} specialties`,
+                itemListElement: s.whatWeDo.map((w) => ({
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: w.title,
+                    description: w.desc,
+                  },
+                })),
+              },
+              availableChannel: {
+                "@type": "ServiceChannel",
+                serviceUrl: `https://plumr.ca/services/${s.slug}`,
+                servicePhone: PHONE_TEL,
+                availableLanguage: "en-CA",
+              },
+            },
+          })),
+        },
+      },
+      provider,
+    ],
   };
   useSeo(seo);
   return (
