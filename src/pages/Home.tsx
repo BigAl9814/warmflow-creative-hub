@@ -50,13 +50,6 @@ const HomePage = () => {
         },
         hasMap: "https://www.google.com/maps/search/?api=1&query=187+King+St+Welland+ON+L3B+3J4",
         areaServed: CITIES.map((c) => ({ "@type": "City", name: c.name })),
-        
-        review: REVIEWS.map((r) => ({
-          "@type": "Review",
-          reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-          author: { "@type": "Person", name: r.name },
-          reviewBody: r.quote,
-        })),
         openingHoursSpecification: {
           "@type": "OpeningHoursSpecification",
           dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
