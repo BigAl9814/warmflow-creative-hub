@@ -18,11 +18,11 @@ const ServiceCityPage = () => {
   useSeo({
     title:
       service && city
-        ? `${service.title} in ${city.name}, ON | Ottr Plumr — 24/7`
+        ? `${service.title} ${city.name} | 24/7 Local | Ottr Plumr`
         : "Service | Ottr Plumr",
     description:
       service && city
-        ? `Local ${service.title.toLowerCase()} in ${city.name}, Ontario. Same-day service, upfront pricing, warrantied work. Call Ottr Plumr at ${PHONE_DISPLAY}.`
+        ? `Need ${service.title.toLowerCase()} in ${city.name}? Ottr Plumr offers same-day, licensed, warrantied service with upfront pricing. 24/7 emergency response across Niagara. Call ${PHONE_DISPLAY}.`
         : "Plumbing & heating in the Niagara Region.",
     canonicalPath:
       service && city ? `/services/${service.slug}/${city.slug}` : "/services",

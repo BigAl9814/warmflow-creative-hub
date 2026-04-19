@@ -21,9 +21,9 @@ const services = [
 
 const HomePage = () => {
   useSeo({
-    title: "Ottr Plumr — Plumbing & Heating in Welland & Niagara | 24/7",
+    title: "Niagara Plumber & Heating | 24/7 Service | Ottr Plumr",
     description:
-      "Niagara plumbing & heating based at 187 King St, Welland, ON. Drains, water heaters, sump pumps, furnaces & boilers. 24/7 service across St. Catharines, Niagara Falls, Welland & more. Call 289-488-1007.",
+      "Licensed Niagara plumbers & HVAC techs — 24/7 emergency plumbing, drain cleaning, water heater repair, sump pumps, furnaces & boilers. Same-day service in St. Catharines, Niagara Falls & Welland. Call 289-488-1007.",
     canonicalPath: "/",
     jsonLd: [
       {
