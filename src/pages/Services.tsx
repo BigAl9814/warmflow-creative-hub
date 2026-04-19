@@ -107,6 +107,8 @@ const ServicesPage = () => {
       </section>
 
       <section className="bg-gradient-deep text-primary-foreground py-16">
+        <div className="container text-center max-w-2xl">
+          <h2 className="font-display text-3xl md:text-4xl">Don't see what you need?</h2>
           <p className="opacity-85 mt-3">If it involves pipes or heat, we can probably handle it. Just ask.</p>
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <Button asChild variant="hero" size="lg">
