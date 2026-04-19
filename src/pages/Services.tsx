@@ -36,6 +36,18 @@ const ServicesPage = () => {
         <div className="water-band h-10 mt-12" aria-hidden="true" />
       </section>
 
+      {/* INTRO — descriptive */}
+      <section className="container pt-12 md:pt-16">
+        <div className="max-w-3xl mx-auto space-y-5 text-center">
+          <p className="text-foreground/80 text-base md:text-lg leading-relaxed">
+            Ottr Plumr is a full-service plumbing &amp; heating company serving the Niagara Region — residential, commercial, and emergency. We handle the everyday stuff (leaks, drains, fixture installs, water heaters, furnace tune-ups) and the bigger projects (re-pipes, bathroom and kitchen renos, boiler conversions, backflow systems, sump pump retrofits). One licensed local crew, one phone number, every job warrantied.
+          </p>
+          <p className="text-foreground/75 text-base md:text-lg leading-relaxed">
+            Below is what we do, organized by category. Each page goes deep — what's included, common questions, pros and cons where there's a real choice to make, and city-specific service pages for every community in Niagara.
+          </p>
+        </div>
+      </section>
+
       <section className="container py-16 md:py-20">
         <div className="grid md:grid-cols-2 gap-6">
           {SERVICES.map((s) => (
