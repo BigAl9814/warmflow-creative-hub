@@ -20,6 +20,7 @@ interface FAQProps {
 const FAQ = ({ injectSchema = true, schemaId = "faq-component-jsonld" }: FAQProps) => {
   useEffect(() => {
     if (!injectSchema) return;
+    if (typeof document === "undefined") return;
     const data = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
