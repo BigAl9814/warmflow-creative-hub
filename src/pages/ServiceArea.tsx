@@ -15,7 +15,7 @@ const ServiceAreaPage = () => {
 
   useSeo({
     title: city
-      ? `${city.name} Plumber & Heating | 24/7 Local Service | Ottr Plumr`
+      ? `${city.name} Plumber & Heating | 24/7 Local | Ottr Plumr`
       : "Service Area | Ottr Plumr",
     description: city
       ? `Looking for a plumber in ${city.name}? Ottr Plumr handles drain cleaning, water heater install, sump pumps, furnaces & 24/7 emergency plumbing. Same-day, licensed & local. Call 289-488-1007.`

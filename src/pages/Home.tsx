@@ -21,7 +21,7 @@ const services = [
 
 const HomePage = () => {
   useSeo({
-    title: "Niagara Plumber & Heating | 24/7 Emergency Service | Ottr Plumr",
+    title: "Niagara Plumber & Heating | 24/7 Service | Ottr Plumr",
     description:
       "Licensed Niagara plumbers & HVAC techs — 24/7 emergency plumbing, drain cleaning, water heater repair, sump pumps, furnaces & boilers. Same-day service in St. Catharines, Niagara Falls & Welland. Call 289-488-1007.",
     canonicalPath: "/",

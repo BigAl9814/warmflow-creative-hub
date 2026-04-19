@@ -6,7 +6,7 @@ import { useSeo } from "@/hooks/use-seo";
 
 const ServicesPage = () => {
   useSeo({
-    title: "Niagara Plumbing & Heating Services | Drains, Water Heaters & HVAC",
+    title: "Niagara Plumbing & Heating Services | Ottr Plumr",
     description:
       "Full-service plumber & HVAC in Niagara — drain cleaning, water heater install & repair, sump pumps, leak detection, furnace & boiler service. Same-day, licensed, warrantied. Call 289-488-1007.",
     canonicalPath: "/services",

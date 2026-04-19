@@ -14,7 +14,7 @@ const values = [
 
 const AboutPage = () => {
   useSeo({
-    title: "About Ottr Plumr | Local Welland & Niagara Plumber — Licensed & Insured",
+    title: "About Ottr Plumr | Welland & Niagara Plumbers — Licensed",
     description:
       "Meet Ottr Plumr — your local Welland-based plumber & HVAC team serving the Niagara Region. Licensed, insured, family-friendly, and built on honest work, quality installs & 24/7 emergency response.",
     canonicalPath: "/about",

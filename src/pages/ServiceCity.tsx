@@ -18,7 +18,7 @@ const ServiceCityPage = () => {
   useSeo({
     title:
       service && city
-        ? `${service.title} in ${city.name}, ON | 24/7 Local Service | Ottr Plumr`
+        ? `${service.title} ${city.name} | 24/7 Local | Ottr Plumr`
         : "Service | Ottr Plumr",
     description:
       service && city
