@@ -303,6 +303,17 @@ const ServiceCityPage = () => {
         </div>
       </section>
 
+      {/* MAP — local geo signal */}
+      <section className="container py-8 md:py-12">
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <p className="font-script text-2xl text-accent">Service area</p>
+          <h2 className="font-display text-3xl md:text-4xl text-primary mt-1">
+            {service.title} across {city.name}
+          </h2>
+        </div>
+        <CityMap cityName={city.name} title={`${service.title} service area in ${city.name}, Ontario`} />
+      </section>
+
       <section className="bg-gradient-deep text-primary-foreground py-16">
         <div className="container text-center max-w-2xl">
           <h2 className="font-display text-3xl md:text-4xl">
