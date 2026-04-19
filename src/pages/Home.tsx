@@ -306,7 +306,7 @@ const HomePage = () => {
               src={vanWrap}
               alt="Ottr Plumr branded service van with otter mascot — Niagara plumbing and heating"
               width={1600}
-              height={900}
+              height={682}
               sizes="(min-width: 1024px) 600px, (min-width: 768px) 50vw, 100vw"
               loading="lazy"
               decoding="async"
