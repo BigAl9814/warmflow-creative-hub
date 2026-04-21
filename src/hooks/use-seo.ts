@@ -40,6 +40,12 @@ const upsertLink = (rel: string, href: string) => {
 };
 
 const upsertJsonLd = (id: string, data: JsonLd) => {
+  let serialized: string;
+  try {
+    serialized = JSON.stringify(data);
+  } catch {
+    return;
+  }
   let script = document.getElementById(id) as HTMLScriptElement | null;
   if (!script) {
     script = document.createElement("script");
@@ -47,8 +53,13 @@ const upsertJsonLd = (id: string, data: JsonLd) => {
     script.id = id;
     document.head.appendChild(script);
   }
-  script.text = JSON.stringify(data);
+  script.text = serialized;
 };
+
+// Module-level flag — true after the first client render.
+// Used to make <Seo /> a no-op on subsequent client navigations so
+// react-helmet-async doesn't race with the imperative useSeo() updater.
+let hasHydrated = false;
 
 /**
  * Imperative client-side SEO updater. Used as a backup so client-side
@@ -98,13 +109,10 @@ export function useSeo({
 
     if (jsonLd) {
       upsertJsonLd(jsonLdId, jsonLd);
-    } else {
-      document.getElementById(jsonLdId)?.remove();
     }
-
-    return () => {
-      document.getElementById(jsonLdId)?.remove();
-    };
+    // Note: intentionally no cleanup that removes the JSON-LD element.
+    // The next route's useSeo() overwrites #page-jsonld in place, which
+    // avoids racing with react-helmet-async's reconciler in WebKit.
   }, [title, description, canonicalPath, ogImage, jsonLd, jsonLdId, noIndex]);
 }
 
@@ -113,8 +121,12 @@ export function useSeo({
  * are emitted into the per-route static HTML at build time so crawlers see
  * unique titles, descriptions, canonical URLs and JSON-LD on every page.
  *
- * Pages should render <Seo {...} /> AND call useSeo({ ... }) — together they
- * cover SSG + client-side route changes.
+ * On the client, this component renders only on the FIRST mount (hydration).
+ * After that it returns null so react-helmet-async stops reconciling tags on
+ * client-side route changes — the imperative useSeo() hook is the single
+ * source of truth for runtime head updates. This eliminates a WebKit race
+ * that surfaced as "SyntaxError: The string did not match the expected
+ * pattern" during navigation.
  */
 export function Seo({
   title,
@@ -125,11 +137,28 @@ export function Seo({
   jsonLdId = "page-jsonld",
   noIndex,
 }: SeoOptions) {
+  // After first client render, let useSeo() own the head exclusively.
+  if (isBrowser && hasHydrated) {
+    return null;
+  }
+  if (isBrowser) {
+    hasHydrated = true;
+  }
+
   const path = canonicalPath ?? "/";
   const canonicalUrl = `${SITE_URL}${path}`;
   const absoluteImage = ogImage
     ? (ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`)
     : undefined;
+
+  let serializedJsonLd: string | null = null;
+  if (jsonLd) {
+    try {
+      serializedJsonLd = JSON.stringify(jsonLd);
+    } catch {
+      serializedJsonLd = null;
+    }
+  }
 
   return React.createElement(
     Head,
@@ -154,11 +183,11 @@ export function Seo({
     absoluteImage
       ? React.createElement("meta", { name: "twitter:image", content: absoluteImage })
       : null,
-    jsonLd
+    serializedJsonLd
       ? React.createElement("script", {
           id: jsonLdId,
           type: "application/ld+json",
-          children: JSON.stringify(jsonLd),
+          children: serializedJsonLd,
         })
       : null
   );
