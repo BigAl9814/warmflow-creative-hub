@@ -40,6 +40,12 @@ const upsertLink = (rel: string, href: string) => {
 };
 
 const upsertJsonLd = (id: string, data: JsonLd) => {
+  let serialized: string;
+  try {
+    serialized = JSON.stringify(data);
+  } catch {
+    return;
+  }
   let script = document.getElementById(id) as HTMLScriptElement | null;
   if (!script) {
     script = document.createElement("script");
@@ -47,8 +53,13 @@ const upsertJsonLd = (id: string, data: JsonLd) => {
     script.id = id;
     document.head.appendChild(script);
   }
-  script.text = JSON.stringify(data);
+  script.text = serialized;
 };
+
+// Module-level flag — true after the first client render.
+// Used to make <Seo /> a no-op on subsequent client navigations so
+// react-helmet-async doesn't race with the imperative useSeo() updater.
+let hasHydrated = false;
 
 /**
  * Imperative client-side SEO updater. Used as a backup so client-side
